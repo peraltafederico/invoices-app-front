@@ -1,7 +1,17 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/ssr-apis/
- */
+import React from 'react'
+import Layout from './src/components/layout.tsx'
+import { ThemeProvider } from '@emotion/react'
+import baseTheme from './src/theme/base'
+import lightTheme from './src/theme/light'
 
-// You can delete this file if you're not using it
+export const wrapRootElement = ({ element }) => {
+  return (
+    <ThemeProvider theme={baseTheme}>
+      <ThemeProvider theme={lightTheme}>{element}</ThemeProvider>
+    </ThemeProvider>
+  )
+}
+
+export const wrapPageElement = ({ element, props }) => {
+  return <Layout {...props}>{element}</Layout>
+}
