@@ -2,30 +2,41 @@ import '@emotion/react'
 
 declare module '@emotion/react' {
   export interface Theme {
+    mode: 'dark' | 'light'
     colors: {
-      mediumSlateBlue: string
-      mediumPurple: string
-      spaceCadet: {
-        100: string
-        200: string
-        300: string
+      all: {
+        violet: {
+          mediumSlateBlue: string
+          mediumPurple: string
+          lavenderWeb: string
+          glaucous: string
+        }
+        grey: {
+          ghostWhite: string
+          cultured: string
+          coolGrey: string
+        }
+        darkBlue: {
+          spaceCadet: {
+            100: string
+            200: string
+            300: string
+          }
+          xiketic: string
+          richBlack: string
+        }
+        red: {
+          redSalsa: string
+          lightCoral: string
+        }
+        black: string
+        white: string
       }
-      lavenderWeb: string
-      coolGrey: string
-      glaucous: string
-      richBlack: string
-      redSalsa: string
-      lightCoral: string
-      cultured: string
-      xiketic: string
-      white: string
-      ghostWhite: string
-    }
-    lightMode: {
-      cardBackground: string
-    }
-    blackMode: {
-      cardBackground: string
+      text: string
+      background: string
+      primary: string
+      secondary: string
+      muted: string
     }
   }
 }
