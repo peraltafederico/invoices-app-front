@@ -38,7 +38,7 @@ const GlobalStyles = () => (
       nav,
       section,
       video {
-        margin: 0 !important;
+        margin: 0;
         padding: 0;
         font-size: 100%;
         list-style: none;
