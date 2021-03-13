@@ -3,6 +3,8 @@ import '@emotion/react'
 declare module '@emotion/react' {
   export interface Theme {
     mode: 'dark' | 'light'
+    space: string[]
+    fontSizes: string[]
     colors: {
       all: {
         violet: {
@@ -38,5 +40,10 @@ declare module '@emotion/react' {
       secondary: string
       muted: string
     }
+    fonts: string[]
+    fontWeights: string[]
+    lineHeights: string[]
+    sizes: string[]
+    letterSpacings: string[]
   }
 }

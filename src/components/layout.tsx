@@ -10,7 +10,6 @@ import { css } from '@emotion/react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import Header from './header'
-import './layout.css'
 import { useThemeContext } from '../context/themeContext'
 
 const Layout = ({ children }) => {

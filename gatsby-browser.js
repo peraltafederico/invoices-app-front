@@ -1,12 +1,13 @@
 import React from 'react'
 import Layout from './src/components/layout.tsx'
 import { ThemeProvider } from '@emotion/react'
-import themes from './src/theme/base'
+import themes from './src/theme/modes'
 import {
   ThemeContext,
   useThemeContextValue,
   useThemeContext,
 } from './src/context/themeContext'
+import GlobalStyles from './src/globalStyles'
 
 const AppWrapper = ({ children }) => {
   const { theme } = useThemeContext()
@@ -29,5 +30,10 @@ export const wrapRootElement = ({ element }) => {
 }
 
 export const wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>
+  return (
+    <>
+      <GlobalStyles />
+      <Layout {...props}>{element}</Layout>
+    </>
+  )
 }
