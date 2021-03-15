@@ -41,11 +41,17 @@ const GlobalStyles = () => (
         margin: 0;
         padding: 0;
         font-size: 100%;
-        list-style: none;
+        line-height: ${baseTheme.lineHeights[0]};
         border: 0;
       }
 
+      ol,
+      ul {
+        list-style: none;
+      }
+
       html {
+        font-size: 62.5%;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
       }
