@@ -40,14 +40,43 @@ const GlobalStyles = () => (
       video {
         margin: 0;
         padding: 0;
-        font-size: 100%;
-        line-height: ${baseTheme.lineHeights[0]};
         border: 0;
+        font-size: 100%;
       }
 
       ol,
       ul {
         list-style: none;
+      }
+
+      h1,
+      h2,
+      h4,
+      h4 {
+        font-weight: ${baseTheme.fontWeights[1]};
+      }
+
+      h1 {
+        font-size: ${baseTheme.fontSizes[4]};
+        line-height: ${baseTheme.lineHeights[1]};
+        letter-spacing: ${baseTheme.letterSpacings[0]};
+      }
+
+      h2 {
+        font-size: ${baseTheme.fontSizes[3]};
+        letter-spacing: ${baseTheme.letterSpacings[2]};
+      }
+
+      h3 {
+        font-size: ${baseTheme.fontSizes[2]};
+        line-height: ${baseTheme.lineHeights[3]};
+        letter-spacing: ${baseTheme.letterSpacings[1]};
+      }
+
+      h4 {
+        font-size: ${baseTheme.fontSizes[1]};
+        line-height: ${baseTheme.lineHeights[2]};
+        letter-spacing: ${baseTheme.letterSpacings[3]};
       }
 
       html {
@@ -59,10 +88,11 @@ const GlobalStyles = () => (
         margin: 0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        word-wrap: break-word;
         font-family: ${baseTheme.fonts[0]};
+        line-height: ${baseTheme.lineHeights[0]};
         font-weight: ${baseTheme.fontWeights[0]};
         color: ${baseTheme.colors.darkBlue.richBlack};
-        word-wrap: break-word;
       }
     `}
   />
