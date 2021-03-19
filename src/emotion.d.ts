@@ -45,5 +45,7 @@ declare module '@emotion/react' {
     lineHeights: string[]
     sizes: string[]
     letterSpacings: string[]
+    shadows: string[]
+    radii: string[]
   }
 }

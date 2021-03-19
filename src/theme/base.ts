@@ -57,6 +57,13 @@ const baseTheme = {
     '-0.025rem',
     '-0.023rem',
   ],
+  breakpoints: ['48.0rem', '76.8rem', '128rem'],
+  shadows: ['0rem 1rem 1rem -1rem rgba(72, 84, 159, 0.100397)'],
+  radii: ['0.8rem', '0.6rem'],
 }
+
+export const MIN_LARGE_DISPLAY_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[2]})`
+export const MIN_TABLET_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[1]})`
+export const MIN_MOBILE_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[0]})`
 
 export default baseTheme

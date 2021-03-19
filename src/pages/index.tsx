@@ -1,28 +1,21 @@
 import * as React from 'react'
-import { Link, PageProps } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
+import { PageProps } from 'gatsby'
 
-import SEO from '../components/seo'
+import styled from '@emotion/styled'
+import InvoiceCard from '../components/invoiceCard'
 
-const IndexPage: React.FC<PageProps<{}>> = () => (
-  <>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={['auto', 'webp', 'avif']}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
+const StyledContainer = styled.div``
+
+const Home: React.FC<PageProps<{}>> = () => (
+  <StyledContainer>
+    <InvoiceCard
+      date="Due 19 Aug 2021"
+      id="RT3080"
+      money="£ 1,800.90"
+      name="Jensen Huang"
+      status="paid"
     />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
-  </>
+  </StyledContainer>
 )
 
-export default IndexPage
+export default Home
