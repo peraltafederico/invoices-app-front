@@ -1,6 +1,6 @@
 <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 0H52C63.0457 0 72 8.95431 72 20V52C72 63.0457 63.0457 72 52 72H0V0Z" fill="#7C5DFA" />
-    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+    <mask id="mask0" masktype="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
         <path d="M0 0H52C63.0457 0 72 8.95431 72 20V52C72 63.0457 63.0457 72 52 72H0V0Z" fill="white" />
     </mask>
     <g mask="url(#mask0)">

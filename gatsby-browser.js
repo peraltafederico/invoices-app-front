@@ -31,9 +31,9 @@ export const wrapRootElement = ({ element }) => {
 
 export const wrapPageElement = ({ element, props }) => {
   return (
-    <>
+    <div>
       <GlobalStyles />
       <Layout {...props}>{element}</Layout>
-    </>
+    </div>
   )
 }

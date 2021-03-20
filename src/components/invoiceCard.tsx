@@ -37,28 +37,30 @@ const StyledId = styled.span`
 
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {
   return (
-    <Card>
-      <StyledWrapper>
-        <StyledRow>
-          <Text variant="body2" bold>
-            <StyledId>#</StyledId>
-            {id}
-          </Text>
-          <Text variant="body2" muted>
-            {name}
-          </Text>
-        </StyledRow>
-        <StyledRow>
-          <StyledPaymentContainer>
-            <Text variant="body2" muted>
-              {date}
+    <div role="button" tabIndex={0}>
+      <Card>
+        <StyledWrapper>
+          <StyledRow>
+            <Text variant="body2" bold>
+              <StyledId>#</StyledId>
+              {id}
             </Text>
-            <StyledPrice>{money}</StyledPrice>
-          </StyledPaymentContainer>
-          <Status type="paid" />
-        </StyledRow>
-      </StyledWrapper>
-    </Card>
+            <Text variant="body2" muted>
+              {name}
+            </Text>
+          </StyledRow>
+          <StyledRow>
+            <StyledPaymentContainer>
+              <Text variant="body2" muted>
+                {date}
+              </Text>
+              <StyledPrice>{money}</StyledPrice>
+            </StyledPaymentContainer>
+            <Status type={status} />
+          </StyledRow>
+        </StyledWrapper>
+      </Card>
+    </div>
   )
 }
 
