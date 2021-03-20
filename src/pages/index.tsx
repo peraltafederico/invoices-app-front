@@ -8,10 +8,8 @@ import UserActions from '../components/userActions'
 const StyledContainer = styled.div``
 
 const StyledCardsWrapper = styled.div`
-  margin-top: ${(props) => `-${props.theme.space[8]}`};
-
-  & > div {
-    padding-top: ${(props) => props.theme.space[8]};
+  & > div:not(:first-child) {
+    margin-top: ${(props) => props.theme.space[8]};
   }
 `
 
