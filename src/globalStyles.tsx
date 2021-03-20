@@ -37,6 +37,7 @@ const GlobalStyles = () => (
       menu,
       nav,
       section,
+      button,
       video {
         margin: 0;
         padding: 0;

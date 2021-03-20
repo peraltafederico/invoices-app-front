@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import Logo from '../assets/logo.inline.svg'
 import User from '../assets/user.inline.svg'
+import Moon from '../assets/moon.inline.svg'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -29,6 +30,12 @@ const StyledUserSection = styled.div`
 
 const StyledPhotoContainer = styled.div``
 
+const StyledThemeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: ${(props) => props.theme.space[12]};
+`
+
 const AppBar = (): JSX.Element => {
   return (
     <StyledContainer>
@@ -36,6 +43,11 @@ const AppBar = (): JSX.Element => {
         <Logo />
       </div>
       <StyledUserSection>
+        <StyledThemeContainer>
+          <div role="button" tabIndex={0}>
+            <Moon />
+          </div>
+        </StyledThemeContainer>
         <StyledDivider />
         <StyledProfile>
           <StyledPhotoContainer role="button" tabIndex={0}>

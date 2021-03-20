@@ -4,7 +4,9 @@ import { PageProps } from 'gatsby'
 import styled from '@emotion/styled'
 import InvoiceCard from '../components/invoiceCard'
 import Text from '../components/text'
-import ArrowDown from '../assets/button.inline.svg'
+import ArrowDown from '../assets/arrow-down.inline.svg'
+import Button from '../components/button'
+import PlusIcon from '../assets/plus.inline.svg'
 
 const StyledContainer = styled.div``
 
@@ -64,7 +66,9 @@ const Home: React.FC<PageProps<{}>> = () => (
           </StyledFilterTitle>
           <ArrowDown />
         </StyledFilter>
-        <button type="button">New</button>
+        <Button variant="primary" icon={<PlusIcon />}>
+          New
+        </Button>
       </StyledActions>
     </StyledActionsContainer>
     <StyledCardsWrapper>

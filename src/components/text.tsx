@@ -10,6 +10,8 @@ interface Props {
   bold?: boolean
   className?: string
   muted?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  as?: React.ElementType<any>
 }
 
 const StyledText = styled.p<{
@@ -54,6 +56,7 @@ const Text = ({
   bold,
   className,
   muted,
+  as = 'p',
 }: Props) => {
   return (
     <StyledText
@@ -61,6 +64,7 @@ const Text = ({
       bold={bold}
       className={className}
       muted={muted}
+      as={as}
     >
       {children}
     </StyledText>
