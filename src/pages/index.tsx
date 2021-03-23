@@ -6,18 +6,17 @@ import InvoiceCard from '../components/invoiceCard'
 import UserActions from '../components/userActions'
 import NoContent from '../components/noContent'
 
-const StyledContainer = styled.div``
-
 const StyledCardsWrapper = styled.div`
   & > div:not(:first-child) {
     margin-top: ${(props) => props.theme.space[8]};
   }
 `
 
-const invoices = []
+const invoices = [1, 2, 3, 4, 5, 6, 7]
+// const invoices = []
 
 const Home: React.FC<PageProps> = () => (
-  <StyledContainer>
+  <div>
     <UserActions invoicesAmount={7} />
     {invoices.length > 0 ? (
       <StyledCardsWrapper>
@@ -35,7 +34,7 @@ const Home: React.FC<PageProps> = () => (
     ) : (
       <NoContent />
     )}
-  </StyledContainer>
+  </div>
 )
 
 export default Home

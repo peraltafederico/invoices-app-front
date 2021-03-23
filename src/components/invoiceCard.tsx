@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { InvoiceStatus } from '../interfaces'
 import Card from './card'
+import InvoiceId from './invoiceId'
 import Status from './status'
 import Text from './text'
 
@@ -31,20 +32,13 @@ const StyledPrice = styled.h3`
   margin-top: ${(props) => props.theme.space[4]};
 `
 
-const StyledId = styled.span`
-  color: #858bb2;
-`
-
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {
   return (
     <div role="button" tabIndex={0}>
       <Card>
         <StyledWrapper>
           <StyledRow>
-            <Text variant="body2" bold>
-              <StyledId>#</StyledId>
-              {id}
-            </Text>
+            <InvoiceId id={id} />
             <Text variant="body2" muted>
               {name}
             </Text>
