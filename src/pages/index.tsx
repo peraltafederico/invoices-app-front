@@ -4,6 +4,7 @@ import { PageProps } from 'gatsby'
 import styled from '@emotion/styled'
 import InvoiceCard from '../components/invoiceCard'
 import UserActions from '../components/userActions'
+import NoContent from '../components/noContent'
 
 const StyledContainer = styled.div``
 
@@ -13,14 +14,14 @@ const StyledCardsWrapper = styled.div`
   }
 `
 
-const invoices = [1, 2, 3, 4, 5, 6, 7]
+const invoices = []
 
 const Home: React.FC<PageProps> = () => (
   <StyledContainer>
     <UserActions invoicesAmount={7} />
-    <StyledCardsWrapper>
-      {invoices.length > 0 ? (
-        invoices.map((card) => (
+    {invoices.length > 0 ? (
+      <StyledCardsWrapper>
+        {invoices.map((card) => (
           <InvoiceCard
             key={card}
             date="Due 19 Aug 2021"
@@ -29,11 +30,11 @@ const Home: React.FC<PageProps> = () => (
             name="Jensen Huang"
             status="paid"
           />
-        ))
-      ) : (
-        <div>Nada</div>
-      )}
-    </StyledCardsWrapper>
+        ))}
+      </StyledCardsWrapper>
+    ) : (
+      <NoContent />
+    )}
   </StyledContainer>
 )
 
