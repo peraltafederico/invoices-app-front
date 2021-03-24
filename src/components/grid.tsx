@@ -8,6 +8,7 @@ type Props = {
   rowGap?: string
   span?: number
   children?: React.ReactNode
+  className?: string
 }
 
 const StyledContainer = styled.div<{
@@ -59,13 +60,14 @@ const StyledContainer = styled.div<{
     `}
 `
 
-const Grid = ({ children, container, gap, rowGap, span }: Props) => {
+const Grid = ({ children, container, gap, rowGap, span, className }: Props) => {
   return (
     <StyledContainer
       container={container}
       gap={gap}
       rowGap={rowGap}
       span={span}
+      className={className}
     >
       {React.Children.map(children, (child) => {
         if (container && React.isValidElement(child)) {
