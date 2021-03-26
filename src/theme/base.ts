@@ -25,7 +25,7 @@ const baseTheme = {
       glaucous: '#7E88C3',
     },
     grey: {
-      ghostWhite: '##F9FAFE',
+      ghostWhite: '#F9FAFE',
       cultured: '#F8F8FB',
       coolGrey: '#888EB0',
     },
@@ -59,7 +59,12 @@ const baseTheme = {
   ],
   breakpoints: ['48.0rem', '76.8rem', '128rem'],
   shadows: ['0rem 1rem 1rem -1rem rgba(72, 84, 159, 0.100397)'],
-  radii: ['0.8rem', '0.6rem'],
+  radii: [
+    '0.8rem',
+    '0.6rem',
+    '0.8rem 0.8rem 0rem 0rem',
+    '0rem 0rem 0.8rem 0.8rem',
+  ],
 }
 
 export const MIN_LARGE_DISPLAY_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[2]})`

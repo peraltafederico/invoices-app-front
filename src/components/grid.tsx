@@ -28,7 +28,7 @@ const StyledContainer = styled.div<{
     props.container &&
     props.rowGap &&
     css`
-      margin-top: -${props.gap};
+      margin-top: -${props.rowGap};
     `}
 
     ${(props) =>

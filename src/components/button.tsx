@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import Text from './text'
 
-type ButtonVariants = 'primary' | 'secondary' | 'dark' | 'danger'
+export type ButtonVariants = 'primary' | 'secondary' | 'dark' | 'danger'
 
 interface Props {
   variant?: ButtonVariants
