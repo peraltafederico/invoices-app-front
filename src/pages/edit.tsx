@@ -2,7 +2,8 @@ import { Form, Formik } from 'formik'
 import { PageProps } from 'gatsby'
 import { noop } from 'lodash'
 import React from 'react'
-import TextField from '../components/input'
+import * as Yup from 'yup'
+import TextField from '../components/textField'
 
 const Edit: React.FC<PageProps> = () => {
   return (
@@ -11,10 +12,13 @@ const Edit: React.FC<PageProps> = () => {
         name: '',
       }}
       onSubmit={() => noop()}
+      validationSchema={Yup.object({
+        name: Yup.string().required(),
+      })}
     >
       {() => (
         <Form>
-          <TextField name="name" />
+          <TextField name="name" label="label" />
         </Form>
       )}
     </Formik>

@@ -64,6 +64,7 @@ const baseTheme = {
     '0.6rem',
     '0.8rem 0.8rem 0rem 0rem',
     '0rem 0rem 0.8rem 0.8rem',
+    '0.4rem',
   ],
 }
 
