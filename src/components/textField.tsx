@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { ErrorMessage, FieldHookConfig, useField } from 'formik'
+import Label from './label'
 import Text from './text'
 
 type Props = {
@@ -17,6 +18,7 @@ const StyledInput = styled.input`
   font-size: ${(props) => props.theme.fontSizes[1]};
   line-height: ${(props) => props.theme.lineHeights[2]};
   letter-spacing: ${(props) => props.theme.letterSpacings[3]};
+  color: ${(props) => props.theme.colors.text};
 
   &:focus {
     outline: none;
@@ -28,10 +30,6 @@ const StyledInput = styled.input`
   }
 `
 
-const StyledLabel = styled.label`
-  margin-bottom: ${(props) => props.theme.space[5]};
-`
-
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,7 +37,7 @@ const StyledContainer = styled.div`
 
 const StyledErrorMessage = styled.div`
   margin-top: ${(props) => props.theme.space[5]};
-  color: red;
+  color: ${(props) => props.theme.colors.all.red.redSalsa};
 `
 
 const TextField = ({ label, id, name, ...props }: Props) => {
@@ -47,11 +45,11 @@ const TextField = ({ label, id, name, ...props }: Props) => {
 
   return (
     <StyledContainer>
-      <StyledLabel htmlFor={id || name}>
+      <Label htmlFor={id || name}>
         <Text variant="body2" muted>
           {label}
         </Text>
-      </StyledLabel>
+      </Label>
       <StyledInput id={id || name} {...field} />
       <ErrorMessage component={StyledErrorMessage} name={name} />
     </StyledContainer>

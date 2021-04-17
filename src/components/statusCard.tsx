@@ -16,7 +16,7 @@ export const StyledCard = styled(Card)`
   margin-bottom: ${(props) => props.theme.space[8]};
 `
 
-const StatusCard: React.FC<Props> = ({ status }: Props) => {
+const StatusCard: React.FC<Props> = () => {
   return (
     <StyledCard>
       <Text variant="body2" muted>

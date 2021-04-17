@@ -1,4 +1,3 @@
-import React from 'react'
 import { css, Global } from '@emotion/react'
 import baseTheme from './theme/base'
 
@@ -44,6 +43,7 @@ const GlobalStyles = () => (
         border: 0;
         font-size: 100%;
         box-sizing: border-box;
+        font-family: ${baseTheme.fonts[0]};
       }
 
       ol,

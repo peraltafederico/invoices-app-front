@@ -58,7 +58,10 @@ const baseTheme = {
     '-0.023rem',
   ],
   breakpoints: ['48.0rem', '76.8rem', '128rem'],
-  shadows: ['0rem 1rem 1rem -1rem rgba(72, 84, 159, 0.100397)'],
+  shadows: [
+    '0rem 1rem 1rem -1rem rgba(72, 84, 159, 0.100397)',
+    '0rem 1rem 2rem rgba(72, 84, 159, 0.25)',
+  ],
   radii: [
     '0.8rem',
     '0.6rem',

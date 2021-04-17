@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import NoInvoices from '../assets/no-content.inline.svg'
 import Text from './text'

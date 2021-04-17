@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import React from 'react'
 import Logo from '../assets/logo.inline.svg'
 import User from '../assets/user.inline.svg'
 import Moon from '../assets/moon.inline.svg'
