@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React from 'react'
 
-type Props = {
+interface Props {
   container?: boolean
   gap?: string
   rowGap?: string

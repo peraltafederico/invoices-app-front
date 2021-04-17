@@ -3,6 +3,7 @@ import { PageProps } from 'gatsby'
 import { noop } from 'lodash'
 import React from 'react'
 import * as Yup from 'yup'
+import DatePicker from '../components/datePicker'
 import Dropdown from '../components/dropdown'
 import TextField from '../components/textField'
 
@@ -32,6 +33,7 @@ const Edit: React.FC<PageProps> = () => {
             name="select"
             label="select"
           />
+          <DatePicker />
         </Form>
       )}
     </Formik>
