@@ -5,10 +5,11 @@ import { FieldHookConfig, useField } from 'formik'
 import ArrowDown from '../assets/arrow-down.svg'
 import { InputStyles } from './mixins'
 import CalendarIcon from '../assets/calendar.svg'
-import WithLabel from './withLabel'
+import InputLabel from './inputLabel'
 
 type Props = {
   label: string
+  className?: string
 } & FieldHookConfig<string> &
   Partial<ReactDatePickerProps>
 
@@ -109,21 +110,22 @@ const StyledDatePickerContainer = styled.div`
   }
 `
 
-const DatePicker = ({ label, id, name, value, ...props }: Props) => {
+const DatePicker = ({ label, id, name, value, className, ...props }: Props) => {
   const [field, , meta] = useField({ name, ...props })
 
   return (
-    <WithLabel label={label} id={id || name}>
+    <div className={className}>
+      <InputLabel htmlFor={id || name}>{label}</InputLabel>
       <StyledDatePickerContainer>
         <ReactDatePicker
-          selected={new Date(field.value)}
+          selected={field.value ? new Date(field.value) : new Date()}
           dateFormatCalendar="MMM yyyy"
           dateFormat="dd MMM yyyy"
           showPopperArrow={false}
           onChange={(date) => meta.setValue(date?.toString() || '')}
         />
       </StyledDatePickerContainer>
-    </WithLabel>
+    </div>
   )
 }
 

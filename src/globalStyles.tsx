@@ -61,7 +61,7 @@ const GlobalStyles = () => (
       h1 {
         font-size: ${baseTheme.fontSizes[4]};
         line-height: ${baseTheme.lineHeights[1]};
-        letter-spacing: ${baseTheme.letterSpacings[0]};
+        letter-spacing: ${baseTheme.letterSpacings[5]};
       }
 
       h2 {

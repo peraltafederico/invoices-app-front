@@ -56,6 +56,7 @@ const baseTheme = {
     '-0.063rem',
     '-0.025rem',
     '-0.023rem',
+    '-0.05rem',
   ],
   breakpoints: ['48.0rem', '76.8rem', '128rem'],
   shadows: [

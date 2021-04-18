@@ -5,7 +5,7 @@ import Text from './text'
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: ${(props) => props.theme.space[13]};
+  margin-bottom: ${(props) => props.theme.space[12]};
 `
 
 const ArrowLeft = styled(ArrowDown)`
@@ -13,9 +13,13 @@ const ArrowLeft = styled(ArrowDown)`
   margin-right: 2.366rem;
 `
 
-const GoBack = () => {
+type Props = {
+  className?: string
+}
+
+const GoBack = ({ className }: Props) => {
   return (
-    <StyledContainer>
+    <StyledContainer className={className}>
       <ArrowLeft />
       <Text bold variant="body2">
         Go back
