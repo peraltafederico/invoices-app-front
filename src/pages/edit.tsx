@@ -18,24 +18,23 @@ const Edit: React.FC<PageProps> = () => {
       validationSchema={Yup.object({
         name: Yup.string().required(),
         select: Yup.string().required(),
+        datepicker: Yup.string().required(),
       })}
     >
-      {() => (
-        <Form>
-          <TextField name="name" label="text" />
-          <Dropdown
-            options={[
-              { label: 'Net 30 Days', value: '1' },
-              { label: 'Net 1 Days', value: '2' },
-              { label: 'Net 14 Days', value: '3' },
-              { label: 'Net 30 Days', value: '4' },
-            ]}
-            name="select"
-            label="select"
-          />
-          <DatePicker />
-        </Form>
-      )}
+      <Form>
+        <TextField name="name" label="text" />
+        <Dropdown
+          options={[
+            { label: 'Net 30 Days', value: '1' },
+            { label: 'Net 1 Days', value: '2' },
+            { label: 'Net 14 Days', value: '3' },
+            { label: 'Net 30 Days', value: '4' },
+          ]}
+          name="select"
+          label="select"
+        />
+        <DatePicker name="datepicker" label="datepicker" />
+      </Form>
     </Formik>
   )
 }

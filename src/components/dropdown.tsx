@@ -2,9 +2,8 @@ import styled from '@emotion/styled'
 import { ErrorMessage, FieldHookConfig, useField } from 'formik'
 import Select from 'react-select'
 import { css, Theme } from '@emotion/react'
-import Label from './label'
-import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
+import WithLabel from './withLabel'
 
 interface Option {
   value: string
@@ -116,12 +115,7 @@ const Dropdown = ({ label, id, name, options, value, ...props }: Props) => {
   const selected = options.find((option) => option.value === field.value)
 
   return (
-    <StyledContainer>
-      <Label htmlFor={id || name}>
-        <Text variant="body2" muted>
-          {label}
-        </Text>
-      </Label>
+    <WithLabel label={label} id={id || name}>
       <StyledSelectContainer>
         <Select<Option>
           options={options}
@@ -135,7 +129,7 @@ const Dropdown = ({ label, id, name, options, value, ...props }: Props) => {
         />
       </StyledSelectContainer>
       <ErrorMessage component={StyledErrorMessage} name={name} />
-    </StyledContainer>
+    </WithLabel>
   )
 }
 
