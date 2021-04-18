@@ -12,7 +12,7 @@ type Props = {
 } & FieldHookConfig<string> &
   Partial<ReactDatePickerProps>
 
-const StyledWrapper = styled.div`
+const StyledDatePickerContainer = styled.div`
   .react-datepicker {
     border: none;
     border-radius: ${(props) => props.theme.radii[0]};
@@ -114,19 +114,15 @@ const DatePicker = ({ label, id, name, value, ...props }: Props) => {
 
   return (
     <WithLabel label={label} id={id || name}>
-      <StyledWrapper>
+      <StyledDatePickerContainer>
         <ReactDatePicker
           selected={new Date(field.value)}
-          wrapperClassName="wrapper"
-          calendarClassName="calendar"
-          previousMonthButtonLabel="prev"
-          nextMonthButtonLabel="next"
           dateFormatCalendar="MMM yyyy"
           dateFormat="dd MMM yyyy"
           showPopperArrow={false}
           onChange={(date) => meta.setValue(date?.toString() || '')}
         />
-      </StyledWrapper>
+      </StyledDatePickerContainer>
     </WithLabel>
   )
 }
