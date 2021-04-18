@@ -13,6 +13,7 @@ const Edit: React.FC<PageProps> = () => {
       initialValues={{
         name: '',
         select: '',
+        datepicker: new Date(),
       }}
       onSubmit={() => noop()}
       validationSchema={Yup.object({

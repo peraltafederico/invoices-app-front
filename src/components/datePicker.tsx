@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
-import { noop } from 'lodash'
-import ReactDatePicker from 'react-datepicker'
+import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { FieldHookConfig, useField } from 'formik'
 import ArrowDown from '../assets/arrow-down.svg'
@@ -10,7 +9,8 @@ import WithLabel from './withLabel'
 
 type Props = {
   label: string
-} & FieldHookConfig<string>
+} & FieldHookConfig<string> &
+  Partial<ReactDatePickerProps>
 
 const StyledWrapper = styled.div`
   .react-datepicker {

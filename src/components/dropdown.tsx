@@ -23,11 +23,6 @@ const TextSelectStlyes = (props: { theme: Theme }) => css`
   letter-spacing: ${props.theme.letterSpacings[3]};
 `
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
 const StyledErrorMessage = styled.div`
   margin-top: ${(props) => props.theme.space[5]};
   color: ${(props) => props.theme.colors.all.red.redSalsa};
