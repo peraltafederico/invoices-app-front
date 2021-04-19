@@ -4,7 +4,7 @@ import Text from './text'
 
 interface Props {
   children: React.ReactNode
-  htmlFor: string
+  htmlFor?: string
 }
 
 const StyledLabel = styled.label`

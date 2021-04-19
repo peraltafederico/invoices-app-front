@@ -40,16 +40,14 @@ const Edit: React.FC<PageProps> = () => {
           projectDescription: '',
           items: [
             {
-              name: '1',
-              qty: '1',
-              price: '1',
-              total: '1',
+              name: '',
+              qty: '',
+              price: '',
             },
             {
-              name: '2',
-              qty: '2',
-              price: '2',
-              total: '2',
+              name: '',
+              qty: '',
+              price: '',
             },
           ],
         }}

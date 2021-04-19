@@ -18,13 +18,13 @@ const StyledErrorMessage = styled.div`
   color: ${(props) => props.theme.colors.all.red.redSalsa};
 `
 
-const TextField = ({ label, id, name, className, ...props }: Props) => {
+const TextField = ({ label, id, name, className, type, ...props }: Props) => {
   const [field] = useField({ name, ...props })
 
   return (
     <div className={className}>
       <InputLabel htmlFor={id || name}>{label}</InputLabel>
-      <StyledInput id={id || name} {...field} />
+      <StyledInput type={type} id={id || name} {...field} />
       <ErrorMessage component={StyledErrorMessage} name={name} />
     </div>
   )

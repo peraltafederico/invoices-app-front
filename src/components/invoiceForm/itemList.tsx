@@ -4,7 +4,11 @@ import styled from '@emotion/styled'
 import { FieldArray, useFormikContext } from 'formik'
 import React from 'react'
 import Grid from '../grid'
+import InputLabel from '../inputLabel'
+import Text from '../text'
 import TextField from '../textField'
+import TrashIcon from '../../assets/trash.inline.svg'
+import Button from '../button'
 
 const StyledContainer = styled.div`
   margin-top: 6.6rem;
@@ -18,33 +22,94 @@ const StyledTitle = styled.h3`
   margin-bottom: ${(props) => props.theme.space[12]};
 `
 
+const StyledGridContainer = styled(Grid)`
+  margin-bottom: ${(props) => props.theme.space[14]};
+`
+
+const StyledTotalGrid = styled(Grid)`
+  display: flex;
+  align-items: space-between;
+  flex-direction: column;
+`
+
+const StyledTotalPriceContainer = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const StyledTrashIcon = styled(TrashIcon)`
+  margin-right: 0.7rem;
+  cursor: pointer;
+  flex-shrink: 0;
+`
+
+const StyledPriceValue = styled(Text)`
+  overflow: auto;
+`
+
 const ItemList = () => {
   const { values } = useFormikContext<{
-    items: { name: string; qty: string; price: string; total: string }[]
+    items: { name: string; qty: number; price: number; total: string }[]
   }>()
 
   return (
     <StyledContainer>
       <StyledTitle>Items List</StyledTitle>
       <FieldArray name="items" validateOnChange={false}>
-        {() => (
+        {(arrayHelper) => (
           <React.Fragment>
-            {values.items.map((_, index) => (
-              <Grid key={index} container gap="1.6rem" rowGap="2.4rem">
+            {values.items.map((item, index) => (
+              <StyledGridContainer
+                key={index}
+                container
+                gap="1.6rem"
+                rowGap="2.4rem"
+              >
                 <Grid span={12}>
                   <TextField label="Item Name" name={`items[${index}].name`} />
                 </Grid>
                 <Grid span={2.799}>
-                  <TextField label="Qty." name={`items[${index}].qty`} />
+                  <TextField
+                    type="number"
+                    label="Qty."
+                    name={`items[${index}].qty`}
+                  />
                 </Grid>
                 <Grid span={4.0588}>
-                  <TextField label="Price" name={`items[${index}].price`} />
+                  <TextField
+                    type="number"
+                    label="Price"
+                    name={`items[${index}].price`}
+                  />
                 </Grid>
-                <Grid span={12 - 2.799 - 4.0588}>
-                  <TextField label="Total" name={`items[${index}].total`} />
-                </Grid>
-              </Grid>
+                <StyledTotalGrid span={12 - 2.799 - 4.0588}>
+                  <InputLabel>Total</InputLabel>
+                  <StyledTotalPriceContainer>
+                    <StyledPriceValue variant="body2" muted bold>
+                      {(item.price * item.qty).toFixed(2)}
+                    </StyledPriceValue>
+                    <StyledTrashIcon
+                      onClick={() => arrayHelper.remove(index)}
+                    />
+                  </StyledTotalPriceContainer>
+                </StyledTotalGrid>
+              </StyledGridContainer>
             ))}
+            <Button
+              fullWidth
+              variant="secondary"
+              onClick={() =>
+                arrayHelper.push({
+                  name: '',
+                  qty: '',
+                  price: '',
+                })
+              }
+            >
+              + Add New Item
+            </Button>
           </React.Fragment>
         )}
       </FieldArray>

@@ -81,6 +81,18 @@ const GlobalStyles = () => (
         letter-spacing: ${baseTheme.letterSpacings[3]};
       }
 
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type='number'] {
+        -moz-appearance: textfield;
+      }
+
       html {
         font-size: 62.5%;
         -ms-text-size-adjust: 100%;

@@ -5,11 +5,13 @@ import Text from './text'
 
 export type ButtonVariants = 'primary' | 'secondary' | 'dark' | 'danger'
 
-interface Props {
+type Props = {
   variant?: ButtonVariants
   children: React.ReactNode
   fullWidth?: boolean
   icon?: React.ReactElement
+  onClick?: () => void
+  className?: string
 }
 
 const StyledButton = styled.button<{
@@ -115,11 +117,24 @@ const StyledIconWrapper = styled.span`
   margin-right: ${(props) => props.theme.space[4]};
 `
 
-const Button = ({ variant = 'primary', fullWidth, children, icon }: Props) => {
+const Button = ({
+  variant = 'primary',
+  fullWidth,
+  children,
+  icon,
+  onClick,
+  className,
+}: Props) => {
   const withIcon = !!icon
 
   return (
-    <StyledButton variant={variant} fullWidth={fullWidth} withIcon={withIcon}>
+    <StyledButton
+      variant={variant}
+      fullWidth={fullWidth}
+      withIcon={withIcon}
+      onClick={onClick}
+      className={className}
+    >
       {withIcon && <StyledIconWrapper>{icon}</StyledIconWrapper>}
       <StyledChildren as="span" variant="body2" buttonVariant={variant} bold>
         {children}
