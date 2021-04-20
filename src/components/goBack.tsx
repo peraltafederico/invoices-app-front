@@ -21,7 +21,7 @@ const GoBack = ({ className }: Props) => {
   return (
     <StyledContainer className={className}>
       <ArrowLeft />
-      <Text bold variant="body2">
+      <Text isBold variant="body2">
         Go back
       </Text>
     </StyledContainer>

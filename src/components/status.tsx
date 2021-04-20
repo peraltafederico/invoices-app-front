@@ -79,7 +79,7 @@ const Status: React.FC<Props> = ({ type }: Props) => {
     <StyledWrapper type={type}>
       <StyledTextContainer>
         <StyledCircle type={type} />
-        <StyledText variant="body2" bold>
+        <StyledText variant="body2" isBold>
           {type === 'paid' && 'Paid'}
           {type === 'draft' && 'Draft'}
           {type === 'pending' && 'Pending'}

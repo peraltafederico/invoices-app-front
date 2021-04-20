@@ -46,13 +46,13 @@ const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => (
   <StyledActionsContainer>
     <StyledDetails>
       <StyledDetailsTitle>Invoices</StyledDetailsTitle>
-      <Text variant="body2" muted>
+      <Text variant="body2" isMuted>
         {invoicesAmount > 0 ? `${invoicesAmount} invoices` : 'No invoices'}
       </Text>
     </StyledDetails>
     <StyledActions>
       <StyledFilter role="button" tabIndex={0}>
-        <StyledFilterTitle variant="body2" bold>
+        <StyledFilterTitle variant="body2" isBold>
           Filter
         </StyledFilterTitle>
         <ArrowDown />

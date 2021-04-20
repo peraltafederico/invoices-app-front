@@ -87,7 +87,7 @@ const ItemList = () => {
                 <StyledTotalGrid span={12 - 2.799 - 4.0588}>
                   <InputLabel>Total</InputLabel>
                   <StyledTotalPriceContainer>
-                    <StyledPriceValue variant="body2" muted bold>
+                    <StyledPriceValue variant="body2" isMuted isBold>
                       {(item.price * item.qty).toFixed(2)}
                     </StyledPriceValue>
                     <StyledTrashIcon

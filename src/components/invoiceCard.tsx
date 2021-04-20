@@ -38,13 +38,13 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
         <StyledWrapper>
           <StyledRow>
             <InvoiceId id={id} />
-            <Text variant="body2" muted>
+            <Text variant="body2" isMuted>
               {name}
             </Text>
           </StyledRow>
           <StyledRow>
             <StyledPaymentContainer>
-              <Text variant="body2" muted>
+              <Text variant="body2" isMuted>
                 {date}
               </Text>
               <StyledPrice>{money}</StyledPrice>

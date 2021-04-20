@@ -27,11 +27,11 @@ const NoContent = () => {
       <NoInvoices />
       <StyledTitle>There is nothing here</StyledTitle>
       <StyledFooter>
-        <Text variant="body2" muted>
+        <Text variant="body2" isMuted>
           Create an invoice by clicking the
         </Text>
-        <Text variant="body2" muted>
-          <Text as="span" bold variant="body2">
+        <Text variant="body2" isMuted>
+          <Text as="span" isBold variant="body2">
             New
           </Text>{' '}
           button and get started

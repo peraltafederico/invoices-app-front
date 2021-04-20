@@ -19,7 +19,7 @@ export const StyledCard = styled(Card)`
 const StatusCard: React.FC<Props> = () => {
   return (
     <StyledCard>
-      <Text variant="body2" muted>
+      <Text variant="body2" isMuted>
         Status
       </Text>
       <Status type="pending" />

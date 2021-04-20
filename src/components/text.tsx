@@ -7,17 +7,17 @@ type Variant = 'body1' | 'body2'
 interface Props {
   variant?: Variant
   children: React.ReactNode
-  bold?: boolean
+  isBold?: boolean
   className?: string
-  muted?: boolean
+  isMuted?: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   as?: React.ElementType<any>
 }
 
 const StyledText = styled.p<{
   variant: Variant
-  bold?: boolean
-  muted?: boolean
+  isBold?: boolean
+  isMuted?: boolean
 }>`
   letter-spacing: ${(props) => props.theme.letterSpacings[4]};
 
@@ -38,13 +38,13 @@ const StyledText = styled.p<{
     `}
 
     ${(props) =>
-    props.bold &&
+    props.isBold &&
     css`
       font-weight: ${props.theme.fontWeights[1]};
     `}
 
     ${(props) =>
-    props.muted &&
+    props.isMuted &&
     css`
       color: #858bb2;
     `}
@@ -53,17 +53,17 @@ const StyledText = styled.p<{
 const Text = ({
   variant = 'body1',
   children,
-  bold,
+  isBold,
   className,
-  muted,
+  isMuted,
   as = 'p',
 }: Props) => {
   return (
     <StyledText
       variant={variant}
-      bold={bold}
+      isBold={isBold}
       className={className}
-      muted={muted}
+      isMuted={isMuted}
       as={as}
     >
       {children}

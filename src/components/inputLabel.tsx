@@ -15,7 +15,7 @@ const StyledLabel = styled.label`
 const InputLabel = ({ children, htmlFor }: Props) => {
   return (
     <StyledLabel htmlFor={htmlFor}>
-      <Text variant="body2" muted>
+      <Text variant="body2" isMuted>
         {children}
       </Text>
     </StyledLabel>

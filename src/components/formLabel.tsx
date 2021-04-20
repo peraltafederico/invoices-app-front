@@ -19,7 +19,7 @@ const StyledText = styled(Text)`
 const FormLabel = ({ children, htmlFor }: Props) => {
   return (
     <StyledLabel htmlFor={htmlFor}>
-      <StyledText variant="body2" bold>
+      <StyledText variant="body2" isBold>
         {children}
       </StyledText>
     </StyledLabel>

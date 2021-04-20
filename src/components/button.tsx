@@ -136,7 +136,7 @@ const Button = ({
       className={className}
     >
       {withIcon && <StyledIconWrapper>{icon}</StyledIconWrapper>}
-      <StyledChildren as="span" variant="body2" buttonVariant={variant} bold>
+      <StyledChildren as="span" variant="body2" buttonVariant={variant} isBold>
         {children}
       </StyledChildren>
     </StyledButton>

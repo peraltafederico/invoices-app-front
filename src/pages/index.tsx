@@ -7,7 +7,7 @@ import UserActions from '../components/userActions'
 import NoContent from '../components/noContent'
 
 const StyledCardsWrapper = styled.div`
-  & > div:not(:first-child) {
+  & > div:not(:first-of-type) {
     margin-top: ${(props) => props.theme.space[8]};
   }
 `

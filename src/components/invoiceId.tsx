@@ -12,7 +12,7 @@ const StyledId = styled.span`
 
 const InvoiceId: React.FC<Props> = ({ id }: Props) => {
   return (
-    <Text variant="body2" bold>
+    <Text variant="body2" isBold>
       <StyledId>#</StyledId>
       {id}
     </Text>

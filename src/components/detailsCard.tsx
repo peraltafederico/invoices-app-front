@@ -87,50 +87,50 @@ export const DetailsCard = () => {
   return (
     <Card>
       <InvoiceId id="XM9141" />
-      <StyledInvoiceType variant="body2" muted>
+      <StyledInvoiceType variant="body2" isMuted>
         Graphic Design
       </StyledInvoiceType>
       <StyledOriginAddress>
-        <Text muted>19 Union Terrace</Text>
-        <Text muted>London</Text>
-        <Text muted>E1 3EZ</Text>
-        <Text muted>United Kingdom</Text>
+        <Text isMuted>19 Union Terrace</Text>
+        <Text isMuted>London</Text>
+        <Text isMuted>E1 3EZ</Text>
+        <Text isMuted>United Kingdom</Text>
       </StyledOriginAddress>
       <Grid container gap="4.1rem">
         <Grid span={6}>
           <StyledInfoContainer>
-            <InvoiceInfoTitle muted variant="body2">
+            <InvoiceInfoTitle isMuted variant="body2">
               Invoice Date
             </InvoiceInfoTitle>
-            <InvoiceMainInfo bold>21 Aug 2021</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>21 Aug 2021</InvoiceMainInfo>
           </StyledInfoContainer>
           <StyledPaymentContainer>
-            <InvoiceInfoTitle muted variant="body2">
+            <InvoiceInfoTitle isMuted variant="body2">
               Payment Due
             </InvoiceInfoTitle>
-            <InvoiceMainInfo bold>20 Sep 2021</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>20 Sep 2021</InvoiceMainInfo>
           </StyledPaymentContainer>
         </Grid>
         <Grid span={6}>
           <StyledInfoContainer>
-            <InvoiceInfoTitle muted variant="body2">
+            <InvoiceInfoTitle isMuted variant="body2">
               Bill To
             </InvoiceInfoTitle>
-            <InvoiceMainInfo bold>Alex Grim</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>Alex Grim</InvoiceMainInfo>
             <StyledDestinationAddress>
-              <Text muted>19 Union Terrace</Text>
-              <Text muted>London</Text>
-              <Text muted>E1 3EZ</Text>
-              <Text muted>United Kingdom</Text>
+              <Text isMuted>19 Union Terrace</Text>
+              <Text isMuted>London</Text>
+              <Text isMuted>E1 3EZ</Text>
+              <Text isMuted>United Kingdom</Text>
             </StyledDestinationAddress>
           </StyledInfoContainer>
         </Grid>
         <Grid span={12}>
           <StyledPaymentContainer>
-            <InvoiceInfoTitle muted variant="body2">
+            <InvoiceInfoTitle isMuted variant="body2">
               Sent to
             </InvoiceInfoTitle>
-            <InvoiceMainInfo bold>alexgrim@mail.com</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>alexgrim@mail.com</InvoiceMainInfo>
           </StyledPaymentContainer>
         </Grid>
       </Grid>
@@ -138,31 +138,31 @@ export const DetailsCard = () => {
         <StyledBillDetails>
           <Grid container rowGap="2.4rem">
             <Grid span={6}>
-              <StyledBillDetailTitle bold variant="body2">
+              <StyledBillDetailTitle isBold variant="body2">
                 Banner Design
               </StyledBillDetailTitle>
-              <Text variant="body2" muted bold>
+              <Text variant="body2" isMuted isBold>
                 1 x £ 156.00
               </Text>
             </Grid>
             <Grid span={6}>
               <StyledPriceContainer>
-                <Text variant="body2" bold>
+                <Text variant="body2" isBold>
                   £ 156.00
                 </Text>
               </StyledPriceContainer>
             </Grid>
             <Grid span={6}>
-              <StyledBillDetailTitle bold variant="body2">
+              <StyledBillDetailTitle isBold variant="body2">
                 Email Design
               </StyledBillDetailTitle>
-              <Text variant="body2" muted bold>
+              <Text variant="body2" isMuted isBold>
                 2 x £ 200.00
               </Text>
             </Grid>
             <Grid span={6}>
               <StyledPriceContainer>
-                <Text variant="body2" bold>
+                <Text variant="body2" isBold>
                   £ 400.00
                 </Text>
               </StyledPriceContainer>
