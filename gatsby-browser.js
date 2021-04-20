@@ -7,20 +7,35 @@ import {
   useThemeContextValue,
   useThemeContext,
 } from './src/context/themeContext'
+import {
+  ModalContext,
+  useModalContext,
+  useModalContextValue,
+} from './src/context/modalContext'
 import GlobalStyles from './src/globalStyles'
+import ModalRoot from './src/components/modalRoot'
 
 const AppWrapper = ({ children }) => {
   const { theme } = useThemeContext()
+  const { modal } = useModalContext()
 
-  return <ThemeProvider theme={themes[theme]}>{children}</ThemeProvider>
+  return (
+    <ThemeProvider theme={themes[theme]}>
+      <ModalRoot />
+      {children}
+    </ThemeProvider>
+  )
 }
 
 const RootWrapper = ({ children }) => {
   const themeContextValue = useThemeContextValue()
+  const modalContextValue = useModalContextValue()
 
   return (
     <ThemeContext.Provider value={themeContextValue}>
-      <AppWrapper>{children}</AppWrapper>
+      <ModalContext.Provider value={modalContextValue}>
+        <AppWrapper>{children}</AppWrapper>
+      </ModalContext.Provider>
     </ThemeContext.Provider>
   )
 }

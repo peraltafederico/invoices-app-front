@@ -1,19 +1,7 @@
 /* eslint-disable react/jsx-fragments */
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import React from 'react'
 import Button, { ButtonVariants } from './button'
-
-interface Props {
-  actions: {
-    buttonVariant: ButtonVariants
-    text: string
-    onClick?: () => void
-    fullWidth?: boolean
-    toLeft?: boolean
-  }[]
-  showShadow?: boolean
-}
 
 const StyledContainer = styled.div`
   height: 9.1rem;
@@ -36,7 +24,7 @@ const StyledButton = styled(Button)<{ toLeft?: boolean }>`
       margin-right: auto;
     `}
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-left: ${(props) => props.theme.space[4]};
   }
 `
@@ -54,23 +42,33 @@ const StyledShadow = styled.div`
   right: 0;
 `
 
-const ActionsFooter = ({ actions, showShadow }: Props) => {
+interface Props {
+  actions: {
+    buttonVariant: ButtonVariants
+    text: string
+    onClick?: () => void
+    fullWidth?: boolean
+    toLeft?: boolean
+  }[]
+  showShadow?: boolean
+  className?: string
+}
+
+const ActionsFooter = ({ actions, showShadow, className }: Props) => {
   return (
-    <React.Fragment>
-      <StyledContainer>
-        {showShadow && <StyledShadow />}
-        {actions.map((action) => (
-          <StyledButton
-            variant={action.buttonVariant}
-            key={action.text}
-            fullWidth={action.fullWidth}
-            toLeft={action.toLeft}
-          >
-            {action.text}
-          </StyledButton>
-        ))}
-      </StyledContainer>
-    </React.Fragment>
+    <StyledContainer className={className}>
+      {showShadow && <StyledShadow />}
+      {actions.map((action) => (
+        <StyledButton
+          variant={action.buttonVariant}
+          key={action.text}
+          fullWidth={action.fullWidth}
+          toLeft={action.toLeft}
+        >
+          {action.text}
+        </StyledButton>
+      ))}
+    </StyledContainer>
   )
 }
 

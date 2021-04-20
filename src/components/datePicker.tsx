@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { FieldHookConfig, useField } from 'formik'
+import { css } from '@emotion/react'
 import ArrowDown from '../assets/arrow-down.svg'
 import { InputStyles } from './mixins'
 import CalendarIcon from '../assets/calendar.svg'
@@ -12,6 +13,14 @@ type Props = {
   className?: string
 } & FieldHookConfig<string> &
   Partial<ReactDatePickerProps>
+
+const StyledContainer = styled.div<{ disabled?: boolean }>`
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.5;
+    `}
+`
 
 const StyledDatePickerContainer = styled.div`
   .react-datepicker {
@@ -110,14 +119,23 @@ const StyledDatePickerContainer = styled.div`
   }
 `
 
-const DatePicker = ({ label, id, name, value, className, ...props }: Props) => {
+const DatePicker = ({
+  label,
+  id,
+  name,
+  value,
+  className,
+  disabled,
+  ...props
+}: Props) => {
   const [field, , meta] = useField({ name, ...props })
 
   return (
-    <div className={className}>
+    <StyledContainer className={className} disabled={disabled}>
       <InputLabel htmlFor={id || name}>{label}</InputLabel>
       <StyledDatePickerContainer>
         <ReactDatePicker
+          disabled={disabled}
           selected={field.value ? new Date(field.value) : new Date()}
           dateFormatCalendar="MMM yyyy"
           dateFormat="dd MMM yyyy"
@@ -125,7 +143,7 @@ const DatePicker = ({ label, id, name, value, className, ...props }: Props) => {
           onChange={(date) => meta.setValue(date?.toString() || '')}
         />
       </StyledDatePickerContainer>
-    </div>
+    </StyledContainer>
   )
 }
 

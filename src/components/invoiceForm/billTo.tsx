@@ -13,7 +13,11 @@ const StyledDatePicker = styled(DatePicker)`
   margin-top: ${(props) => props.theme.space[8]};
 `
 
-const BillTo = () => {
+interface Props {
+  mode: 'create' | 'edit'
+}
+
+const BillTo = ({ mode }: Props) => {
   return (
     <StyledContainer>
       <FormLabel>Bill To</FormLabel>
@@ -37,7 +41,11 @@ const BillTo = () => {
           <TextField label="Country" name="clientCountry" />
         </Grid>
         <Grid span={12}>
-          <StyledDatePicker label="Invoice Date" name="invoiceDate" />
+          <StyledDatePicker
+            disabled={mode === 'edit'}
+            label="Invoice Date"
+            name="invoiceDate"
+          />
         </Grid>
         <Grid span={12}>
           <Dropdown options={[]} label="Payment Terms" name="paymentTems" />
