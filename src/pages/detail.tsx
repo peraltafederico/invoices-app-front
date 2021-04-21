@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { PageProps } from 'gatsby'
 import React, { useEffect } from 'react'
-import BaseModal from '../components/baseModal'
+import DeleteInvoice from '../components/deleteInvoice'
 import { DetailsCard } from '../components/detailsCard'
 import GoBack from '../components/goBack'
 import StatusCard from '../components/statusCard'
@@ -16,7 +16,7 @@ const Detail: React.FC<PageProps> = () => {
 
   useEffect(() => {
     showModal({
-      component: BaseModal,
+      component: DeleteInvoice,
       props: {},
     })
   }, [showModal])
