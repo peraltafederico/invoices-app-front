@@ -1,6 +1,7 @@
 import React from 'react'
 
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
@@ -57,9 +58,11 @@ const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => (
         </StyledFilterTitle>
         <ArrowDown />
       </StyledFilter>
-      <Button variant="primary" icon={<PlusIcon />}>
-        New
-      </Button>
+      <Link to="/create">
+        <Button variant="primary" icon={<PlusIcon />}>
+          New
+        </Button>
+      </Link>
     </StyledActions>
   </StyledActionsContainer>
 )

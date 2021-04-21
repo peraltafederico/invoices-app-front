@@ -63,7 +63,9 @@ const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
         <h2>{title}</h2>
         <StyledContent>{children}</StyledContent>
         <StyledFooter>
-          <Button variant="secondary">Cancel</Button>
+          <Button variant="secondary" onClick={hideModal}>
+            Cancel
+          </Button>
           <Button variant="danger">Delete</Button>
         </StyledFooter>
       </StyledContainer>

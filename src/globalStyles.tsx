@@ -46,6 +46,14 @@ const GlobalStyles = () => (
         font-family: ${baseTheme.fonts[0]};
       }
 
+      a,
+      a:visited,
+      a:hover,
+      a:active {
+        text-decoration: none;
+        color: inherit;
+      }
+
       ol,
       ul {
         list-style: none;

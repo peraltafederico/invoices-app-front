@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
+import { navigate } from 'gatsby'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Text from './text'
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.button`
   display: flex;
   align-items: center;
   margin-bottom: ${(props) => props.theme.space[12]};
+  background: transparent;
 `
 
 const ArrowLeft = styled(ArrowDown)`
@@ -19,7 +21,7 @@ type Props = {
 
 const GoBack = ({ className }: Props) => {
   return (
-    <StyledContainer className={className}>
+    <StyledContainer className={className} onClick={() => navigate(-1)}>
       <ArrowLeft />
       <Text isBold variant="body2">
         Go back

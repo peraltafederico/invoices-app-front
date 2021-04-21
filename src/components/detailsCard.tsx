@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
+import { navigate } from 'gatsby'
+import { useModalContext } from '../context/modalContext'
 import ActionsFooter from './actionsFooter'
 import Card from './card'
+import DeleteInvoice from './deleteInvoice'
 import Grid from './grid'
 import InvoiceId from './invoiceId'
 import Text from './text'
@@ -84,6 +87,16 @@ export const StyledGrandTotal = styled.h2`
 `
 
 export const DetailsCard = () => {
+  const { showModal } = useModalContext()
+
+  const handleDelete = () =>
+    showModal({
+      component: DeleteInvoice,
+      props: {},
+    })
+
+  const handleEdit = () => navigate('/edit')
+
   return (
     <Card>
       <InvoiceId id="XM9141" />
@@ -178,8 +191,12 @@ export const DetailsCard = () => {
       </StyledBillContainer>
       <ActionsFooter
         actions={[
-          { buttonVariant: 'secondary', text: 'Edit' },
-          { buttonVariant: 'danger', text: 'Delete' },
+          { buttonVariant: 'secondary', text: 'Edit', onClick: handleEdit },
+          {
+            buttonVariant: 'danger',
+            text: 'Delete',
+            onClick: handleDelete,
+          },
           { buttonVariant: 'primary', text: 'Mark as Paid' },
         ]}
       />

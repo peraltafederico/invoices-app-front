@@ -64,6 +64,7 @@ const ActionsFooter = ({ actions, showShadow, className }: Props) => {
           key={action.text}
           fullWidth={action.fullWidth}
           toLeft={action.toLeft}
+          onClick={action.onClick}
         >
           {action.text}
         </StyledButton>

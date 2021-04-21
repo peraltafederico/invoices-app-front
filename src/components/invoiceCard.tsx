@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 import { InvoiceStatus } from '../interfaces'
 import Card from './card'
 import InvoiceId from './invoiceId'
@@ -34,25 +35,27 @@ const StyledPrice = styled.h3`
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {
   return (
     <div role="button" tabIndex={0}>
-      <Card>
-        <StyledWrapper>
-          <StyledRow>
-            <InvoiceId id={id} />
-            <Text variant="body2" isMuted>
-              {name}
-            </Text>
-          </StyledRow>
-          <StyledRow>
-            <StyledPaymentContainer>
+      <Link to="/detail">
+        <Card>
+          <StyledWrapper>
+            <StyledRow>
+              <InvoiceId id={id} />
               <Text variant="body2" isMuted>
-                {date}
+                {name}
               </Text>
-              <StyledPrice>{money}</StyledPrice>
-            </StyledPaymentContainer>
-            <Status type={status} />
-          </StyledRow>
-        </StyledWrapper>
-      </Card>
+            </StyledRow>
+            <StyledRow>
+              <StyledPaymentContainer>
+                <Text variant="body2" isMuted>
+                  {date}
+                </Text>
+                <StyledPrice>{money}</StyledPrice>
+              </StyledPaymentContainer>
+              <Status type={status} />
+            </StyledRow>
+          </StyledWrapper>
+        </Card>
+      </Link>
     </div>
   )
 }
