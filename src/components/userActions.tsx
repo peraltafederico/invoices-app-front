@@ -6,6 +6,8 @@ import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
 import PlusIcon from '../assets/plus.inline.svg'
+import useMediaQuery from '../hooks/useMedia'
+import { MIN_TABLET, MOBILE_ONLY, MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 
 interface Props {
   invoicesAmount: number
@@ -16,21 +18,35 @@ const StyledActionsContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: ${(props) => props.theme.space[13]};
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-bottom: 5.6rem;
+  }
 `
 
-const StyledDetails = styled.div``
-
-const StyledDetailsTitle = styled.h2`
-  margin-bottom: ${(props) => props.theme.space[2]};
+const StyledDetails = styled.div`
+  h2 {
+    margin-bottom: ${(props) => props.theme.space[2]};
+  }
+  h1 {
+    margin-bottom: ${(props) => props.theme.space[4]};
+  }
 `
 
 const StyledActions = styled.div`
   display: flex;
   align-items: center;
   margin-right: ${(props) => `-${props.theme.space[12]}`};
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-right: -4rem;
+  }
 
   & > * {
     margin-right: ${(props) => props.theme.space[12]};
+
+    ${MIN_TABLET_MEDIA_QUERY} {
+      margin-right: 4rem;
+    }
   }
 `
 
@@ -41,30 +57,46 @@ const StyledFilter = styled.div`
 
 const StyledFilterTitle = styled(Text)`
   margin-right: ${(props) => props.theme.space[6]};
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-right: ${(props) => props.theme.space[8]};
+  }
 `
 
-const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => (
-  <StyledActionsContainer>
-    <StyledDetails>
-      <StyledDetailsTitle>Invoices</StyledDetailsTitle>
-      <Text variant="body2" isMuted>
-        {invoicesAmount > 0 ? `${invoicesAmount} invoices` : 'No invoices'}
-      </Text>
-    </StyledDetails>
-    <StyledActions>
-      <StyledFilter role="button" tabIndex={0}>
-        <StyledFilterTitle variant="body2" isBold>
-          Filter
-        </StyledFilterTitle>
-        <ArrowDown />
-      </StyledFilter>
-      <Link to="/create">
-        <Button variant="primary" icon={<PlusIcon />}>
-          New
-        </Button>
-      </Link>
-    </StyledActions>
-  </StyledActionsContainer>
-)
+const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => {
+  const isTablet = useMediaQuery(MIN_TABLET)
+  const isMobileOnly = useMediaQuery(MOBILE_ONLY)
+
+  const tabletInvoicesText =
+    isTablet && `There are ${invoicesAmount} total invoices`
+  const mobileInvoicesText = isMobileOnly && `${invoicesAmount} invoices`
+
+  return (
+    <StyledActionsContainer>
+      <StyledDetails>
+        {isMobileOnly && <h2>Invoices</h2>}
+        {isTablet && <h1>Invoices</h1>}
+        <Text variant="body2" isMuted>
+          {invoicesAmount > 0
+            ? mobileInvoicesText || tabletInvoicesText
+            : 'No Invoices'}
+        </Text>
+      </StyledDetails>
+      <StyledActions>
+        <StyledFilter role="button" tabIndex={0}>
+          <StyledFilterTitle variant="body2" isBold>
+            Filter {isTablet && 'by status'}
+          </StyledFilterTitle>
+          <ArrowDown />
+        </StyledFilter>
+        <Link to="/create">
+          <Button variant="primary" icon={<PlusIcon />}>
+            New {isTablet && 'Invoice'}
+          </Button>
+        </Link>
+      </StyledActions>
+    </StyledActionsContainer>
+  )
+}
 
 export default UserActions

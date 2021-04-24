@@ -58,7 +58,7 @@ const baseTheme = {
     '-0.023rem',
     '-0.05rem',
   ],
-  breakpoints: ['48.0rem', '76.8rem', '128rem'],
+  breakpoints: ['768px', '1280px'],
   shadows: [
     '0rem 1rem 1rem -1rem rgba(72, 84, 159, 0.100397)',
     '0rem 1rem 2rem rgba(72, 84, 159, 0.25)',
@@ -72,8 +72,10 @@ const baseTheme = {
   ],
 }
 
-export const MIN_LARGE_DISPLAY_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[2]})`
-export const MIN_TABLET_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[1]})`
-export const MIN_MOBILE_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[0]})`
+export const MIN_TABLET = `(min-width:${baseTheme.breakpoints[0]})`
+export const MOBILE_ONLY = `(min-width: 0px) and (max-width: 767px)`
+
+export const MIN_LARGE_DISPLAY_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[1]})`
+export const MIN_TABLET_MEDIA_QUERY = `@media ${MIN_TABLET}`
 
 export default baseTheme
