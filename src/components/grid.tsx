@@ -6,7 +6,7 @@ interface Props {
   container?: boolean
   gap?: string
   rowGap?: string
-  span?: number
+  column?: number
   children?: React.ReactNode
   className?: string
 }
@@ -15,7 +15,7 @@ const StyledContainer = styled.div<{
   gap?: string
   rowGap?: string
   container?: boolean
-  span?: number
+  column?: number
 }>`
   ${(props) =>
     props.container &&
@@ -54,19 +54,26 @@ const StyledContainer = styled.div<{
 
     ${(props) =>
     !props.container &&
-    props.span &&
+    props.column &&
     css`
-      width: calc(${100 / (12 / props.span)}% - ${props.gap || '0rem'});
+      width: calc(${100 / (12 / props.column)}% - ${props.gap || '0rem'});
     `}
 `
 
-const Grid = ({ children, container, gap, rowGap, span, className }: Props) => {
+const Grid = ({
+  children,
+  container,
+  gap,
+  rowGap,
+  column,
+  className,
+}: Props) => {
   return (
     <StyledContainer
       container={container}
       gap={gap}
       rowGap={rowGap}
-      span={span}
+      column={column}
       className={className}
     >
       {React.Children.map(children, (child) => {

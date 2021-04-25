@@ -17,7 +17,9 @@ const StyledActionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
   margin-bottom: ${(props) => props.theme.space[13]};
+  max-width: ${(props) => props.theme.sizes[0]};
 
   ${MIN_TABLET_MEDIA_QUERY} {
     margin-bottom: 5.6rem;

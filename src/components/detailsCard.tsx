@@ -110,7 +110,7 @@ export const DetailsCard = () => {
         <Text isMuted>United Kingdom</Text>
       </StyledOriginAddress>
       <Grid container gap="4.1rem">
-        <Grid span={6}>
+        <Grid column={6}>
           <StyledInfoContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Invoice Date
@@ -124,7 +124,7 @@ export const DetailsCard = () => {
             <InvoiceMainInfo isBold>20 Sep 2021</InvoiceMainInfo>
           </StyledPaymentContainer>
         </Grid>
-        <Grid span={6}>
+        <Grid column={6}>
           <StyledInfoContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Bill To
@@ -138,7 +138,7 @@ export const DetailsCard = () => {
             </StyledDestinationAddress>
           </StyledInfoContainer>
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <StyledPaymentContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Sent to
@@ -150,7 +150,7 @@ export const DetailsCard = () => {
       <StyledBillContainer>
         <StyledBillDetails>
           <Grid container rowGap="2.4rem">
-            <Grid span={6}>
+            <Grid column={6}>
               <StyledBillDetailTitle isBold variant="body2">
                 Banner Design
               </StyledBillDetailTitle>
@@ -158,14 +158,14 @@ export const DetailsCard = () => {
                 1 x £ 156.00
               </Text>
             </Grid>
-            <Grid span={6}>
+            <Grid column={6}>
               <StyledPriceContainer>
                 <Text variant="body2" isBold>
                   £ 156.00
                 </Text>
               </StyledPriceContainer>
             </Grid>
-            <Grid span={6}>
+            <Grid column={6}>
               <StyledBillDetailTitle isBold variant="body2">
                 Email Design
               </StyledBillDetailTitle>
@@ -173,7 +173,7 @@ export const DetailsCard = () => {
                 2 x £ 200.00
               </Text>
             </Grid>
-            <Grid span={6}>
+            <Grid column={6}>
               <StyledPriceContainer>
                 <Text variant="body2" isBold>
                   £ 400.00

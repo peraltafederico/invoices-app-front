@@ -6,6 +6,7 @@ import Text from './text'
 
 interface Props {
   type: InvoiceStatus
+  className?: string
 }
 
 const StyledWrapper = styled.div<{ type: InvoiceStatus }>`
@@ -74,9 +75,9 @@ const StyledTextContainer = styled.div`
   justify-content: center;
 `
 
-const Status: React.FC<Props> = ({ type }: Props) => {
+const Status: React.FC<Props> = ({ type, className }: Props) => {
   return (
-    <StyledWrapper type={type}>
+    <StyledWrapper type={type} className={className}>
       <StyledTextContainer>
         <StyledCircle type={type} />
         <StyledText variant="body2" isBold>

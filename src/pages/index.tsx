@@ -5,10 +5,15 @@ import styled from '@emotion/styled'
 import InvoiceCard from '../components/invoiceCard'
 import UserActions from '../components/userActions'
 import NoContent from '../components/noContent'
+import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 
 const StyledCardsWrapper = styled.div`
   & > div:not(:first-of-type) {
     margin-top: ${(props) => props.theme.space[8]};
+
+    ${MIN_TABLET_MEDIA_QUERY} {
+      margin-top: ${(props) => props.theme.space[6]};
+    }
   }
 `
 

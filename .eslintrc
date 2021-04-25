@@ -35,6 +35,6 @@
       { "labelAttributes": ["htmlFor"] }
     ],
     "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-unused-vars": "warn",
   }
 }

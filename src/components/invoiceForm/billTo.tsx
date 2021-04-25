@@ -22,35 +22,35 @@ const BillTo = ({ mode }: Props) => {
     <StyledContainer>
       <FormLabel>Bill To</FormLabel>
       <Grid container gap="2.3rem" rowGap="2.4rem">
-        <Grid span={12}>
+        <Grid column={12}>
           <TextField label="Client's Name" name="clientName" />
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <TextField label="Client's Email" name="clientEmail" />
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <TextField label="Street Address" name="clientStreetAddress" />
         </Grid>
-        <Grid span={6}>
+        <Grid column={6}>
           <TextField label="City" name="clientCity" />
         </Grid>
-        <Grid span={6}>
+        <Grid column={6}>
           <TextField label="Post Code" name="clientPostCode" />
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <TextField label="Country" name="clientCountry" />
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <StyledDatePicker
             disabled={mode === 'edit'}
             label="Invoice Date"
             name="invoiceDate"
           />
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <Dropdown options={[]} label="Payment Terms" name="paymentTems" />
         </Grid>
-        <Grid span={12}>
+        <Grid column={12}>
           <TextField label="Project Description" name="projectDescription" />
         </Grid>
       </Grid>

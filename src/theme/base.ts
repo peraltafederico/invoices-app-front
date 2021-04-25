@@ -47,7 +47,7 @@ const baseTheme = {
   },
   fonts: ["'Spartan', sans-serif"],
   fontWeights: [500, 700],
-  sizes: ['73rem'],
+  sizes: ['730px'],
   fontSizes: ['1.1rem', '1.2rem', '1.6rem', '2rem', '3.2rem'],
   lineHeights: [1.1, 1.125, 1.25, 1.5, 1.64],
   letterSpacings: [
