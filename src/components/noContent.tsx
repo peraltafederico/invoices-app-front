@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import NoInvoices from '../assets/no-content.inline.svg'
+import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 import Text from './text'
 
 const StyledContainer = styled.div`
@@ -7,6 +8,10 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 10.2rem;
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-top: 21rem;
+  }
 `
 
 const StyledTitle = styled.h3`

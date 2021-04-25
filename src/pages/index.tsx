@@ -18,11 +18,11 @@ const StyledCardsWrapper = styled.div`
 `
 
 const invoices = [1, 2, 3, 4, 5, 6, 7]
-// const invoices = []
+// const invoices = [] as any
 
 const Home: React.FC<PageProps> = () => (
   <div>
-    <UserActions invoicesAmount={7} />
+    <UserActions invoicesAmount={invoices.length} />
     {invoices.length > 0 ? (
       <StyledCardsWrapper>
         {invoices.map((card) => (
