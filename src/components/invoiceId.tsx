@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
+import useBreakpoints from '../hooks/useBreakpoints'
 import Text from './text'
 
 interface Props {
@@ -11,11 +12,24 @@ const StyledId = styled.span`
 `
 
 const InvoiceId: React.FC<Props> = ({ id }: Props) => {
+  const { isMobileOnly, isTablet } = useBreakpoints()
+
   return (
-    <Text variant="body2" isBold>
-      <StyledId>#</StyledId>
-      {id}
-    </Text>
+    <>
+      {isMobileOnly && (
+        <Text variant="body2" isBold>
+          <StyledId>#</StyledId>
+          {id}
+        </Text>
+      )}
+
+      {isTablet && (
+        <h3>
+          <StyledId>#</StyledId>
+          {id}
+        </h3>
+      )}
+    </>
   )
 }
 

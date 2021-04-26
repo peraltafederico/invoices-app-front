@@ -6,7 +6,7 @@ import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
 import PlusIcon from '../assets/plus.inline.svg'
-import useMediaQuery from '../hooks/useMedia'
+import useMediaQuery from '../hooks/useMediaQuery'
 import { MIN_TABLET, MOBILE_ONLY, MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 
 interface Props {

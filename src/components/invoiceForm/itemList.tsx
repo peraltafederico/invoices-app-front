@@ -67,24 +67,24 @@ const ItemList = () => {
                 gap="1.6rem"
                 rowGap="2.4rem"
               >
-                <Grid column={12}>
+                <Grid sm={12}>
                   <TextField label="Item Name" name={`items[${index}].name`} />
                 </Grid>
-                <Grid column={2.799}>
+                <Grid sm={2.799}>
                   <TextField
                     type="number"
                     label="Qty."
                     name={`items[${index}].qty`}
                   />
                 </Grid>
-                <Grid column={4.0588}>
+                <Grid sm={4.0588}>
                   <TextField
                     type="number"
                     label="Price"
                     name={`items[${index}].price`}
                   />
                 </Grid>
-                <StyledTotalGrid column={12 - 2.799 - 4.0588}>
+                <StyledTotalGrid sm={12 - 2.799 - 4.0588}>
                   <InputLabel>Total</InputLabel>
                   <StyledTotalPriceContainer>
                     <StyledPriceValue variant="body2" isMuted isBold>

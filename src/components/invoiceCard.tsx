@@ -2,15 +2,14 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import React from 'react'
-import useMediaQuery from '../hooks/useMedia'
 import { InvoiceStatus } from '../interfaces'
-import { MIN_TABLET, MOBILE_ONLY } from '../theme/base'
 import Card from './card'
 import Grid from './grid'
 import InvoiceId from './invoiceId'
 import Status from './status'
 import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
+import useBreakpoints from '../hooks/useBreakpoints'
 
 interface Props {
   id: string
@@ -62,8 +61,7 @@ const StyledWrapper = styled.div`
 `
 
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {
-  const isTablet = useMediaQuery(MIN_TABLET)
-  const isMobileOnly = useMediaQuery(MOBILE_ONLY)
+  const { isTablet, isMobileOnly } = useBreakpoints()
 
   return (
     <StyledWrapper role="button" tabIndex={0}>
@@ -92,26 +90,26 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
             {isTablet && (
               <StyledRow>
                 <StyledGridContainer container gap="2.7rem">
-                  <Grid column={1.65}>
+                  <Grid sm={1.65}>
                     <InvoiceId id={id} />
                   </Grid>
-                  <Grid column={2.65}>
+                  <Grid sm={2.65}>
                     <Text variant="body2" isMuted>
                       {date}
                     </Text>
                   </Grid>
-                  <Grid column={2.2}>
+                  <Grid sm={2.2}>
                     <Text variant="body2" isMuted>
                       {name}
                     </Text>
                   </Grid>
                   <Grid
-                    column={2.4}
+                    sm={2.4}
                     css={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
                     <StyledPrice>{money}</StyledPrice>
                   </Grid>
-                  <Grid column={3.1}>
+                  <Grid sm={3.1}>
                     <StyledStatus type="pending" />
                   </Grid>
                 </StyledGridContainer>
