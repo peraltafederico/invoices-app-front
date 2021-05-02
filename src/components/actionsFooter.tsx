@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-fragments */
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import useBreakpoints from '../hooks/useBreakpoints'
 import Button, { ButtonVariants } from './button'
 
-const StyledContainer = styled.div`
+type Position = 'fixed' | 'absolute'
+
+const StyledContainer = styled.div<{ position: Position }>`
   height: 9.1rem;
   background-color: ${(props) => props.theme.colors.all.white};
-  position: fixed;
+  position: ${(props) => props.position};
   bottom: 0;
   left: 0;
   right: 0;
@@ -29,7 +32,7 @@ const StyledButton = styled(Button)<{ toLeft?: boolean }>`
   }
 `
 
-const StyledShadow = styled.div`
+const StyledShadow = styled.div<{ show?: boolean }>`
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.0001) 0%,
@@ -40,6 +43,17 @@ const StyledShadow = styled.div`
   bottom: 9.1rem;
   left: 0;
   right: 0;
+  transition: opacity 0.5s ease, z-index 0s ease 0.5s;
+  opacity: ${(props) => (props.show ? '1' : '0')};
+  ${(props) =>
+    props.show
+      ? css`
+          z-index: 0;
+          transition: opacity 0.5s ease, z-index 0s ease 0s;
+        `
+      : css`
+          z-index: -1;
+        `};
 `
 
 interface Props {
@@ -55,9 +69,14 @@ interface Props {
 }
 
 const ActionsFooter = ({ actions, showShadow, className }: Props) => {
+  const { isTablet } = useBreakpoints()
+
   return (
-    <StyledContainer className={className}>
-      {showShadow && <StyledShadow />}
+    <StyledContainer
+      className={className}
+      position={isTablet ? 'absolute' : 'fixed'}
+    >
+      <StyledShadow show={showShadow} />
       {actions.map((action) => (
         <StyledButton
           variant={action.buttonVariant}

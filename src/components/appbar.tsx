@@ -8,6 +8,11 @@ const StyledContainer = styled.div`
   height: 7.2rem;
   background: ${(props) => props.theme.colors.primary};
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
 `
 
 const StyledProfile = styled.div`

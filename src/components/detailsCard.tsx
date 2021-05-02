@@ -155,7 +155,7 @@ export const DetailsCard = () => {
     <StyledCard>
       <StyledHeader>
         <div>
-          <InvoiceId id="XM9141" />
+          <InvoiceId size={isTablet ? 'big' : 'small'} id="XM9141" />
           <StyledInvoiceType variant="body2" isMuted>
             Graphic Design
           </StyledInvoiceType>

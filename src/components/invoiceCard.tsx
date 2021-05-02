@@ -71,7 +71,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
             {isMobileOnly && (
               <React.Fragment>
                 <StyledRow>
-                  <InvoiceId id={id} />
+                  <InvoiceId size="small" id={id} />
                   <Text variant="body2" isMuted>
                     {name}
                   </Text>
@@ -91,7 +91,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
               <StyledRow>
                 <StyledGridContainer container gap="2.7rem">
                   <Grid sm={1.65}>
-                    <InvoiceId id={id} />
+                    <InvoiceId size="small" id={id} />
                   </Grid>
                   <Grid sm={2.65}>
                     <Text variant="body2" isMuted>

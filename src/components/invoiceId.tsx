@@ -1,29 +1,26 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import useBreakpoints from '../hooks/useBreakpoints'
 import Text from './text'
-
-interface Props {
-  id: string
-}
 
 const StyledId = styled.span`
   color: #858bb2;
 `
+interface Props {
+  id: string
+  size: 'small' | 'big'
+}
 
-const InvoiceId: React.FC<Props> = ({ id }: Props) => {
-  const { isMobileOnly, isTablet } = useBreakpoints()
-
+const InvoiceId: React.FC<Props> = ({ id, size }: Props) => {
   return (
     <>
-      {isMobileOnly && (
+      {size === 'small' && (
         <Text variant="body2" isBold>
           <StyledId>#</StyledId>
           {id}
         </Text>
       )}
 
-      {isTablet && (
+      {size === 'big' && (
         <h3>
           <StyledId>#</StyledId>
           {id}

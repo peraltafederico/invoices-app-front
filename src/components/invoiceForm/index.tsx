@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 import { Form } from 'formik'
+import useBreakpoints from '../../hooks/useBreakpoints'
+import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
 import ActionsFooter from '../actionsFooter'
 import BillFrom from './billFrom'
 import BillTo from './billTo'
@@ -7,6 +9,10 @@ import ItemList from './itemList'
 
 const StyledForm = styled(Form)`
   margin-bottom: 7.4rem;
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-bottom: 2.5rem;
+  }
 `
 
 const StyledCreateFooter = styled(ActionsFooter)`
@@ -20,13 +26,15 @@ interface Props {
   mode: 'create' | 'edit'
 }
 
-const InvoiceForm = ({ mode }: Props) => {
+const InvoiceForm: React.FC<Props> = ({ mode }) => {
+  const { isMobileOnly } = useBreakpoints()
+
   return (
     <StyledForm>
       <BillFrom />
       <BillTo mode={mode} />
       <ItemList />
-      {
+      {isMobileOnly &&
         {
           create: (
             <StyledCreateFooter
@@ -51,8 +59,7 @@ const InvoiceForm = ({ mode }: Props) => {
               ]}
             />
           ),
-        }[mode]
-      }
+        }[mode]}
     </StyledForm>
   )
 }

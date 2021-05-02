@@ -1,4 +1,6 @@
 import styled from '@emotion/styled'
+import useBreakpoints from '../../hooks/useBreakpoints'
+import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
 import DatePicker from '../datePicker'
 import Dropdown from '../dropdown'
 import FormLabel from '../formLabel'
@@ -9,8 +11,18 @@ const StyledContainer = styled.div`
   margin-top: 4rem;
 `
 
-const StyledDatePicker = styled(DatePicker)`
+const StyledInvoiceDatePicker = styled(DatePicker)`
   margin-top: ${(props) => props.theme.space[8]};
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-top: ${(props) => props.theme.space[12]};
+  }
+`
+
+const StyledPaymentsDropdown = styled(Dropdown)`
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-top: ${(props) => props.theme.space[12]};
+  }
 `
 
 interface Props {
@@ -18,10 +30,12 @@ interface Props {
 }
 
 const BillTo = ({ mode }: Props) => {
+  const { isTablet } = useBreakpoints()
+
   return (
     <StyledContainer>
       <FormLabel>Bill To</FormLabel>
-      <Grid container gap="2.3rem" rowGap="2.4rem">
+      <Grid container gap={isTablet ? '2.4rem' : '2.3rem'} rowGap="2.4rem">
         <Grid sm={12}>
           <TextField label="Client's Name" name="clientName" />
         </Grid>
@@ -31,24 +45,28 @@ const BillTo = ({ mode }: Props) => {
         <Grid sm={12}>
           <TextField label="Street Address" name="clientStreetAddress" />
         </Grid>
-        <Grid sm={6}>
+        <Grid sm={6} md={4}>
           <TextField label="City" name="clientCity" />
         </Grid>
-        <Grid sm={6}>
+        <Grid sm={6} md={4}>
           <TextField label="Post Code" name="clientPostCode" />
         </Grid>
-        <Grid sm={12}>
+        <Grid sm={12} md={4}>
           <TextField label="Country" name="clientCountry" />
         </Grid>
-        <Grid sm={12}>
-          <StyledDatePicker
+        <Grid sm={12} md={6}>
+          <StyledInvoiceDatePicker
             disabled={mode === 'edit'}
             label="Invoice Date"
             name="invoiceDate"
           />
         </Grid>
-        <Grid sm={12}>
-          <Dropdown options={[]} label="Payment Terms" name="paymentTems" />
+        <Grid sm={12} md={6}>
+          <StyledPaymentsDropdown
+            options={[]}
+            label="Payment Terms"
+            name="paymentTems"
+          />
         </Grid>
         <Grid sm={12}>
           <TextField label="Project Description" name="projectDescription" />
