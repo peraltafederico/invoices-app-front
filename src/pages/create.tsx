@@ -1,21 +1,17 @@
-import styled from '@emotion/styled'
 import { Formik } from 'formik'
 import { PageProps } from 'gatsby'
 import { noop } from 'lodash'
 import React from 'react'
 import * as Yup from 'yup'
+import FormTitle from '../components/formTitle'
 import GoBack from '../components/goBack'
 import InvoiceForm from '../components/invoiceForm'
 
-const StyledTitle = styled.h1`
-  margin-bottom: ${(props) => props.theme.space[12]};
-`
-
-const Edit: React.FC<PageProps> = () => {
+const Create: React.FC<PageProps> = () => {
   return (
     <div>
       <GoBack />
-      <StyledTitle>New Invoice</StyledTitle>
+      <FormTitle text="New Invoice" />
       <Formik
         initialValues={{
           streetAddress: '19 Union Terrace',
@@ -57,4 +53,4 @@ const Edit: React.FC<PageProps> = () => {
   )
 }
 
-export default Edit
+export default Create

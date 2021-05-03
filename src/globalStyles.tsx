@@ -117,6 +117,22 @@ const GlobalStyles = () => (
         font-weight: ${baseTheme.fontWeights[0]};
         color: ${baseTheme.colors.darkBlue.richBlack};
       }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 0.8rem;
+        border-radius: 0.4rem;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        border-radius: 0.4rem;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #dfe3fa;
+        border-radius: 0.4rem;
+      }
     `}
   />
 )

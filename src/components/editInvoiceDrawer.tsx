@@ -5,6 +5,7 @@ import { useModalContext } from '../context/modalContext'
 import useInvoiceForm from '../hooks/useInvoiceForm'
 import ActionsFooter from './actionsFooter'
 import Drawer from './drawer'
+import FormTitle from './formTitle'
 import InvoiceForm from './invoiceForm'
 
 const StyledFormContainer = styled.div`
@@ -42,6 +43,7 @@ const EditInvoiceDrawer = () => {
   return (
     <Drawer>
       <StyledFormContainer ref={formContainerRef}>
+        <FormTitle text="Edit #XM9141" />
         <FormikProvider value={form}>
           <InvoiceForm mode="edit" />
         </FormikProvider>
