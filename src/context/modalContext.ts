@@ -1,14 +1,13 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 
-interface Modal {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  component: React.JSXElementConstructor<any> | null
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  props: any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface Modal<T = any> {
+  component: React.JSXElementConstructor<T> | null
+  props?: React.ComponentProps<React.JSXElementConstructor<T>>
 }
 
 interface ModalContextData {
-  showModal: (modal: Modal) => void
+  showModal: <T = JSX.Element>(modal: Modal<T>) => void
   hideModal: () => void
   modal: Modal
 }

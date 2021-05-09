@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Form } from 'formik'
 import useBreakpoints from '../../hooks/useBreakpoints'
+import { InvoiceFormMode } from '../../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
 import ActionsFooter from '../actionsFooter'
 import BillFrom from './billFrom'
@@ -23,7 +24,7 @@ const StyledCreateFooter = styled(ActionsFooter)`
 `
 
 interface Props {
-  mode: 'create' | 'edit'
+  mode: InvoiceFormMode
 }
 
 const InvoiceForm: React.FC<Props> = ({ mode }) => {

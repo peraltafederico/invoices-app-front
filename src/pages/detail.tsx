@@ -8,7 +8,7 @@ import StatusCard from '../components/statusCard'
 import { useModalContext } from '../context/modalContext'
 import DeleteInvoice from '../components/deleteInvoice'
 import useBreakpoints from '../hooks/useBreakpoints'
-import EditInvoiceDrawer from '../components/editInvoiceDrawer'
+import InvoiceDrawer from '../components/invoiceDrawer'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};
@@ -21,13 +21,14 @@ const Detail: React.FC<PageProps> = () => {
   const handleDelete = () =>
     showModal({
       component: DeleteInvoice,
-      props: {},
     })
 
   const handleEdit = () =>
     showModal({
-      component: EditInvoiceDrawer,
-      props: {},
+      component: InvoiceDrawer,
+      props: {
+        mode: 'edit',
+      },
     })
 
   return (

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import useBreakpoints from '../../hooks/useBreakpoints'
+import { InvoiceFormMode } from '../../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
 import DatePicker from '../datePicker'
 import Dropdown from '../dropdown'
@@ -26,7 +27,7 @@ const StyledPaymentsDropdown = styled(Dropdown)`
 `
 
 interface Props {
-  mode: 'create' | 'edit'
+  mode: InvoiceFormMode
 }
 
 const BillTo = ({ mode }: Props) => {

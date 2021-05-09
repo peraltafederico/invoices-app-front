@@ -1,13 +1,15 @@
 import React from 'react'
 
 import styled from '@emotion/styled'
-import { Link } from 'gatsby'
+import { navigate } from 'gatsby'
 import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
 import PlusIcon from '../assets/plus.inline.svg'
 import useMediaQuery from '../hooks/useMediaQuery'
 import { MIN_TABLET, MOBILE_ONLY, MIN_TABLET_MEDIA_QUERY } from '../theme/base'
+import { useModalContext } from '../context/modalContext'
+import InvoiceDrawer from './invoiceDrawer'
 
 interface Props {
   invoicesAmount: number
@@ -68,10 +70,26 @@ const StyledFilterTitle = styled(Text)`
 const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => {
   const isTablet = useMediaQuery(MIN_TABLET)
   const isMobileOnly = useMediaQuery(MOBILE_ONLY)
+  const { showModal } = useModalContext()
 
   const tabletInvoicesText =
     isTablet && `There are ${invoicesAmount} total invoices`
   const mobileInvoicesText = isMobileOnly && `${invoicesAmount} invoices`
+
+  const handleNewInvoice = () => {
+    if (isMobileOnly) {
+      navigate('/create')
+
+      return
+    }
+
+    showModal({
+      component: InvoiceDrawer,
+      props: {
+        mode: 'create',
+      },
+    })
+  }
 
   return (
     <StyledActionsContainer>
@@ -91,11 +109,13 @@ const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => {
           </StyledFilterTitle>
           <ArrowDown />
         </StyledFilter>
-        <Link to="/create">
-          <Button variant="primary" icon={<PlusIcon />}>
-            New {isTablet && 'Invoice'}
-          </Button>
-        </Link>
+        <Button
+          variant="primary"
+          icon={<PlusIcon />}
+          onClick={handleNewInvoice}
+        >
+          New {isTablet && 'Invoice'}
+        </Button>
       </StyledActions>
     </StyledActionsContainer>
   )
