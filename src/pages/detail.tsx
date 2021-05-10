@@ -6,7 +6,7 @@ import { DetailsCard } from '../components/detailsCard'
 import GoBack from '../components/goBack'
 import StatusCard from '../components/statusCard'
 import { useModalContext } from '../context/modalContext'
-import DeleteInvoice from '../components/deleteInvoice'
+import DeleteInvoiceModal from '../components/deleteInvoiceModal'
 import useBreakpoints from '../hooks/useBreakpoints'
 import InvoiceDrawer from '../components/invoiceDrawer'
 
@@ -20,7 +20,7 @@ const Detail: React.FC<PageProps> = () => {
 
   const handleDelete = () =>
     showModal({
-      component: DeleteInvoice,
+      component: DeleteInvoiceModal,
     })
 
   const handleEdit = () =>

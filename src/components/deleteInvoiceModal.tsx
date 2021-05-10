@@ -1,13 +1,18 @@
 import styled from '@emotion/styled'
+import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 import BaseModal from './baseModal'
 import Text from './text'
 
 const StyledText = styled(Text)`
   max-width: 26.3rem;
   line-height: 1.9;
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    max-width: 38.4rem;
+  }
 `
 
-const DeleteInvoice = (): JSX.Element => {
+const DeleteInvoiceModal = (): JSX.Element => {
   return (
     <BaseModal title="Confirm Deletion">
       <StyledText variant="body2" isMuted>
@@ -18,4 +23,4 @@ const DeleteInvoice = (): JSX.Element => {
   )
 }
 
-export default DeleteInvoice
+export default DeleteInvoiceModal

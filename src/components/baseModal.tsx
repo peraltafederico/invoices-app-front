@@ -1,11 +1,18 @@
 import ReactModal from 'react-modal'
 import styled from '@emotion/styled'
 import { useTheme } from '@emotion/react'
+import { useMemo } from 'react'
 import { useModalContext } from '../context/modalContext'
 import Button from './button'
+import useBreakpoints from '../hooks/useBreakpoints'
+import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 
 const StyledContent = styled.div`
   margin: ${(props) => `${props.theme.space[4]} 0 ${props.theme.space[12]} 0`};
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin: ${(props) => `1.3rem 0 ${props.theme.space[8]} 0`};
+  }
 `
 
 const StyledFooter = styled.div`
@@ -24,6 +31,13 @@ const StyledContainer = styled.div`
   flex: 1;
 `
 
+const StyledTitle = styled.h2`
+  ${MIN_TABLET_MEDIA_QUERY} {
+    font-size: 2.4rem;
+    line-height: 1.35;
+  }
+`
+
 type Props = {
   children: React.ReactNode
   title: string
@@ -32,6 +46,23 @@ type Props = {
 const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
   const theme = useTheme()
   const { hideModal } = useModalContext()
+  const { isTablet } = useBreakpoints()
+
+  const specificStyles: React.CSSProperties = useMemo(() => {
+    if (isTablet) {
+      return {
+        padding: theme.space[14],
+        minWidth: '48rem',
+        minHeight: '24.9rem',
+      }
+    }
+
+    return {
+      minWidth: '32.7rem',
+      minHeight: '22rem',
+      padding: theme.space[13],
+    }
+  }, [theme, isTablet])
 
   return (
     <ReactModal
@@ -45,13 +76,12 @@ const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
           right: 'auto',
           bottom: 'auto',
           transform: 'translate(-50%, -50%)',
-          padding: theme.space[13],
-          minWidth: '32.7rem',
-          height: '22rem',
           display: 'flex',
           flexDirection: 'column',
           boxShadow: theme.shadows[0],
           borderRadius: theme.radii[0],
+          border: 'none',
+          ...specificStyles,
         },
         overlay: {
           backgroundColor: 'rgba(0,0,0,0.5)',
@@ -60,7 +90,7 @@ const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
       {...props}
     >
       <StyledContainer>
-        <h2>{title}</h2>
+        <StyledTitle>{title}</StyledTitle>
         <StyledContent>{children}</StyledContent>
         <StyledFooter>
           <Button variant="secondary" onClick={hideModal}>
