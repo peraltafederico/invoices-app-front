@@ -6,7 +6,7 @@ import { DetailsCard } from '../components/detailsCard'
 import GoBack from '../components/goBack'
 import StatusCard from '../components/statusCard'
 import { useModalContext } from '../context/modalContext'
-import DeleteInvoiceModal from '../components/deleteInvoiceModal'
+import DeleteInvoiceModal from '../components/deleteInvoice'
 import useBreakpoints from '../hooks/useBreakpoints'
 import InvoiceDrawer from '../components/invoiceDrawer'
 

@@ -73,9 +73,10 @@ const baseTheme = {
 }
 
 export const MIN_TABLET = `(min-width:${baseTheme.breakpoints[0]})`
+export const MIN_DESKTOP = `(min-width:${baseTheme.breakpoints[1]})`
 export const MOBILE_ONLY = `(min-width: 0px) and (max-width: 767px)`
 
-export const MIN_LARGE_DISPLAY_MEDIA_QUERY = `@media (min-width:${baseTheme.breakpoints[1]})`
+export const MIN_LARGE_DISPLAY_MEDIA_QUERY = `@media ${MIN_DESKTOP}`
 export const MIN_TABLET_MEDIA_QUERY = `@media ${MIN_TABLET}`
 
 export default baseTheme
