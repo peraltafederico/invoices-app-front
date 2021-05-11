@@ -2,6 +2,7 @@
 import styled from '@emotion/styled'
 import React, { useEffect } from 'react'
 import { useModalContext } from '../context/modalContext'
+import { MIN_LARGE_DISPLAY_MEDIA_QUERY } from '../theme/base'
 import Backdrop from './backdrop'
 
 interface Props {
@@ -18,6 +19,14 @@ const StyledWrapper = styled.div`
   left: 0;
   max-width: 61.6rem;
   overflow-y: auto;
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    padding-left: 13.5rem;
+    z-index: 1;
+    top: 0;
+    height: 100vh;
+    max-width: 71.9rem;
+  }
 `
 
 const Drawer: React.FC<Props> = ({ className, children }) => {

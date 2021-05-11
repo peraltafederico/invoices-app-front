@@ -10,6 +10,10 @@ import TextField from '../textField'
 
 const StyledContainer = styled.div`
   margin-top: 4rem;
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-top: ${(props) => props.theme.space[14]};
+  }
 `
 
 const StyledInvoiceDatePicker = styled(DatePicker)`

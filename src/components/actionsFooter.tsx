@@ -2,6 +2,10 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import useBreakpoints from '../hooks/useBreakpoints'
+import {
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+  MIN_TABLET_MEDIA_QUERY,
+} from '../theme/base'
 import Button, { ButtonVariants } from './button'
 
 type Position = 'fixed' | 'absolute'
@@ -18,6 +22,14 @@ const StyledContainer = styled.div<{ position: Position }>`
   justify-content: flex-end;
   box-shadow: ${(props) => props.theme.shadows[0]};
   padding: 0 ${(props) => props.theme.space[12]};
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    padding: 0 5.6rem;
+  }
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    padding: 0 5.6rem 0 15.9rem;
+  }
 `
 
 const StyledButton = styled(Button)<{ toLeft?: boolean }>`

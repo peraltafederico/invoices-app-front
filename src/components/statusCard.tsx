@@ -18,6 +18,7 @@ export const StyledCard = styled(Card)`
   ${MIN_TABLET_MEDIA_QUERY} {
     padding-top: 2rem;
     padding-bottom: 2rem;
+    margin-bottom: ${(props) => props.theme.space[12]};
   }
 `
 

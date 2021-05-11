@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import useBreakpoints from '../hooks/useBreakpoints'
-import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
+import {
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+  MIN_TABLET_MEDIA_QUERY,
+} from '../theme/base'
 import Card from './card'
 import Grid from './grid'
 import InvoiceId from './invoiceId'
@@ -115,6 +118,10 @@ const StyledGrandTotal = styled.h2`
 const StyledCard = styled(Card)`
   ${MIN_TABLET_MEDIA_QUERY} {
     padding: ${(props) => props.theme.space[13]};
+  }
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    padding: ${(props) => props.theme.space[14]};
   }
 `
 
@@ -242,7 +249,7 @@ export const DetailsCard = () => {
             </Grid>
           )}{' '}
           {isTablet && (
-            <StyledTable css={{ width: '100%' }}>
+            <StyledTable css={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
                   <StyledTableHead

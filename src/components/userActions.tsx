@@ -7,7 +7,12 @@ import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
 import PlusIcon from '../assets/plus.inline.svg'
 import useMediaQuery from '../hooks/useMediaQuery'
-import { MIN_TABLET, MOBILE_ONLY, MIN_TABLET_MEDIA_QUERY } from '../theme/base'
+import {
+  MIN_TABLET,
+  MOBILE_ONLY,
+  MIN_TABLET_MEDIA_QUERY,
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+} from '../theme/base'
 import { useModalContext } from '../context/modalContext'
 import InvoiceDrawer from './invoiceDrawer'
 
@@ -25,6 +30,10 @@ const StyledActionsContainer = styled.div`
 
   ${MIN_TABLET_MEDIA_QUERY} {
     margin-bottom: 5.6rem;
+  }
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    margin-bottom: 6.5rem;
   }
 `
 

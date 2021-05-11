@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
+import {
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+  MIN_TABLET_MEDIA_QUERY,
+} from '../theme/base'
 import AppBar from './appbar'
 
 interface Props {
@@ -13,6 +16,10 @@ const StyledContent = styled.div`
 
   ${MIN_TABLET_MEDIA_QUERY} {
     padding: 5.6rem 4.8rem 17.3rem 4.8rem;
+  }
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    padding: 7.2rem 0 0.4rem 0;
   }
 `
 

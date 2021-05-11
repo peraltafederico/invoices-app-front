@@ -9,13 +9,20 @@ import Text from '../text'
 import TextField from '../textField'
 import TrashIcon from '../../assets/trash.inline.svg'
 import Button from '../button'
-import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
+import {
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+  MIN_TABLET_MEDIA_QUERY,
+} from '../../theme/base'
 
 const StyledContainer = styled.div`
   margin-top: 6.6rem;
 
   ${MIN_TABLET_MEDIA_QUERY} {
     margin-top: ${(props) => props.theme.space[12]};
+  }
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    margin-top: ${(props) => props.theme.space[13]};
   }
 `
 

@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import NoInvoices from '../assets/no-content.inline.svg'
-import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
+import {
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+  MIN_TABLET_MEDIA_QUERY,
+} from '../theme/base'
 import Text from './text'
 
 const StyledContainer = styled.div`
@@ -12,12 +15,20 @@ const StyledContainer = styled.div`
   ${MIN_TABLET_MEDIA_QUERY} {
     margin-top: 21rem;
   }
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    margin-top: 14.1rem;
+  }
 `
 
 const StyledTitle = styled.h3`
   margin-bottom: 2.4rem;
   margin-top: 4rem;
   line-height: 1.4;
+
+  ${MIN_TABLET_MEDIA_QUERY} {
+    margin-top: ${(props) => props.theme.space[15]};
+  }
 `
 
 const StyledFooter = styled.div`
