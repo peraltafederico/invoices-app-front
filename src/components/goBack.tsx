@@ -17,11 +17,12 @@ const ArrowLeft = styled(ArrowDown)`
 
 type Props = {
   className?: string
+  to: string
 }
 
-const GoBack = ({ className }: Props) => {
+const GoBack = ({ className, to }: Props) => {
   return (
-    <StyledContainer className={className} onClick={() => navigate(-1)}>
+    <StyledContainer className={className} onClick={() => navigate(to)}>
       <ArrowLeft />
       <Text isBold variant="body2">
         Go back

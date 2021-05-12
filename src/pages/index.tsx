@@ -9,6 +9,7 @@ import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
 } from '../theme/base'
+import Layout from '../components/layout'
 
 const StyledCardsWrapper = styled.div`
   & > div:not(:first-of-type) {
@@ -28,25 +29,27 @@ const invoices = [1, 2, 3, 4, 5, 6, 7]
 // const invoices = [] as any
 
 const Home: React.FC<PageProps> = () => (
-  <div>
-    <UserActions invoicesAmount={invoices.length} />
-    {invoices.length > 0 ? (
-      <StyledCardsWrapper>
-        {invoices.map((card) => (
-          <InvoiceCard
-            key={card}
-            date="Due 19 Aug 2021"
-            id="RT3080"
-            money="£ 1,800.90"
-            name="Jensen Huang"
-            status="paid"
-          />
-        ))}
-      </StyledCardsWrapper>
-    ) : (
-      <NoContent />
-    )}
-  </div>
+  <Layout>
+    <div>
+      <UserActions invoicesAmount={invoices.length} />
+      {invoices.length > 0 ? (
+        <StyledCardsWrapper>
+          {invoices.map((card) => (
+            <InvoiceCard
+              key={card}
+              date="Due 19 Aug 2021"
+              id="RT3080"
+              money="£ 1,800.90"
+              name="Jensen Huang"
+              status="paid"
+            />
+          ))}
+        </StyledCardsWrapper>
+      ) : (
+        <NoContent />
+      )}
+    </div>
+  </Layout>
 )
 
 export default Home

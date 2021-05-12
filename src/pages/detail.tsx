@@ -9,17 +9,34 @@ import { useModalContext } from '../context/modalContext'
 import DeleteInvoiceModal from '../components/deleteInvoice'
 import useBreakpoints from '../hooks/useBreakpoints'
 import InvoiceDrawer from '../components/invoiceDrawer'
-import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
+import {
+  MIN_LARGE_DISPLAY_MEDIA_QUERY,
+  MIN_TABLET_MEDIA_QUERY,
+} from '../theme/base'
+import Layout from '../components/layout'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};
 `
 
 const StyledWrapper = styled.div`
+  margin-top: ${(props) => `-${props.theme.space[4]}`} !important;
+
   ${MIN_TABLET_MEDIA_QUERY} {
     max-width: ${(props) => props.theme.sizes[0]};
     margin: 0 auto;
-    margin-top: -${(props) => props.theme.space[4]};
+  }
+`
+
+const StyledLayout = styled(Layout)`
+  #content {
+    ${MIN_TABLET_MEDIA_QUERY} {
+      padding: 5.6rem 4rem 17.3rem 4rem;
+    }
+
+    ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+      padding: 7.2rem 0 0.4rem 0;
+    }
   }
 `
 
@@ -41,28 +58,30 @@ const Detail: React.FC<PageProps> = () => {
     })
 
   return (
-    <StyledWrapper>
-      <StyledGoBack />
-      <StatusCard onEdit={handleEdit} onDelete={handleDelete} />
-      <DetailsCard />
-      {isMobileOnly && (
-        <ActionsFooter
-          actions={[
-            {
-              buttonVariant: 'secondary',
-              text: 'Edit',
-              onClick: () => navigate('/edit'),
-            },
-            {
-              buttonVariant: 'danger',
-              text: 'Delete',
-              onClick: handleDelete,
-            },
-            { buttonVariant: 'primary', text: 'Mark as Paid' },
-          ]}
-        />
-      )}
-    </StyledWrapper>
+    <StyledLayout>
+      <StyledWrapper>
+        <StyledGoBack to="/" />
+        <StatusCard onEdit={handleEdit} onDelete={handleDelete} />
+        <DetailsCard />
+        {isMobileOnly && (
+          <ActionsFooter
+            actions={[
+              {
+                buttonVariant: 'secondary',
+                text: 'Edit',
+                onClick: () => navigate('/edit'),
+              },
+              {
+                buttonVariant: 'danger',
+                text: 'Delete',
+                onClick: handleDelete,
+              },
+              { buttonVariant: 'primary', text: 'Mark as Paid' },
+            ]}
+          />
+        )}
+      </StyledWrapper>
+    </StyledLayout>
   )
 }
 

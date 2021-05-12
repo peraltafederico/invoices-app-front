@@ -8,6 +8,7 @@ import AppBar from './appbar'
 
 interface Props {
   children: React.ReactNode
+  className?: string
 }
 
 const StyledContent = styled.div`
@@ -28,11 +29,11 @@ const StyledWrapper = styled.div`
   background: ${(props) => props.theme.colors.background};
 `
 
-const Layout: React.FC<Props> = ({ children }: Props) => {
+const Layout: React.FC<Props> = ({ children, className }: Props) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper className={className}>
       <AppBar />
-      <StyledContent>{children}</StyledContent>
+      <StyledContent id="content">{children}</StyledContent>
     </StyledWrapper>
   )
 }

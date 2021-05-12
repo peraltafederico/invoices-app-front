@@ -5,10 +5,10 @@ import { noop } from 'lodash'
 const useInvoiceForm = () => {
   return useFormik({
     initialValues: {
-      streetAddress: '19 Union Terrace',
-      city: 'London',
-      postCode: 'E1 3EZ',
-      country: 'United Kingdom',
+      streetAddress: '',
+      city: '',
+      postCode: '',
+      country: '',
       clientName: '',
       clientEmail: '',
       clientStreetAddress: '',

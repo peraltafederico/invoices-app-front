@@ -44,11 +44,11 @@ export const wrapRootElement = ({ element }) => {
   return <RootWrapper>{element}</RootWrapper>
 }
 
-export const wrapPageElement = ({ element, props }) => {
+export const wrapPageElement = ({ element }) => {
   return (
     <div>
       <GlobalStyles />
-      <Layout {...props}>{element}</Layout>
+      {element}
     </div>
   )
 }

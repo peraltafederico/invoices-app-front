@@ -175,7 +175,7 @@ export const DetailsCard = () => {
         </StyledOriginAddress>
       </StyledHeader>
       <Grid container gap="4.1rem">
-        <Grid sm={6} md={4}>
+        <Grid sm={6} md={3.54}>
           <StyledInfoContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Invoice Date
@@ -189,21 +189,21 @@ export const DetailsCard = () => {
             <InvoiceMainInfo isBold>20 Sep 2021</InvoiceMainInfo>
           </StyledPaymentContainer>
         </Grid>
-        <Grid sm={6} md={4}>
+        <Grid sm={6} md={3.67}>
           <StyledInfoContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Bill To
             </InvoiceInfoTitle>
             <InvoiceMainInfo isBold>Alex Grim</InvoiceMainInfo>
             <StyledDestinationAddress>
-              <Text isMuted>19 Union Terrace</Text>
-              <Text isMuted>London</Text>
-              <Text isMuted>E1 3EZ</Text>
+              <Text isMuted>84 Church Way</Text>
+              <Text isMuted>Bradford</Text>
+              <Text isMuted>BD1 9PB</Text>
               <Text isMuted>United Kingdom</Text>
             </StyledDestinationAddress>
           </StyledInfoContainer>
         </Grid>
-        <Grid sm={12} md={4}>
+        <Grid sm={12} md={4.79}>
           <StyledSentToContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Sent to
