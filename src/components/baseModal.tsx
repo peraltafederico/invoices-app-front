@@ -46,23 +46,43 @@ type Props = {
 const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
   const theme = useTheme()
   const { hideModal } = useModalContext()
-  const { isTablet } = useBreakpoints()
+  const { isTablet, isMobileOnly } = useBreakpoints()
 
   const specificStyles: React.CSSProperties = useMemo(() => {
+    let styles: React.CSSProperties = {}
+
+    if (theme.mode === 'light') {
+      styles = {
+        background: theme.colors.background,
+      }
+    }
+
+    if (theme.mode === 'dark') {
+      styles = {
+        background: theme.colors.primary,
+      }
+    }
+
     if (isTablet) {
-      return {
+      styles = {
+        ...styles,
         padding: theme.space[14],
         minWidth: '48rem',
         minHeight: '24.9rem',
       }
     }
 
-    return {
-      minWidth: '32.7rem',
-      minHeight: '22rem',
-      padding: theme.space[13],
+    if (isMobileOnly) {
+      styles = {
+        ...styles,
+        minWidth: '32.7rem',
+        minHeight: '22rem',
+        padding: theme.space[13],
+      }
     }
-  }, [theme, isTablet])
+
+    return styles
+  }, [isTablet, isMobileOnly, theme])
 
   return (
     <ReactModal
@@ -78,9 +98,9 @@ const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
           transform: 'translate(-50%, -50%)',
           display: 'flex',
           flexDirection: 'column',
-          boxShadow: theme.shadows[0],
           borderRadius: theme.radii[0],
           border: 'none',
+          boxShadow: theme.shadows[0],
           ...specificStyles,
         },
         overlay: {

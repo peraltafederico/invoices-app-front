@@ -1,5 +1,3 @@
-import { css, SerializedStyles } from '@emotion/react'
-
 const baseTheme = {
   space: [
     '0rem',

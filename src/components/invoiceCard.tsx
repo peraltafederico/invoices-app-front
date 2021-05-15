@@ -110,7 +110,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                     <StyledPrice>{money}</StyledPrice>
                   </Grid>
                   <Grid sm={3.1}>
-                    <StyledStatus type="pending" />
+                    <StyledStatus type={status} />
                   </Grid>
                 </StyledGridContainer>
                 <StyledArrow />

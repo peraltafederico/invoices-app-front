@@ -37,6 +37,12 @@ const StyledWrapper = styled.div<{ type: InvoiceStatus }>`
     css`
       color: rgb(55, 59, 83);
       background: rgb(55, 59, 83, 0.06);
+
+      ${props.theme.mode === 'dark' &&
+      css`
+        color: rgb(223, 227, 250);
+        background: rgb(223, 227, 250, 0.06);
+      `}
     `};
 `
 
@@ -66,6 +72,11 @@ const StyledCircle = styled.div<{ type: InvoiceStatus }>`
     props.type === 'draft' &&
     css`
       background: rgb(55, 59, 83);
+
+      ${props.theme.mode === 'dark' &&
+      css`
+        background: rgb(223, 227, 250);
+      `}
     `};
 `
 
