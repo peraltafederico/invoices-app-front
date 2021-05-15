@@ -22,15 +22,17 @@ interface Props {
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${(props) => `-${props.theme.space[12]}`};
 `
 
 const StyledRow = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: ${(props) => props.theme.space[12]};
   align-items: center;
   position: relative;
+
+  &:not(:first-child) {
+    margin-top: ${(props) => props.theme.space[12]};
+  }
 `
 
 const StyledPaymentContainer = styled.div``
@@ -64,7 +66,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
   const { isTablet, isMobileOnly } = useBreakpoints()
 
   return (
-    <StyledWrapper role="button" tabIndex={0}>
+    <StyledWrapper>
       <Link to="/detail">
         <Card>
           <StyledContent>
