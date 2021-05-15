@@ -3,8 +3,11 @@ import LogoMobile from '../assets/logo-mobile.inline.svg'
 import LogoDesktop from '../assets/logo-desktop.inline.svg'
 import User from '../assets/user.inline.svg'
 import Moon from '../assets/moon.inline.svg'
+import Sun from '../assets/sun.inline.svg'
 import { MIN_LARGE_DISPLAY_MEDIA_QUERY } from '../theme/base'
 import useBreakpoints from '../hooks/useBreakpoints'
+import { useThemeContext } from '../context/themeContext'
+import { onPressKeys } from '../utils'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -79,8 +82,21 @@ const StyledUser = styled(User)`
   }
 `
 
+const StyledThemeButton = styled.div`
+  cursor: pointer;
+`
+
 const AppBar = (): JSX.Element => {
   const { isDesktopOnly } = useBreakpoints()
+  const { setTheme, theme } = useThemeContext()
+
+  const handleSwitchTheme = () => {
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
+  }
 
   return (
     <StyledContainer>
@@ -89,9 +105,19 @@ const AppBar = (): JSX.Element => {
       </div>
       <StyledUserSection>
         <StyledThemeContainer>
-          <div role="button" tabIndex={0}>
-            <Moon />
-          </div>
+          <StyledThemeButton
+            role="button"
+            tabIndex={0}
+            onClick={handleSwitchTheme}
+            onKeyDown={(e) => onPressKeys(e, ['Enter'], handleSwitchTheme)}
+          >
+            {
+              {
+                light: <Moon />,
+                dark: <Sun />,
+              }[theme]
+            }
+          </StyledThemeButton>
         </StyledThemeContainer>
         <StyledDivider />
         <StyledProfile>
