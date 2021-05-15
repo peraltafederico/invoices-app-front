@@ -68,7 +68,12 @@ const BillTo = ({ mode }: Props) => {
         </Grid>
         <Grid sm={12} md={6}>
           <StyledPaymentsDropdown
-            options={[]}
+            options={[
+              { label: 'Net 1 Day', value: '1' },
+              { label: 'Net 7 Day', value: '12' },
+              { label: 'Net 14 Day', value: '3' },
+              { label: 'Net 30 Day', value: '4' },
+            ]}
             label="Payment Terms"
             name="paymentTems"
           />

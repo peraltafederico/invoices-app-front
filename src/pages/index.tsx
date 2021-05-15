@@ -41,7 +41,7 @@ const Home: React.FC<PageProps> = () => (
               id="RT3080"
               money="£ 1,800.90"
               name="Jensen Huang"
-              status="paid"
+              status="draft"
             />
           ))}
         </StyledCardsWrapper>

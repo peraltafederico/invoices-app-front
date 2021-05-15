@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-fragments */
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useEffect } from 'react'
 import { useModalContext } from '../context/modalContext'
@@ -12,13 +13,25 @@ interface Props {
 const StyledWrapper = styled.div`
   padding: ${(props) => props.theme.space[13]};
   height: calc(100vh - 7.2rem);
-  background-color: ${(props) => props.theme.colors.all.white};
   position: fixed;
   z-index: 2;
   top: 7.2rem;
   left: 0;
   max-width: 61.6rem;
   overflow-y: auto;
+
+  ${(props) =>
+    props.theme.mode === 'light' &&
+    css`
+      background-color: ${props.theme.colors.all.white};
+    `}
+
+  ${(props) =>
+    props.theme.mode === 'dark' &&
+    css`
+      background-color: ${props.theme.colors.background};
+    `}
+  
 
   ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
     padding-left: 13.5rem;

@@ -17,7 +17,6 @@ import ModalRoot from './src/components/modalRoot'
 
 const AppWrapper = ({ children }) => {
   const { theme } = useThemeContext()
-  const { modal } = useModalContext()
 
   return (
     <ThemeProvider theme={themes[theme]}>

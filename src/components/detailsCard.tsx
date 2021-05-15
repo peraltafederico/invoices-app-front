@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import useBreakpoints from '../hooks/useBreakpoints'
 import {
@@ -59,8 +60,19 @@ const StyledDestinationAddress = styled.div`
 
 const StyledBillContainer = styled.div`
   margin-top: 4rem;
-  background-color: ${(props) => props.theme.colors.all.grey.ghostWhite};
   border-radius: ${(props) => props.theme.radii[2]};
+
+  ${(props) =>
+    props.theme.mode === 'light' &&
+    css`
+      background-color: ${props.theme.colors.all.grey.ghostWhite};
+    `}
+
+  ${(props) =>
+    props.theme.mode === 'dark' &&
+    css`
+      background-color: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+    `}
 
   ${MIN_TABLET_MEDIA_QUERY} {
     margin-top: ${(props) => props.theme.space[14]};
@@ -77,7 +89,19 @@ const StyledBillDetails = styled.div`
 `
 
 const StyledBillTotal = styled.div`
-  background-color: ${(props) => props.theme.colors.primary};
+  ${(props) =>
+    props.theme.mode === 'light' &&
+    css`
+      background-color: ${props.theme.colors.primary};
+    `}
+
+  ${(props) =>
+    props.theme.mode === 'dark' &&
+    css`
+      background-color: ${props.theme.colors.all.darkBlue.richBlack};
+    `}
+
+ 
   border-radius: ${(props) => props.theme.radii[3]};
   height: 8rem;
   color: ${(props) => props.theme.colors.all.white};

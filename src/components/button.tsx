@@ -12,12 +12,14 @@ type Props = {
   icon?: React.ReactElement
   onClick?: () => void
   className?: string
+  isThemeable?: boolean
 }
 
 const StyledButton = styled.button<{
   variant?: ButtonVariants
   fullWidth?: boolean
   withIcon: boolean
+  isThemeable?: boolean
 }>`
   border-radius: ${(props) => `${props.theme.space[12]}`};
   font-family: inherit;
@@ -55,9 +57,21 @@ const StyledButton = styled.button<{
     css`
       background-color: ${props.theme.colors.all.grey.ghostWhite};
 
+      ${props.theme.mode === 'dark' &&
+      props.isThemeable &&
+      css`
+        background-color: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+      `}
+
       &:focus,
       &:hover {
         background-color: ${props.theme.colors.all.violet.lavenderWeb};
+
+        ${props.theme.mode === 'dark' &&
+        props.isThemeable &&
+        css`
+          background-color: ${props.theme.colors.all.white};
+        `}
       }
     `}
 
@@ -66,9 +80,19 @@ const StyledButton = styled.button<{
     css`
       background-color: ${props.theme.colors.primary};
 
+      ${props.theme.mode === 'dark' &&
+      css`
+        background-color: ${props.theme.colors.all.darkBlue.spaceCadet[100]};
+      `}
+
       &:focus,
       &:hover {
         background-color: ${props.theme.colors.text};
+
+        ${props.theme.mode === 'dark' &&
+        css`
+          background-color: ${props.theme.colors.primary};
+        `}
       }
     `}
 
@@ -90,13 +114,22 @@ const StyledButton = styled.button<{
     `}
 `
 
-const StyledChildren = styled(Text)<{ buttonVariant?: ButtonVariants }>`
+const StyledChildren = styled(Text)<{
+  buttonVariant?: ButtonVariants
+  isThemeable?: boolean
+}>`
   color: ${(props) => props.theme.colors.all.white};
 
   ${(props) =>
     props.buttonVariant === 'secondary' &&
     css`
       color: ${props.theme.colors.all.violet.glaucous};
+
+      ${props.theme.mode === 'dark' &&
+      props.isThemeable &&
+      css`
+        color: ${props.theme.colors.muted};
+      `}
     `}
 
   ${(props) =>
@@ -124,6 +157,7 @@ const Button = ({
   icon,
   onClick,
   className,
+  isThemeable = true,
 }: Props) => {
   const withIcon = !!icon
 
@@ -134,9 +168,16 @@ const Button = ({
       withIcon={withIcon}
       onClick={onClick}
       className={className}
+      isThemeable={isThemeable}
     >
       {withIcon && <StyledIconWrapper>{icon}</StyledIconWrapper>}
-      <StyledChildren as="span" variant="body2" buttonVariant={variant} isBold>
+      <StyledChildren
+        as="span"
+        variant="body2"
+        buttonVariant={variant}
+        isBold
+        isThemeable={isThemeable}
+      >
         {children}
       </StyledChildren>
     </StyledButton>

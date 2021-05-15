@@ -12,7 +12,7 @@ export const ThemeContext = createContext<ThemeContextData | undefined>(
 )
 
 export const useThemeContextValue = () => {
-  const [theme, setTheme] = useState<AvailableThemes>('light')
+  const [theme, setTheme] = useState<AvailableThemes>('dark')
 
   return {
     theme,

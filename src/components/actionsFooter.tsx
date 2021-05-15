@@ -12,7 +12,6 @@ type Position = 'fixed' | 'absolute'
 
 const StyledContainer = styled.div<{ position: Position }>`
   height: 9.1rem;
-  background-color: ${(props) => props.theme.colors.all.white};
   position: ${(props) => props.position};
   bottom: 0;
   left: 0;
@@ -22,6 +21,18 @@ const StyledContainer = styled.div<{ position: Position }>`
   justify-content: flex-end;
   box-shadow: ${(props) => props.theme.shadows[0]};
   padding: 0 ${(props) => props.theme.space[12]};
+
+  ${(props) =>
+    props.theme.mode === 'light' &&
+    css`
+      background-color: ${props.theme.colors.all.white};
+    `}
+
+  ${(props) =>
+    props.theme.mode === 'dark' &&
+    css`
+      background-color: ${props.theme.colors.background};
+    `}
 
   ${MIN_TABLET_MEDIA_QUERY} {
     padding: 0 5.6rem;
@@ -96,6 +107,7 @@ const ActionsFooter = ({ actions, showShadow, className }: Props) => {
           fullWidth={action.fullWidth}
           toLeft={action.toLeft}
           onClick={action.onClick}
+          isThemeable={false}
         >
           {action.text}
         </StyledButton>

@@ -44,9 +44,17 @@ const StyledText = styled.p<{
     `}
 
     ${(props) =>
+    props.theme.mode === 'light' &&
     props.isMuted &&
     css`
       color: #858bb2;
+    `}
+
+    ${(props) =>
+    props.theme.mode === 'dark' &&
+    props.isMuted &&
+    css`
+      color: ${props.theme.colors.muted};
     `}
 `
 

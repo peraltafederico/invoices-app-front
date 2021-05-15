@@ -1,3 +1,5 @@
+import { css, SerializedStyles } from '@emotion/react'
+
 const baseTheme = {
   space: [
     '0rem',
@@ -62,6 +64,7 @@ const baseTheme = {
   shadows: [
     '0rem 1rem 1rem -1rem rgba(72, 84, 159, 0.100397)',
     '0rem 1rem 2rem rgba(72, 84, 159, 0.25)',
+    '0rem 1rem 2rem rgba(0, 0, 0, 0.25)',
   ],
   radii: [
     '0.8rem',

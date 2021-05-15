@@ -29,6 +29,18 @@ const StyledDatePickerContainer = styled.div`
     box-shadow: 0rem 1rem 2rem rgba(72, 84, 159, 0.25);
     padding: 0 1.15rem ${(props) => props.theme.space[12]};
 
+    ${(props) =>
+      props.theme.mode === 'light' &&
+      css`
+        background-color: ${props.theme.colors.all.white};
+      `}
+
+    ${(props) =>
+      props.theme.mode === 'dark' &&
+      css`
+        background-color: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+      `}
+
     &-wrapper {
       display: block;
     }
@@ -63,13 +75,36 @@ const StyledDatePickerContainer = styled.div`
       align-items: flex-end;
       justify-content: center;
       border: none;
-      background-color: ${(props) => props.theme.colors.all.white};
       margin-bottom: ${(props) => props.theme.space[12]};
+
+      ${(props) =>
+        props.theme.mode === 'light' &&
+        css`
+          background-color: ${props.theme.colors.all.white};
+        `}
+
+      ${(props) =>
+        props.theme.mode === 'dark' &&
+        css`
+          background-color: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+        `}
     }
 
     &__current-month {
       font-family: ${(props) => props.theme.fonts[0]};
       font-size: ${(props) => props.theme.fontSizes[1]};
+
+      ${(props) =>
+        props.theme.mode === 'light' &&
+        css`
+          color: ${props.theme.colors.text};
+        `}
+
+      ${(props) =>
+        props.theme.mode === 'dark' &&
+        css`
+          color: ${props.theme.colors.muted};
+        `}
     }
 
     &__month {
@@ -88,12 +123,36 @@ const StyledDatePickerContainer = styled.div`
       height: 1.5rem;
       margin: ${(props) => props.theme.space[4]} 0.75rem;
 
+      ${(props) =>
+        props.theme.mode === 'light' &&
+        css`
+          color: ${props.theme.colors.text};
+        `}
+
+      ${(props) =>
+        props.theme.mode === 'dark' &&
+        css`
+          color: ${props.theme.colors.muted};
+        `}
+
       &:hover,
       &--selected,
       &--keyboard-selected {
-        background-color: ${(props) => props.theme.colors.all.white};
-        color: ${(props) => props.theme.colors.secondary};
         outline: none;
+        color: ${(props) => props.theme.colors.secondary};
+
+        ${(props) =>
+          props.theme.mode === 'light' &&
+          css`
+            background-color: ${props.theme.colors.all.white};
+          `}
+
+        ${(props) =>
+          props.theme.mode === 'dark' &&
+          css`
+            background-color: ${props.theme.colors.all.darkBlue
+              .spaceCadet[200]};
+          `}
       }
     }
 

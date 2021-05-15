@@ -17,11 +17,11 @@ type Props = {
 } & FieldHookConfig<string>
 
 const TextSelectStlyes = (props: { theme: Theme }) => css`
-  color: ${props.theme.colors.text};
   font-weight: ${props.theme.fontWeights[1]};
   font-size: ${props.theme.fontSizes[1]};
   line-height: ${props.theme.lineHeights[2]};
   letter-spacing: ${props.theme.letterSpacings[3]};
+  color: ${props.theme.colors.text} !important;
 `
 
 const StyledErrorMessage = styled.div`
@@ -39,19 +39,23 @@ const StyledSelectContainer = styled.div`
     &__control {
       height: 4.8rem;
       border-radius: ${(props) => props.theme.radii[4]};
-      background-color: ${(props) => props.theme.colors.all.white};
       box-shadow: none;
-      border-color: ${(props) => props.theme.colors.all.violet.lavenderWeb};
 
-      &--menu-is-open {
-        border-color: ${(props) => props.theme.colors.all.violet.mediumPurple};
-      }
+      ${(props) =>
+        props.theme.mode === 'light' &&
+        css`
+          border-color: ${props.theme.colors.all.violet.lavenderWeb};
+          background-color: ${props.theme.colors.all.white};
+        `}
 
-      &--is-focused {
-        border-color: ${(props) => props.theme.colors.all.violet.mediumPurple};
-      }
+      ${(props) =>
+        props.theme.mode === 'dark' &&
+        css`
+          background-color: ${props.theme.colors.primary};
+          border-color: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+        `}
 
-      &:hover {
+      &--menu-is-open, &--is-focused, &:hover {
         border-color: ${(props) => props.theme.colors.all.violet.mediumPurple};
       }
     }
@@ -61,9 +65,21 @@ const StyledSelectContainer = styled.div`
     }
 
     &__menu {
-      background-color: ${(props) => props.theme.colors.all.white};
-      box-shadow: ${(props) => props.theme.shadows[1]};
       border-radius: ${(props) => props.theme.radii[0]};
+
+      ${(props) =>
+        props.theme.mode === 'light' &&
+        css`
+          background-color: ${props.theme.colors.all.white};
+          box-shadow: ${props.theme.shadows[1]};
+        `}
+
+      ${(props) =>
+        props.theme.mode === 'dark' &&
+        css`
+          background-color: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+          box-shadow: ${props.theme.shadows[2]};
+        `}
     }
 
     &__menu-list {
@@ -76,24 +92,61 @@ const StyledSelectContainer = styled.div`
       display: flex;
       align-items: center;
       cursor: pointer;
-      border-bottom: 0.1rem solid
-        ${(props) => props.theme.colors.all.violet.lavenderWeb};
       padding: 0 ${(props) => props.theme.space[10]};
+
       ${TextSelectStlyes}
+
+      ${(props) =>
+        props.theme.mode === 'dark' &&
+        css`
+          color: ${props.theme.colors.muted} !important;
+        `}
 
       &--is-selected,
       &--is-focused,
       &:active {
-        background: ${(props) => props.theme.colors.all.white};
+        ${(props) =>
+          props.theme.mode === 'light' &&
+          css`
+            background-color: ${props.theme.colors.all.white};
+          `}
+
+        ${(props) =>
+          props.theme.mode === 'dark' &&
+          css`
+            background-color: ${props.theme.colors.all.darkBlue
+              .spaceCadet[200]};
+          `}
       }
 
       &--is-focused {
-        color: ${(props) => props.theme.colors.all.violet.mediumPurple};
+        color: ${(props) =>
+          props.theme.colors.all.violet.mediumPurple} !important;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 0.1rem solid;
+
+        ${(props) =>
+          props.theme.mode === 'light' &&
+          css`
+            border-color: ${props.theme.colors.all.violet.lavenderWeb};
+          `}
+
+        ${(props) =>
+          props.theme.mode === 'dark' &&
+          css`
+            border-color: ${props.theme.colors.primary};
+          `}
       }
     }
 
-    &__value-container {
+    &__value-container,
+    &__single-value {
       ${TextSelectStlyes}
+    }
+
+    &__value-container {
       padding: 0 ${(props) => props.theme.space[10]};
     }
 

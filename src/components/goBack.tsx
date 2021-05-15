@@ -8,6 +8,7 @@ const StyledContainer = styled.button`
   align-items: center;
   margin-bottom: ${(props) => props.theme.space[12]};
   background: transparent;
+  cursor: pointer;
 `
 
 const ArrowLeft = styled(ArrowDown)`
