@@ -70,7 +70,7 @@ const BillTo = ({ mode }: Props) => {
           <StyledPaymentsDropdown
             options={[
               { label: 'Net 1 Day', value: '1' },
-              { label: 'Net 7 Day', value: '12' },
+              { label: 'Net 7 Day', value: '2' },
               { label: 'Net 14 Day', value: '3' },
               { label: 'Net 30 Day', value: '4' },
             ]}

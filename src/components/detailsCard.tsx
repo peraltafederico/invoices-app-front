@@ -1,6 +1,12 @@
+/* eslint-disable react/jsx-fragments */
+/* eslint-disable react/jsx-key */
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import React from 'react'
+import { format } from 'date-fns'
+import { usePageContext } from '../context/pageContext'
 import useBreakpoints from '../hooks/useBreakpoints'
+import { Invoice } from '../interfaces'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
@@ -179,23 +185,39 @@ const StyledTableHead = styled.th`
   font-weight: ${(props) => props.theme.fontWeights[0]};
 `
 
-export const DetailsCard = () => {
+export const DetailsCard: React.FC = () => {
   const { isTablet, isMobileOnly } = useBreakpoints()
+  const {
+    billFromCity,
+    billFromCountry,
+    billFromPostCode,
+    billFromStreet,
+    billToCity,
+    billToCountry,
+    billToEmail,
+    billToName,
+    billToPostCode,
+    billToStreet,
+    bussinessId,
+    date,
+    description,
+    items,
+  } = usePageContext<Invoice>()
 
   return (
     <StyledCard>
       <StyledHeader>
         <div>
-          <InvoiceId size={isTablet ? 'big' : 'small'} id="XM9141" />
+          <InvoiceId size={isTablet ? 'big' : 'small'} id={bussinessId} />
           <StyledInvoiceType variant="body2" isMuted>
-            Graphic Design
+            {description}
           </StyledInvoiceType>
         </div>
         <StyledOriginAddress>
-          <Text isMuted>19 Union Terrace</Text>
-          <Text isMuted>London</Text>
-          <Text isMuted>E1 3EZ</Text>
-          <Text isMuted>United Kingdom</Text>
+          <Text isMuted>{billFromStreet}</Text>
+          <Text isMuted>{billFromCity}</Text>
+          <Text isMuted>{billFromPostCode}</Text>
+          <Text isMuted>{billFromCountry}</Text>
         </StyledOriginAddress>
       </StyledHeader>
       <Grid container gap="4.1rem">
@@ -204,13 +226,17 @@ export const DetailsCard = () => {
             <InvoiceInfoTitle isMuted variant="body2">
               Invoice Date
             </InvoiceInfoTitle>
-            <InvoiceMainInfo isBold>21 Aug 2021</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>
+              {format(new Date(+date), 'dd MMM yyyy')}
+            </InvoiceMainInfo>
           </StyledInfoContainer>
           <StyledPaymentContainer>
             <InvoiceInfoTitle isMuted variant="body2">
               Payment Due
             </InvoiceInfoTitle>
-            <InvoiceMainInfo isBold>20 Sep 2021</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>
+              {format(new Date(+date), 'dd MMM yyyy')}
+            </InvoiceMainInfo>
           </StyledPaymentContainer>
         </Grid>
         <Grid sm={6} md={3.67}>
@@ -218,12 +244,12 @@ export const DetailsCard = () => {
             <InvoiceInfoTitle isMuted variant="body2">
               Bill To
             </InvoiceInfoTitle>
-            <InvoiceMainInfo isBold>Alex Grim</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>{billToName}</InvoiceMainInfo>
             <StyledDestinationAddress>
-              <Text isMuted>84 Church Way</Text>
-              <Text isMuted>Bradford</Text>
-              <Text isMuted>BD1 9PB</Text>
-              <Text isMuted>United Kingdom</Text>
+              <Text isMuted>{billToStreet}</Text>
+              <Text isMuted>{billToCity}</Text>
+              <Text isMuted>{billToPostCode}</Text>
+              <Text isMuted>{billToCountry}</Text>
             </StyledDestinationAddress>
           </StyledInfoContainer>
         </Grid>
@@ -232,7 +258,7 @@ export const DetailsCard = () => {
             <InvoiceInfoTitle isMuted variant="body2">
               Sent to
             </InvoiceInfoTitle>
-            <InvoiceMainInfo isBold>alexgrim@mail.com</InvoiceMainInfo>
+            <InvoiceMainInfo isBold>{billToEmail}</InvoiceMainInfo>
           </StyledSentToContainer>
         </Grid>
       </Grid>
@@ -240,38 +266,27 @@ export const DetailsCard = () => {
         <StyledBillDetails>
           {isMobileOnly && (
             <Grid container rowGap="2.4rem">
-              <Grid sm={6}>
-                <StyledBillDetailTitle isBold variant="body2">
-                  Banner Design
-                </StyledBillDetailTitle>
-                <Text variant="body2" isMuted isBold>
-                  1 x £ 156.00
-                </Text>
-              </Grid>
-              <Grid sm={6}>
-                <StyledPriceContainer>
-                  <Text variant="body2" isBold>
-                    £ 156.00
-                  </Text>
-                </StyledPriceContainer>
-              </Grid>
-              <Grid sm={6}>
-                <StyledBillDetailTitle isBold variant="body2">
-                  Email Design
-                </StyledBillDetailTitle>
-                <Text variant="body2" isMuted isBold>
-                  2 x £ 200.00
-                </Text>
-              </Grid>
-              <Grid sm={6}>
-                <StyledPriceContainer>
-                  <Text variant="body2" isBold>
-                    £ 400.00
-                  </Text>
-                </StyledPriceContainer>
-              </Grid>
+              {items.map((item) => (
+                <React.Fragment>
+                  <Grid sm={6} rowGap="2.4rem">
+                    <StyledBillDetailTitle isBold variant="body2">
+                      {item.name}
+                    </StyledBillDetailTitle>
+                    <Text variant="body2" isMuted isBold>
+                      {item.qty} x £ {item.price}
+                    </Text>
+                  </Grid>
+                  <Grid sm={6} rowGap="2.4rem">
+                    <StyledPriceContainer>
+                      <Text variant="body2" isBold>
+                        £ {item.price}
+                      </Text>
+                    </StyledPriceContainer>
+                  </Grid>
+                </React.Fragment>
+              ))}
             </Grid>
-          )}{' '}
+          )}
           {isTablet && (
             <StyledTable css={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
@@ -306,50 +321,30 @@ export const DetailsCard = () => {
                 </tr>
               </thead>
               <StyledTableBody>
-                <tr>
-                  <StyledTableCell>
-                    <Text variant="body2" isBold>
-                      Banner Design
-                    </Text>
-                  </StyledTableCell>
-                  <StyledTableCell css={{ textAlign: 'center' }}>
-                    <Text variant="body2" isMuted isBold>
-                      1
-                    </Text>
-                  </StyledTableCell>
-                  <StyledTableCell css={{ textAlign: 'right' }}>
-                    <Text variant="body2" isMuted isBold>
-                      £ 156.00
-                    </Text>
-                  </StyledTableCell>
-                  <StyledTableCell css={{ textAlign: 'right' }}>
-                    <Text variant="body2" isBold>
-                      £ 156.00
-                    </Text>
-                  </StyledTableCell>
-                </tr>
-                <tr>
-                  <StyledTableCell>
-                    <Text variant="body2" isBold>
-                      Email Design
-                    </Text>
-                  </StyledTableCell>
-                  <StyledTableCell css={{ textAlign: 'center' }}>
-                    <Text variant="body2" isMuted isBold>
-                      2
-                    </Text>
-                  </StyledTableCell>
-                  <StyledTableCell css={{ textAlign: 'right' }}>
-                    <Text variant="body2" isMuted isBold>
-                      £ 200.00
-                    </Text>
-                  </StyledTableCell>
-                  <StyledTableCell css={{ textAlign: 'right' }}>
-                    <Text variant="body2" isBold>
-                      £ 400.00
-                    </Text>
-                  </StyledTableCell>
-                </tr>
+                {items.map((item) => (
+                  <tr key={item.id}>
+                    <StyledTableCell>
+                      <Text variant="body2" isBold>
+                        {item.name}
+                      </Text>
+                    </StyledTableCell>
+                    <StyledTableCell css={{ textAlign: 'center' }}>
+                      <Text variant="body2" isMuted isBold>
+                        {item.qty}
+                      </Text>
+                    </StyledTableCell>
+                    <StyledTableCell css={{ textAlign: 'right' }}>
+                      <Text variant="body2" isMuted isBold>
+                        £ {item.price}
+                      </Text>
+                    </StyledTableCell>
+                    <StyledTableCell css={{ textAlign: 'right' }}>
+                      <Text variant="body2" isBold>
+                        £ {item.price}
+                      </Text>
+                    </StyledTableCell>
+                  </tr>
+                ))}
               </StyledTableBody>
             </StyledTable>
           )}

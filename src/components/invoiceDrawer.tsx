@@ -22,7 +22,7 @@ interface Props {
 }
 
 const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
-  const form = useInvoiceForm()
+  const form = useInvoiceForm({ mode })
   const { hideModal } = useModalContext()
   const formContainerRef = useRef<HTMLDivElement>(null)
   const scrollBottom = useScrollBottom({ ref: formContainerRef })

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Form } from 'formik'
+import { navigate } from 'gatsby'
 import useBreakpoints from '../../hooks/useBreakpoints'
 import { InvoiceFormMode } from '../../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
@@ -19,7 +20,7 @@ const StyledForm = styled(Form)`
 const StyledCreateFooter = styled(ActionsFooter)`
   & button {
     padding: 1.6rem;
-    white-space: nowrap;
+    /* white-space: nowrap; */
   }
 `
 
@@ -44,7 +45,6 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                 {
                   buttonVariant: 'secondary',
                   text: 'Discard',
-                  fullWidth: true,
                 },
                 { buttonVariant: 'dark', text: 'Save as Draft' },
                 { buttonVariant: 'primary', text: 'Save & Send' },
@@ -55,7 +55,11 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
             <ActionsFooter
               showShadow
               actions={[
-                { buttonVariant: 'secondary', text: 'Cancel' },
+                {
+                  buttonVariant: 'secondary',
+                  text: 'Cancel',
+                  onClick: () => navigate('/'),
+                },
                 { buttonVariant: 'primary', text: 'Save Changes' },
               ]}
             />

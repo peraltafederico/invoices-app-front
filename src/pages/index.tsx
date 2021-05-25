@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PageProps } from 'gatsby'
+import { graphql, PageProps, useStaticQuery } from 'gatsby'
 
 import styled from '@emotion/styled'
 import InvoiceCard from '../components/invoiceCard'
@@ -10,6 +10,7 @@ import {
   MIN_TABLET_MEDIA_QUERY,
 } from '../theme/base'
 import Layout from '../components/layout'
+import { Invoice } from '../interfaces'
 
 const StyledCardsWrapper = styled.div`
   & > div:not(:first-of-type) {
@@ -25,31 +26,45 @@ const StyledCardsWrapper = styled.div`
   }
 `
 
-const invoices = [1, 2, 3, 4, 5, 6, 7]
-// const invoices = [] as any
+const Home: React.FC<PageProps> = () => {
+  const {
+    invoicesAPI: { invoices },
+  } = useStaticQuery(graphql`
+    query MyQuery {
+      invoicesAPI {
+        invoices {
+          bussinessId
+          date
+          billToName
+          status
+        }
+      }
+    }
+  `)
 
-const Home: React.FC<PageProps> = () => (
-  <Layout>
-    <div>
-      <UserActions invoicesAmount={invoices.length} />
-      {invoices.length > 0 ? (
-        <StyledCardsWrapper>
-          {invoices.map((card) => (
-            <InvoiceCard
-              key={card}
-              date="Due 19 Aug 2021"
-              id="RT3080"
-              money="£ 1,800.90"
-              name="Jensen Huang"
-              status="draft"
-            />
-          ))}
-        </StyledCardsWrapper>
-      ) : (
-        <NoContent />
-      )}
-    </div>
-  </Layout>
-)
+  return (
+    <Layout>
+      <div>
+        <UserActions invoicesAmount={invoices.length} />
+        {invoices.length > 0 ? (
+          <StyledCardsWrapper>
+            {invoices.map((invoice: Invoice) => (
+              <InvoiceCard
+                key={invoice.id}
+                date={invoice.date}
+                id={invoice.bussinessId}
+                money="£ 1,800.90"
+                name={invoice.billToName}
+                status={invoice.status}
+              />
+            ))}
+          </StyledCardsWrapper>
+        ) : (
+          <NoContent />
+        )}
+      </div>
+    </Layout>
+  )
+}
 
 export default Home

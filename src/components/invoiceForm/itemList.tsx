@@ -69,6 +69,15 @@ const StyledPriceValue = styled(Text)`
   overflow: auto;
 `
 
+const StyledQtyField = styled(TextField)`
+  ${MIN_TABLET_MEDIA_QUERY} {
+    input {
+      padding: 0 1rem;
+      text-align: center;
+    }
+  }
+`
+
 const ItemList = () => {
   const { values } = useFormikContext<{
     items: { name: string; qty: number; price: number; total: string }[]
@@ -91,7 +100,7 @@ const ItemList = () => {
                   <TextField label="Item Name" name={`items[${index}].name`} />
                 </Grid>
                 <Grid sm={2.799} md={1.431}>
-                  <TextField
+                  <StyledQtyField
                     type="number"
                     label="Qty."
                     name={`items[${index}].qty`}

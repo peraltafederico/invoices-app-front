@@ -5,22 +5,25 @@ import FormTitle from '../components/formTitle'
 import GoBack from '../components/goBack'
 import InvoiceForm from '../components/invoiceForm'
 import Layout from '../components/layout'
+import { usePageContext } from '../context/pageContext'
 import useInvoiceForm from '../hooks/useInvoiceForm'
+import { Invoice } from '../interfaces'
 
-const Create: React.FC<PageProps> = () => {
-  const form = useInvoiceForm({ mode: 'create' })
+const Edit: React.FC<PageProps> = () => {
+  const form = useInvoiceForm({ mode: 'edit' })
+  const { bussinessId } = usePageContext<Invoice>()
 
   return (
     <Layout>
       <div>
         <GoBack to="/" />
-        <FormTitle text="New Invoice" />
+        <FormTitle text={`Edit #${bussinessId}`} />
         <FormikProvider value={form}>
-          <InvoiceForm mode="create" />
+          <InvoiceForm mode="edit" />
         </FormikProvider>
       </div>
     </Layout>
   )
 }
 
-export default Create
+export default Edit

@@ -2,6 +2,7 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import useBreakpoints from '../hooks/useBreakpoints'
+import { InvoiceStatus } from '../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 import Button from './button'
 import Card from './card'
@@ -35,9 +36,10 @@ const StyledActions = styled.div`
 interface Props {
   onDelete: () => void
   onEdit: () => void
+  status: InvoiceStatus
 }
 
-const StatusCard: React.FC<Props> = ({ onDelete, onEdit }) => {
+const StatusCard: React.FC<Props> = ({ onDelete, onEdit, status }) => {
   const { isTablet, isMobileOnly } = useBreakpoints()
 
   return (
@@ -47,7 +49,7 @@ const StatusCard: React.FC<Props> = ({ onDelete, onEdit }) => {
           <Text variant="body2" isMuted>
             Status
           </Text>
-          <Status type="pending" />
+          <Status type={status} />
         </React.Fragment>
       )}
       {isTablet && (
@@ -56,7 +58,7 @@ const StatusCard: React.FC<Props> = ({ onDelete, onEdit }) => {
             <Text variant="body2" isMuted>
               Status
             </Text>
-            <StyledStatus type="pending" />
+            <StyledStatus type={status} />
           </div>
           <StyledActions>
             <Button variant="secondary" onClick={onEdit}>

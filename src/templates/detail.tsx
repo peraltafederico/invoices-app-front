@@ -14,6 +14,8 @@ import {
   MIN_TABLET_MEDIA_QUERY,
 } from '../theme/base'
 import Layout from '../components/layout'
+import { usePageContext } from '../context/pageContext'
+import { Invoice } from '../interfaces'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};
@@ -43,6 +45,7 @@ const StyledLayout = styled(Layout)`
 const Detail: React.FC<PageProps> = () => {
   const { showModal } = useModalContext()
   const { isMobileOnly } = useBreakpoints()
+  const { status, bussinessId } = usePageContext<Invoice>()
 
   const handleDelete = () =>
     showModal({
@@ -61,7 +64,11 @@ const Detail: React.FC<PageProps> = () => {
     <StyledLayout>
       <StyledWrapper>
         <StyledGoBack to="/" />
-        <StatusCard onEdit={handleEdit} onDelete={handleDelete} />
+        <StatusCard
+          status={status}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
         <DetailsCard />
         {isMobileOnly && (
           <ActionsFooter
@@ -69,14 +76,17 @@ const Detail: React.FC<PageProps> = () => {
               {
                 buttonVariant: 'secondary',
                 text: 'Edit',
-                onClick: () => navigate('/edit'),
+                onClick: () => navigate(`/invoices/${bussinessId}/edit`),
               },
               {
                 buttonVariant: 'danger',
                 text: 'Delete',
                 onClick: handleDelete,
               },
-              { buttonVariant: 'primary', text: 'Mark as Paid' },
+              {
+                buttonVariant: 'primary',
+                text: 'Mark as Paid',
+              },
             ]}
           />
         )}

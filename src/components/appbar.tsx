@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { navigate } from 'gatsby'
 import LogoMobile from '../assets/logo-mobile.inline.svg'
 import LogoDesktop from '../assets/logo-desktop.inline.svg'
 import User from '../assets/user.inline.svg'
@@ -86,6 +87,10 @@ const StyledThemeButton = styled.div`
   cursor: pointer;
 `
 
+const StyledLogoContainer = styled.div`
+  cursor: pointer;
+`
+
 const AppBar = (): JSX.Element => {
   const { isDesktopOnly } = useBreakpoints()
   const { setTheme, theme } = useThemeContext()
@@ -98,11 +103,18 @@ const AppBar = (): JSX.Element => {
     }
   }
 
+  const goHome = () => navigate('/')
+
   return (
     <StyledContainer>
-      <div role="button" tabIndex={0}>
+      <StyledLogoContainer
+        role="button"
+        tabIndex={0}
+        onClick={goHome}
+        onKeyDown={(e) => onPressKeys(e, ['Enter'], goHome)}
+      >
         {isDesktopOnly ? <LogoDesktop /> : <LogoMobile />}
-      </div>
+      </StyledLogoContainer>
       <StyledUserSection>
         <StyledThemeContainer>
           <StyledThemeButton

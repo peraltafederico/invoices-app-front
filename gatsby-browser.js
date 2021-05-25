@@ -7,20 +7,16 @@ import {
   useThemeContextValue,
   useThemeContext,
 } from './src/context/themeContext'
-import {
-  ModalContext,
-  useModalContext,
-  useModalContextValue,
-} from './src/context/modalContext'
+import { ModalContext, useModalContextValue } from './src/context/modalContext'
 import GlobalStyles from './src/globalStyles'
 import ModalRoot from './src/components/modalRoot'
+import { PageContext } from './src/context/pageContext'
 
 const AppWrapper = ({ children }) => {
   const { theme } = useThemeContext()
 
   return (
     <ThemeProvider theme={themes[theme]}>
-      <ModalRoot />
       {children}
     </ThemeProvider>
   )
@@ -43,11 +39,12 @@ export const wrapRootElement = ({ element }) => {
   return <RootWrapper>{element}</RootWrapper>
 }
 
-export const wrapPageElement = ({ element }) => {
+export const wrapPageElement = ({ element, props }) => {
   return (
-    <div>
+    <PageContext.Provider value={props.pageContext}>
       <GlobalStyles />
+      <ModalRoot />
       {element}
-    </div>
+    </PageContext.Provider>
   )
 }

@@ -25,7 +25,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/logo.inline.png`,
+        icon: `src/assets/logo-mobile.inline.svg`,
       },
     },
     `gatsby-plugin-gatsby-cloud`,
@@ -56,6 +56,14 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: 'InvoicesAPI',
+        fieldName: 'invoicesAPI',
+        url: 'http://localhost:4000/graphql'
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

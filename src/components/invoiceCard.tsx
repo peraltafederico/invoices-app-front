@@ -2,6 +2,7 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import React from 'react'
+import { format } from 'date-fns'
 import { InvoiceStatus } from '../interfaces'
 import Card from './card'
 import Grid from './grid'
@@ -67,7 +68,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
 
   return (
     <StyledWrapper>
-      <Link to="/detail">
+      <Link to={`/invoices/${id}`}>
         <Card>
           <StyledContent>
             {isMobileOnly && (
@@ -81,7 +82,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                 <StyledRow>
                   <StyledPaymentContainer>
                     <Text variant="body2" isMuted>
-                      {date}
+                      {format(new Date(+date), 'dd MMM yyyy')}
                     </Text>
                     <StyledPrice>{money}</StyledPrice>
                   </StyledPaymentContainer>
@@ -97,7 +98,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                   </Grid>
                   <Grid sm={2.65}>
                     <Text variant="body2" isMuted>
-                      {date}
+                      {format(new Date(+date), 'dd MMM yyyy')}
                     </Text>
                   </Grid>
                   <Grid sm={2.2}>
