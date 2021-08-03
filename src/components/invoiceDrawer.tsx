@@ -34,7 +34,11 @@ const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
         text: 'Cancel',
         onClick: hideModal,
       },
-      { buttonVariant: 'primary', text: 'Save Changes' },
+      {
+        buttonVariant: 'primary',
+        text: 'Save Changes',
+        onClick: form.handleSubmit,
+      },
     ],
     create: [
       {

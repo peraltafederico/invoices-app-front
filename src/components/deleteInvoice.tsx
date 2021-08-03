@@ -1,4 +1,8 @@
+import { gql, useMutation } from '@apollo/client'
 import styled from '@emotion/styled'
+import { useModalContext } from '../context/modalContext'
+import { usePageContext } from '../context/pageContext'
+import { Invoice } from '../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 import BaseModal from './baseModal'
 import Text from './text'
@@ -12,9 +16,26 @@ const StyledText = styled(Text)`
   }
 `
 
+const DELETE_INVOICE = gql`
+  mutation deleteInvoice($id: Int!) {
+    deleteInvoice(id: $id) {
+      id
+    }
+  }
+`
+
 const DeleteInvoiceModal = (): JSX.Element => {
+  const [deleteInvoice] = useMutation(DELETE_INVOICE)
+  const { id } = usePageContext<Invoice>()
+  const { hideModal } = useModalContext()
+
+  const handleDelete = async () => {
+    deleteInvoice({ variables: { id } })
+    hideModal()
+  }
+
   return (
-    <BaseModal title="Confirm Deletion">
+    <BaseModal title="Confirm Deletion" onAccept={handleDelete}>
       <StyledText variant="body2" isMuted>
         Are you sure you want to delete invoice #XM9141? This action cannot be
         undone.

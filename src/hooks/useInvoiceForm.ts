@@ -1,14 +1,53 @@
 import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { noop } from 'lodash'
+import { gql, useMutation } from '@apollo/client'
 import { usePageContext } from '../context/pageContext'
 import { Invoice, InvoiceFormMode } from '../interfaces'
 
-export interface Props {
+interface Props {
   mode: InvoiceFormMode
 }
 
+const EDIT_INVOICE = gql`
+  mutation updateInvoice(
+    $id: Int!
+    $streetAddress: String
+    $city: String
+    $postCode: String
+    $country: String
+    $clientName: String
+    $clientEmail: String
+    $clientStreetAddress: String
+    $clientCity: String
+    $clientPostCode: String
+    $clientCountry: String
+    $projectDescription: String
+    $invoiceDate: String
+    $paymentTems: Int
+  ) {
+    updateInvoice(
+      id: $id
+      billFromStreet: $streetAddress
+      billFromCity: $city
+      billFromPostCode: $postCode
+      billFromCountry: $country
+      billToName: $clientName
+      billToEmail: $clientEmail
+      billToStreet: $clientStreetAddress
+      billToCity: $clientCity
+      billToPostCode: $clientPostCode
+      billToCountry: $clientCountry
+      description: $projectDescription
+      date: $invoiceDate
+      paymentTermId: $paymentTems
+    ) {
+      id
+    }
+  }
+`
+
 const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
+  const [updateInvoice] = useMutation(EDIT_INVOICE)
+
   const {
     billFromCity,
     billFromCountry,
@@ -23,6 +62,7 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
     date,
     description,
     items,
+    id,
   } = usePageContext<Invoice>()
 
   return useFormik({
@@ -42,12 +82,21 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
       projectDescription: mode === 'edit' ? description : '',
       items: mode === 'edit' ? items : [],
     },
-    onSubmit: noop,
-    validationSchema: Yup.object({
-      name: Yup.string().required(),
-      select: Yup.string().required(),
-      datepicker: Yup.string().required(),
-    }),
+    onSubmit: (values) => {
+      updateInvoice({
+        variables: {
+          ...values,
+          invoiceDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+          paymentTems: Number(values.paymentTems),
+          id,
+        },
+      })
+    },
+    // validationSchema: Yup.object({
+    //   name: Yup.string().required(),
+    //   select: Yup.string().required(),
+    //   datepicker: Yup.string().required(),
+    // }),
   })
 }
 

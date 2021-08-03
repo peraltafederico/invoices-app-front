@@ -15,11 +15,7 @@ import { PageContext } from './src/context/pageContext'
 const AppWrapper = ({ children }) => {
   const { theme } = useThemeContext()
 
-  return (
-    <ThemeProvider theme={themes[theme]}>
-      {children}
-    </ThemeProvider>
-  )
+  return <ThemeProvider theme={themes[theme]}>{children}</ThemeProvider>
 }
 
 const RootWrapper = ({ children }) => {

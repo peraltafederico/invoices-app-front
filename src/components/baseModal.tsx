@@ -41,9 +41,15 @@ const StyledTitle = styled.h2`
 type Props = {
   children: React.ReactNode
   title: string
+  onAccept: () => void
 } & Omit<ReactModal.Props, 'isOpen'>
 
-const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
+const BaseModal: React.FC<Props> = ({
+  children,
+  title,
+  onAccept,
+  ...props
+}: Props) => {
   const theme = useTheme()
   const { hideModal } = useModalContext()
   const { isTablet, isMobileOnly } = useBreakpoints()
@@ -116,7 +122,9 @@ const BaseModal: React.FC<Props> = ({ children, title, ...props }: Props) => {
           <Button variant="secondary" onClick={hideModal}>
             Cancel
           </Button>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={onAccept}>
+            Delete
+          </Button>
         </StyledFooter>
       </StyledContainer>
     </ReactModal>

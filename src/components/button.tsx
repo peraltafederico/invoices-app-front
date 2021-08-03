@@ -169,6 +169,7 @@ const Button = ({
       onClick={onClick}
       className={className}
       isThemeable={isThemeable}
+      type="submit"
     >
       {withIcon && <StyledIconWrapper>{icon}</StyledIconWrapper>}
       <StyledChildren
