@@ -37,9 +37,15 @@ interface Props {
   onDelete: () => void
   onEdit: () => void
   status: InvoiceStatus
+  onMarkAsPaid: () => void
 }
 
-const StatusCard: React.FC<Props> = ({ onDelete, onEdit, status }) => {
+const StatusCard: React.FC<Props> = ({
+  onDelete,
+  onEdit,
+  onMarkAsPaid,
+  status,
+}) => {
   const { isTablet, isMobileOnly } = useBreakpoints()
 
   return (
@@ -67,7 +73,9 @@ const StatusCard: React.FC<Props> = ({ onDelete, onEdit, status }) => {
             <Button variant="danger" onClick={onDelete}>
               Delete
             </Button>
-            <Button>Mark as Paid</Button>
+            <Button onClick={onMarkAsPaid} disabled={status === 'paid'}>
+              Mark as Paid
+            </Button>
           </StyledActions>
         </React.Fragment>
       )}

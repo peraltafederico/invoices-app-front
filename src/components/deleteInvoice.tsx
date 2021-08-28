@@ -1,8 +1,9 @@
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import styled from '@emotion/styled'
 import { useModalContext } from '../context/modalContext'
 import { usePageContext } from '../context/pageContext'
 import { Invoice } from '../interfaces'
+import { DELETE_INVOICE } from '../schema/mutations/deleteInvoice'
 import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 import BaseModal from './baseModal'
 import Text from './text'
@@ -13,14 +14,6 @@ const StyledText = styled(Text)`
 
   ${MIN_TABLET_MEDIA_QUERY} {
     max-width: 38.4rem;
-  }
-`
-
-const DELETE_INVOICE = gql`
-  mutation deleteInvoice($id: Int!) {
-    deleteInvoice(id: $id) {
-      id
-    }
   }
 `
 

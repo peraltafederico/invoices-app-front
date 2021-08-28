@@ -8,6 +8,12 @@ const GlobalStyles = () => {
   return (
     <Global
       styles={css`
+        /* :root {
+          --toastify-color-dark: ${baseTheme.colors.darkBlue.spaceCadet[300]};
+          --toastify-text-color-dark: ${baseTheme.colors.violet
+          .mediumSlateBlue};
+        } */
+
         html,
         body,
         div,

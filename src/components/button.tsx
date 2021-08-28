@@ -13,7 +13,7 @@ type Props = {
   onClick?: () => void
   className?: string
   isThemeable?: boolean
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const StyledButton = styled.button<{
   variant?: ButtonVariants
@@ -112,6 +112,13 @@ const StyledButton = styled.button<{
     css`
       width: 100%;
     `}
+    
+    ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.5;
+      cursor: not-allowed;
+    `}
 `
 
 const StyledChildren = styled(Text)<{
@@ -158,6 +165,7 @@ const Button = ({
   onClick,
   className,
   isThemeable = true,
+  ...props
 }: Props) => {
   const withIcon = !!icon
 
@@ -170,6 +178,7 @@ const Button = ({
       className={className}
       isThemeable={isThemeable}
       type="submit"
+      {...props}
     >
       {withIcon && <StyledIconWrapper>{icon}</StyledIconWrapper>}
       <StyledChildren

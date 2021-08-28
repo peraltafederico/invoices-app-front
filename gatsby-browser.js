@@ -25,14 +25,20 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const successLink = new ApolloLink((operation, forward) => {
   return forward(operation).map((response) => {
-    toast.success("All good. Changes will appear soon.")
+    if (response.errors) {
+      return response
+    }
+
+    toast.success('All good. Changes will appear soon.')
 
     return response
   })
 })
 
-const errorLink = onError(() => {
+const errorLink = onError(({ response }) => {
   toast.error('There was an error :(')
+
+  response.errors = null
 })
 
 const httpLink = createHttpLink({
@@ -43,7 +49,7 @@ const httpLink = createHttpLink({
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   ssrMode: true,
-  link: from([successLink, errorLink, httpLink]),
+  link: from([errorLink, successLink, httpLink]),
 })
 
 const AppWrapper = ({ children }) => {
@@ -51,7 +57,7 @@ const AppWrapper = ({ children }) => {
 
   return (
     <ThemeProvider theme={themes[theme]}>
-      <ToastContainer />
+      <ToastContainer theme={theme} />
       {children}
     </ThemeProvider>
   )

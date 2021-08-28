@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { PageProps, navigate } from 'gatsby'
 import React from 'react'
+import { useMutation } from '@apollo/client'
 import ActionsFooter from '../components/actionsFooter'
 import { DetailsCard } from '../components/detailsCard'
 import GoBack from '../components/goBack'
@@ -16,6 +17,7 @@ import {
 import Layout from '../components/layout'
 import { usePageContext } from '../context/pageContext'
 import { Invoice } from '../interfaces'
+import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};
@@ -45,7 +47,8 @@ const StyledLayout = styled(Layout)`
 const Detail: React.FC<PageProps> = () => {
   const { showModal } = useModalContext()
   const { isMobileOnly } = useBreakpoints()
-  const { status, bussinessId } = usePageContext<Invoice>()
+  const { status, bussinessId, id } = usePageContext<Invoice>()
+  const [updateInvoice] = useMutation(EDIT_INVOICE)
 
   const handleDelete = () =>
     showModal({
@@ -60,6 +63,10 @@ const Detail: React.FC<PageProps> = () => {
       },
     })
 
+  const handleMarkAsPaid = () => {
+    updateInvoice({ variables: { id, status: 'paid' } })
+  }
+
   return (
     <StyledLayout>
       <StyledWrapper>
@@ -68,6 +75,7 @@ const Detail: React.FC<PageProps> = () => {
           status={status}
           onEdit={handleEdit}
           onDelete={handleDelete}
+          onMarkAsPaid={handleMarkAsPaid}
         />
         <DetailsCard />
         {isMobileOnly && (

@@ -11,11 +11,18 @@ import { ModalContext, useModalContextValue } from './src/context/modalContext'
 import GlobalStyles from './src/globalStyles'
 import ModalRoot from './src/components/modalRoot'
 import { PageContext } from './src/context/pageContext'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const AppWrapper = ({ children }) => {
   const { theme } = useThemeContext()
 
-  return <ThemeProvider theme={themes[theme]}>{children}</ThemeProvider>
+  return (
+    <ThemeProvider theme={themes[theme]}>
+      <ToastContainer theme={theme} />
+      {children}
+    </ThemeProvider>
+  )
 }
 
 const RootWrapper = ({ children }) => {

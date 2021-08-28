@@ -1,49 +1,12 @@
 import { useFormik } from 'formik'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { usePageContext } from '../context/pageContext'
 import { Invoice, InvoiceFormMode } from '../interfaces'
+import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
 
 interface Props {
   mode: InvoiceFormMode
 }
-
-const EDIT_INVOICE = gql`
-  mutation updateInvoice(
-    $id: Int!
-    $streetAddress: String
-    $city: String
-    $postCode: String
-    $country: String
-    $clientName: String
-    $clientEmail: String
-    $clientStreetAddress: String
-    $clientCity: String
-    $clientPostCode: String
-    $clientCountry: String
-    $projectDescription: String
-    $invoiceDate: String
-    $paymentTems: Int
-  ) {
-    updateInvoice(
-      id: $id
-      billFromStreet: $streetAddress
-      billFromCity: $city
-      billFromPostCode: $postCode
-      billFromCountry: $country
-      billToName: $clientName
-      billToEmail: $clientEmail
-      billToStreet: $clientStreetAddress
-      billToCity: $clientCity
-      billToPostCode: $clientPostCode
-      billToCountry: $clientCountry
-      description: $projectDescription
-      date: $invoiceDate
-      paymentTermId: $paymentTems
-    ) {
-      id
-    }
-  }
-`
 
 const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
   const [updateInvoice] = useMutation(EDIT_INVOICE)
