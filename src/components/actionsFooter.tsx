@@ -108,6 +108,7 @@ const ActionsFooter = ({ actions, showShadow, className }: Props) => {
           toLeft={action.toLeft}
           onClick={action.onClick}
           isThemeable={false}
+          type="button"
         >
           {action.text}
         </StyledButton>

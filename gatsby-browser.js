@@ -22,6 +22,7 @@ import {
 import { onError } from '@apollo/client/link/error'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useMemo } from 'react'
 
 const successLink = new ApolloLink((operation, forward) => {
   return forward(operation).map((response) => {
@@ -38,18 +39,16 @@ const successLink = new ApolloLink((operation, forward) => {
 const errorLink = onError(({ response }) => {
   toast.error('There was an error :(')
 
-  response.errors = null
+  if (response) {
+    response.errors = null
+  }
+
+  return null
 })
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
   credentials: 'same-origin',
-})
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  ssrMode: true,
-  link: from([errorLink, successLink, httpLink]),
 })
 
 const AppWrapper = ({ children }) => {
@@ -66,6 +65,19 @@ const AppWrapper = ({ children }) => {
 const RootWrapper = ({ children }) => {
   const themeContextValue = useThemeContextValue()
   const modalContextValue = useModalContextValue()
+
+  const client = useMemo(() => {
+    return new ApolloClient({
+      cache: new InMemoryCache(),
+      defaultOptions: {
+        mutate: {
+          errorPolicy: 'all',
+        },
+      },
+      ssrMode: true,
+      link: from([errorLink, successLink, httpLink]),
+    })
+  }, [])
 
   return (
     <ApolloProvider client={client}>

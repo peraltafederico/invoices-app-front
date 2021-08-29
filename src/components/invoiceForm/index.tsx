@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Form } from 'formik'
+import { Form, useFormikContext } from 'formik'
 import { navigate } from 'gatsby'
 import useBreakpoints from '../../hooks/useBreakpoints'
 import { InvoiceFormMode } from '../../interfaces'
@@ -19,7 +19,7 @@ const StyledForm = styled(Form)`
 
 const StyledCreateFooter = styled(ActionsFooter)`
   & button {
-    padding: 1.6rem;
+    padding: 1.4rem;
     /* white-space: nowrap; */
   }
 `
@@ -30,6 +30,12 @@ interface Props {
 
 const InvoiceForm: React.FC<Props> = ({ mode }) => {
   const { isMobileOnly } = useBreakpoints()
+  const form = useFormikContext()
+
+  const submit = () => {
+    form.handleSubmit()
+    navigate('/')
+  }
 
   return (
     <StyledForm>
@@ -45,9 +51,21 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                 {
                   buttonVariant: 'secondary',
                   text: 'Discard',
+                  onClick: () => navigate('/'),
                 },
-                { buttonVariant: 'dark', text: 'Save as Draft' },
-                { buttonVariant: 'primary', text: 'Save & Send' },
+                {
+                  buttonVariant: 'dark',
+                  text: 'Save as Draft',
+                  onClick: async () => {
+                    form.setFieldValue('status', 'draft')
+                    submit()
+                  },
+                },
+                {
+                  buttonVariant: 'primary',
+                  text: 'Save & Send',
+                  onClick: submit,
+                },
               ]}
             />
           ),
@@ -60,7 +78,11 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                   text: 'Cancel',
                   onClick: () => navigate('/'),
                 },
-                { buttonVariant: 'primary', text: 'Save Changes' },
+                {
+                  buttonVariant: 'primary',
+                  text: 'Save Changes',
+                  onClick: submit,
+                },
               ]}
             />
           ),

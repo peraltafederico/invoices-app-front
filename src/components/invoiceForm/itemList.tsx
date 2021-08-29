@@ -132,6 +132,7 @@ const ItemList = () => {
             <Button
               fullWidth
               variant="secondary"
+              type="button"
               onClick={() =>
                 arrayHelper.push({
                   name: '',

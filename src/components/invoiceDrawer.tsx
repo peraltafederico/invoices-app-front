@@ -27,6 +27,11 @@ const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
   const formContainerRef = useRef<HTMLDivElement>(null)
   const scrollBottom = useScrollBottom({ ref: formContainerRef })
 
+  const submit = () => {
+    form.handleSubmit()
+    hideModal()
+  }
+
   const actions = {
     edit: [
       {
@@ -47,8 +52,19 @@ const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
         onClick: hideModal,
         toLeft: true,
       },
-      { buttonVariant: 'dark', text: 'Save as Draft' },
-      { buttonVariant: 'primary', text: 'Save & Send' },
+      {
+        buttonVariant: 'dark',
+        text: 'Save as Draft',
+        onClick: async () => {
+          await form.setFieldValue('status', 'draft')
+          submit()
+        },
+      },
+      {
+        buttonVariant: 'primary',
+        text: 'Save & Send',
+        onClick: submit,
+      },
     ],
   }
 

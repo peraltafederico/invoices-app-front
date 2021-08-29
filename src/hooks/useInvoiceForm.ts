@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client'
 import { usePageContext } from '../context/pageContext'
 import { Invoice, InvoiceFormMode } from '../interfaces'
 import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
+import { CREATE_INVOICE } from '../schema/mutations/createInvoice'
 
 interface Props {
   mode: InvoiceFormMode
@@ -10,6 +11,7 @@ interface Props {
 
 const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
   const [updateInvoice] = useMutation(EDIT_INVOICE)
+  const [createInvoice] = useMutation(CREATE_INVOICE)
 
   const {
     billFromCity,
@@ -26,6 +28,7 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
     description,
     items,
     id,
+    status,
   } = usePageContext<Invoice>()
 
   return useFormik({
@@ -44,16 +47,34 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
       paymentTems: '1',
       projectDescription: mode === 'edit' ? description : '',
       items: mode === 'edit' ? items : [],
+      status: mode === 'edit' ? status : 'pending',
     },
     onSubmit: (values) => {
-      updateInvoice({
-        variables: {
-          ...values,
-          invoiceDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
-          paymentTems: Number(values.paymentTems),
-          id,
-        },
-      })
+      if (mode === 'create') {
+        createInvoice({
+          variables: {
+            ...values,
+            invoiceDate: new Date()
+              .toISOString()
+              .slice(0, 19)
+              .replace('T', ' '),
+            paymentTems: Number(values.paymentTems),
+            id,
+          },
+        })
+      } else {
+        updateInvoice({
+          variables: {
+            ...values,
+            invoiceDate: new Date()
+              .toISOString()
+              .slice(0, 19)
+              .replace('T', ' '),
+            paymentTems: Number(values.paymentTems),
+            id,
+          },
+        })
+      }
     },
     // validationSchema: Yup.object({
     //   name: Yup.string().required(),
