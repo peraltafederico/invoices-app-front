@@ -22,14 +22,13 @@ interface Props {
 }
 
 const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
-  const form = useInvoiceForm({ mode })
   const { hideModal } = useModalContext()
+  const form = useInvoiceForm({ mode, onSuccess: hideModal })
   const formContainerRef = useRef<HTMLDivElement>(null)
   const scrollBottom = useScrollBottom({ ref: formContainerRef })
 
   const submit = () => {
     form.handleSubmit()
-    // hideModal()
   }
 
   const actions = {
@@ -42,7 +41,7 @@ const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
       {
         buttonVariant: 'primary',
         text: 'Save Changes',
-        onClick: form.handleSubmit,
+        onClick: submit,
       },
     ],
     create: [

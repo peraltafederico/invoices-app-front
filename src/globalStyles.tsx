@@ -8,11 +8,15 @@ const GlobalStyles = () => {
   return (
     <Global
       styles={css`
-        /* :root {
+        :root {
+          --toastify-icon-color-success: ${baseTheme.colors.violet
+            .mediumSlateBlue};
+          --toastify-color-progress-success: ${baseTheme.colors.violet
+            .mediumSlateBlue};
+          --toastify-icon-color-error: ${baseTheme.colors.red.redSalsa};
+          --toastify-color-progress-error: ${baseTheme.colors.red.redSalsa};
           --toastify-color-dark: ${baseTheme.colors.darkBlue.spaceCadet[300]};
-          --toastify-text-color-dark: ${baseTheme.colors.violet
-          .mediumSlateBlue};
-        } */
+        }
 
         html,
         body,

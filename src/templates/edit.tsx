@@ -1,5 +1,5 @@
 import { FormikProvider } from 'formik'
-import { PageProps } from 'gatsby'
+import { navigate, PageProps } from 'gatsby'
 import React from 'react'
 import FormTitle from '../components/formTitle'
 import GoBack from '../components/goBack'
@@ -10,7 +10,7 @@ import useInvoiceForm from '../hooks/useInvoiceForm'
 import { Invoice } from '../interfaces'
 
 const Edit: React.FC<PageProps> = () => {
-  const form = useInvoiceForm({ mode: 'edit', returnOnSuccess: true })
+  const form = useInvoiceForm({ mode: 'edit', onSuccess: () => navigate('/') })
   const { bussinessId } = usePageContext<Invoice>()
 
   return (
