@@ -122,6 +122,11 @@ const StyledFilterBox = styled.div`
   }
 `
 
+const StyledArrowDown = styled(ArrowDown)<{ invert: boolean }>`
+  transition: all 0.1s ease;
+  transform: ${(props) => (props.invert ? 'rotate(180deg)' : 'rotate(0deg)')};
+`
+
 const UserActions: React.FC<Props> = ({
   invoicesAmount,
   onChangeFilters,
@@ -173,7 +178,7 @@ const UserActions: React.FC<Props> = ({
               <StyledFilterTitle variant="body2" isBold as="span">
                 Filter {isTablet && 'by status'}
               </StyledFilterTitle>
-              <ArrowDown />
+              <StyledArrowDown invert={openFilters} />
             </StyledFilterButton>
             {openFilters && (
               <ClickAwayListener onClickAway={handleClickFilters}>

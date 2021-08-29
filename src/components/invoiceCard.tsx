@@ -61,6 +61,13 @@ const StyledStatus = styled(Status)`
 const StyledWrapper = styled.div`
   max-width: ${(props) => props.theme.sizes[0]};
   margin: 0 auto;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid
+      ${(props) => props.theme.colors.all.violet.mediumSlateBlue};
+    border-radius: 8px;
+  }
 `
 
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {

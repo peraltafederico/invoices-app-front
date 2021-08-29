@@ -63,6 +63,16 @@ const StyledTrashIcon = styled(TrashIcon)`
   margin-right: 0.7rem;
   cursor: pointer;
   flex-shrink: 0;
+
+  path {
+    transition: all 0.1s ease-in;
+  }
+
+  &:hover {
+    path {
+      fill: ${(props) => props.theme.colors.all.red.redSalsa};
+    }
+  }
 `
 
 const StyledPriceValue = styled(Text)`
