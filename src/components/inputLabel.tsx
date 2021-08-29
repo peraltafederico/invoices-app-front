@@ -6,6 +6,7 @@ interface Props {
   children: React.ReactNode
   htmlFor?: string
   errorMessage?: string
+  className?: string
 }
 
 const StyledLabel = styled.label`
@@ -21,20 +22,22 @@ const StyledErrorMessage = styled(Text)`
   text-overflow: ellipsis;
 `
 
-const InputLabel = ({ children, htmlFor, errorMessage }: Props) => {
+const InputLabel = ({ children, htmlFor, errorMessage, className }: Props) => {
   return (
-    <StyledLabel htmlFor={htmlFor}>
+    <StyledLabel htmlFor={htmlFor} className={className}>
       <Text variant="body2" isMuted isError={!!errorMessage}>
         {children}
       </Text>
-      <StyledErrorMessage
-        variant="body2"
-        isMuted
-        isError={!!errorMessage}
-        title={errorMessage}
-      >
-        {errorMessage}
-      </StyledErrorMessage>
+      {errorMessage && (
+        <StyledErrorMessage
+          variant="body2"
+          isMuted
+          isError={!!errorMessage}
+          title={errorMessage}
+        >
+          {errorMessage}
+        </StyledErrorMessage>
+      )}
     </StyledLabel>
   )
 }

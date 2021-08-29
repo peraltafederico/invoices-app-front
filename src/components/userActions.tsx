@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styled from '@emotion/styled'
 import { navigate } from 'gatsby'
+import ClickAwayListener from 'react-click-away-listener'
+import { css } from '@emotion/react'
 import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
@@ -15,9 +17,12 @@ import {
 } from '../theme/base'
 import { useModalContext } from '../context/modalContext'
 import InvoiceDrawer from './invoiceDrawer'
+import Checkbox from './checkbox'
 
 interface Props {
   invoicesAmount: number
+  onChangeFilters: (e: React.ChangeEvent<HTMLInputElement>) => void
+  filters: string[]
 }
 
 const StyledActionsContainer = styled.div`
@@ -50,6 +55,8 @@ const StyledActions = styled.div`
   display: flex;
   align-items: center;
   margin-right: ${(props) => `-${props.theme.space[12]}`};
+  z-index: 1;
+
   ${MIN_TABLET_MEDIA_QUERY} {
     margin-right: -4rem;
   }
@@ -66,6 +73,12 @@ const StyledActions = styled.div`
 const StyledFilter = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+`
+
+const StyledFilterButton = styled.button`
+  cursor: pointer;
+  background: none;
 `
 
 const StyledFilterTitle = styled(Text)`
@@ -76,10 +89,48 @@ const StyledFilterTitle = styled(Text)`
   }
 `
 
-const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => {
+const StyledFilterContainer = styled.div``
+
+const StyledFilterBox = styled.div`
+  width: 192px;
+  height: 128px;
+  border-radius: 8px;
+  position: absolute;
+  top: 38px;
+  right: 50%;
+  transform: translateX(50%);
+  padding: 2.4rem;
+  cursor: default;
+  box-sizing: border-box;
+
+  ${(props) =>
+    props.theme.mode === 'light' &&
+    css`
+      background: ${props.theme.colors.all.white};
+      box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+    `}
+
+  ${(props) =>
+    props.theme.mode === 'dark' &&
+    css`
+      background: ${props.theme.colors.all.darkBlue.spaceCadet[200]};
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    `}
+
+  & > div:not(:last-child) {
+    margin-bottom: 16px;
+  }
+`
+
+const UserActions: React.FC<Props> = ({
+  invoicesAmount,
+  onChangeFilters,
+  filters,
+}: Props) => {
   const isTablet = useMediaQuery(MIN_TABLET)
   const isMobileOnly = useMediaQuery(MOBILE_ONLY)
   const { showModal } = useModalContext()
+  const [openFilters, setOpenFilters] = useState(false)
 
   const tabletInvoicesText =
     isTablet && `There are ${invoicesAmount} total invoices`
@@ -100,6 +151,10 @@ const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => {
     })
   }
 
+  const handleClickFilters = () => {
+    setOpenFilters(!openFilters)
+  }
+
   return (
     <StyledActionsContainer>
       <StyledDetails>
@@ -112,12 +167,40 @@ const UserActions: React.FC<Props> = ({ invoicesAmount }: Props) => {
         </Text>
       </StyledDetails>
       <StyledActions>
-        <StyledFilter role="button" tabIndex={0}>
-          <StyledFilterTitle variant="body2" isBold>
-            Filter {isTablet && 'by status'}
-          </StyledFilterTitle>
-          <ArrowDown />
-        </StyledFilter>
+        <StyledFilterContainer>
+          <StyledFilter>
+            <StyledFilterButton onClick={handleClickFilters}>
+              <StyledFilterTitle variant="body2" isBold as="span">
+                Filter {isTablet && 'by status'}
+              </StyledFilterTitle>
+              <ArrowDown />
+            </StyledFilterButton>
+            {openFilters && (
+              <ClickAwayListener onClickAway={handleClickFilters}>
+                <StyledFilterBox>
+                  <Checkbox
+                    label="Draft"
+                    name="draft"
+                    onChange={onChangeFilters}
+                    checked={filters.includes('draft')}
+                  />
+                  <Checkbox
+                    label="Pending"
+                    name="pending"
+                    onChange={onChangeFilters}
+                    checked={filters.includes('pending')}
+                  />
+                  <Checkbox
+                    label="Paid"
+                    name="paid"
+                    onChange={onChangeFilters}
+                    checked={filters.includes('paid')}
+                  />
+                </StyledFilterBox>
+              </ClickAwayListener>
+            )}
+          </StyledFilter>
+        </StyledFilterContainer>
         <Button
           variant="primary"
           icon={<PlusIcon />}

@@ -19,7 +19,7 @@ const StyledContainer = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
 
   ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
     flex-direction: column;

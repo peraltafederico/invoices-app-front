@@ -156,12 +156,12 @@ const GlobalStyles = () => {
         ::-webkit-scrollbar-thumb {
           ${theme === 'light' &&
           css`
-            background: #dfe3fa;
+            background: ${baseTheme.colors.violet.lavenderWeb};
           `}
 
           ${theme === 'dark' &&
           css`
-            background: #252945;
+            background: ${baseTheme.colors.darkBlue.spaceCadet[200]};
           `}
 
           border-radius: 0.4rem;
