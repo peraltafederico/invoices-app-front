@@ -7,7 +7,7 @@ import InvoiceForm from '../components/invoiceForm'
 import Layout from '../components/layout'
 import useInvoiceForm from '../hooks/useInvoiceForm'
 
-const Create: React.FC<PageProps> = () => {
+const CreatePage: React.FC<PageProps> = () => {
   const form = useInvoiceForm({
     mode: 'create',
     onSuccess: () => navigate('/'),
@@ -26,4 +26,4 @@ const Create: React.FC<PageProps> = () => {
   )
 }
 
-export default Create
+export default CreatePage

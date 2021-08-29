@@ -151,7 +151,7 @@ const StyledFilterBox = styled.div`
   }
 `
 
-const StyledArrowDown = styled(ArrowDown)<{ invert: boolean }>`
+const StyledArrowDown = styled(ArrowDown)<{ invert: number }>`
   transition: all 0.1s ease;
   transform: ${(props) => (props.invert ? 'rotate(180deg)' : 'rotate(0deg)')};
 `
@@ -211,7 +211,7 @@ const UserActions: React.FC<Props> = ({
               <StyledFilterTitle variant="body2" isBold as="span">
                 Filter {isTablet && 'by status'}
               </StyledFilterTitle>
-              <StyledArrowDown invert={openFilters} />
+              <StyledArrowDown invert={openFilters ? 1 : 0} />
             </StyledFilterButton>
             <CSSTransition
               classNames="filters"

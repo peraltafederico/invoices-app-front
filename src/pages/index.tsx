@@ -12,6 +12,7 @@ import {
 } from '../theme/base'
 import Layout from '../components/layout'
 import { Invoice } from '../interfaces'
+import Text from '../components/text'
 
 const StyledCardsWrapper = styled.div`
   & > div:not(:first-of-type) {
@@ -27,7 +28,7 @@ const StyledCardsWrapper = styled.div`
   }
 `
 
-const Home: React.FC<PageProps> = () => {
+const HomePage: React.FC<PageProps> = () => {
   const {
     invoicesAPI: { invoices },
   } = useStaticQuery(graphql`
@@ -80,11 +81,21 @@ const Home: React.FC<PageProps> = () => {
               ))}
           </StyledCardsWrapper>
         ) : (
-          <NoContent />
+          <NoContent title="There is nothing here">
+            <Text variant="body2" isMuted>
+              Create an invoice by clicking the
+            </Text>
+            <Text variant="body2" isMuted>
+              <Text as="span" isBold variant="body2">
+                New
+              </Text>{' '}
+              button and get started
+            </Text>
+          </NoContent>
         )}
       </div>
     </Layout>
   )
 }
 
-export default Home
+export default HomePage

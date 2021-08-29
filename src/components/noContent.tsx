@@ -4,7 +4,10 @@ import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
 } from '../theme/base'
-import Text from './text'
+
+interface Props {
+  title: string
+}
 
 const StyledContainer = styled.div`
   display: flex;
@@ -37,22 +40,12 @@ const StyledFooter = styled.div`
   max-height: 3.1rem;
 `
 
-const NoContent = () => {
+const NoContent: React.FC<Props> = ({ children, title }) => {
   return (
     <StyledContainer>
       <NoInvoices />
-      <StyledTitle>There is nothing here</StyledTitle>
-      <StyledFooter>
-        <Text variant="body2" isMuted>
-          Create an invoice by clicking the
-        </Text>
-        <Text variant="body2" isMuted>
-          <Text as="span" isBold variant="body2">
-            New
-          </Text>{' '}
-          button and get started
-        </Text>
-      </StyledFooter>
+      <StyledTitle>{title}</StyledTitle>
+      <StyledFooter>{children}</StyledFooter>
     </StyledContainer>
   )
 }
