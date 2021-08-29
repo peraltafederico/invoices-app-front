@@ -8,7 +8,7 @@ const ModalRoot = () => {
   const { component: Component, props } = modal
 
   return (
-    <Transition in={modal.show} timeout={500} unmountOnExit mountOnEnter>
+    <Transition in={modal.show} timeout={200} unmountOnExit mountOnEnter>
       {(state) => (
         <React.Fragment>
           {Component && <Component {...props} transitionState={state} />}

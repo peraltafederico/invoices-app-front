@@ -93,7 +93,7 @@ const BaseModal: React.FC<Props> = ({
   return (
     <ReactModal
       isOpen={!!modal.show}
-      closeTimeoutMS={500}
+      closeTimeoutMS={200}
       appElement={document.getElementById('___gatsby') as HTMLElement}
       onRequestClose={hideModal}
       style={{

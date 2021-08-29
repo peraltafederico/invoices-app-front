@@ -77,7 +77,7 @@ const Drawer: React.FC<Props> = ({ className, children, transitionState }) => {
           ...backdropTransitionStyles[
             (transitionState || '') as keyof typeof backdropTransitionStyles
           ],
-          transition: 'all 0.5s ease-in',
+          transition: 'all 200ms ease-in',
         }}
       />
       <StyledWrapper
@@ -86,7 +86,7 @@ const Drawer: React.FC<Props> = ({ className, children, transitionState }) => {
           ...drawerTransitionStyles[
             (transitionState || '') as keyof typeof drawerTransitionStyles
           ],
-          transition: 'all 0.5s ease-in',
+          transition: 'all 200ms ease-in',
         }}
       >
         {children}

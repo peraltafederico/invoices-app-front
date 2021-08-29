@@ -20,7 +20,7 @@ const GlobalStyles = () => {
 
         .ReactModal__Content {
           opacity: 0;
-          transition: all 500ms ease-in-out;
+          transition: all 200ms ease-in-out;
         }
 
         .ReactModal__Content--after-open {
