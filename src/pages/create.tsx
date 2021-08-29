@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import useInvoiceForm from '../hooks/useInvoiceForm'
 
 const Create: React.FC<PageProps> = () => {
-  const form = useInvoiceForm({ mode: 'create' })
+  const form = useInvoiceForm({ mode: 'create', returnOnSuccess: true })
 
   return (
     <Layout>

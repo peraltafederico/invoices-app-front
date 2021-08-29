@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import { useMutation } from '@apollo/client'
 import * as Yup from 'yup'
+import { navigate } from 'gatsby'
 import { usePageContext } from '../context/pageContext'
 import { Invoice, InvoiceFormMode } from '../interfaces'
 import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
@@ -14,9 +15,10 @@ Yup.setLocale({
 
 interface Props {
   mode: InvoiceFormMode
+  returnOnSuccess?: boolean
 }
 
-const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
+const useInvoiceForm = ({ mode = 'create', returnOnSuccess } = {} as Props) => {
   const [updateInvoice] = useMutation(EDIT_INVOICE)
   const [createInvoice] = useMutation(CREATE_INVOICE)
 
@@ -75,6 +77,10 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
         updateInvoice({
           variables,
         })
+      }
+
+      if (returnOnSuccess) {
+        navigate('/')
       }
     },
     validationSchema: Yup.object({

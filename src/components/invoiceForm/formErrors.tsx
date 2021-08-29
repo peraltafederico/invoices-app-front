@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useFormikContext } from 'formik'
-import { includes, isEmpty } from 'lodash'
+import { isEmpty } from 'lodash'
 import Text from '../text'
 
 const StyledContainer = styled.div`
@@ -16,7 +16,7 @@ const FormErrors = () => {
 
   return (
     <StyledContainer>
-      {!isEmpty(errors) && !includes(errors, 'items') && (
+      {!isEmpty(errors) && !errors.items && (
         <Text isError> - All fields must be added</Text>
       )}
       {errors.items && <Text isError> - An item must be added</Text>}

@@ -10,7 +10,7 @@ import useInvoiceForm from '../hooks/useInvoiceForm'
 import { Invoice } from '../interfaces'
 
 const Edit: React.FC<PageProps> = () => {
-  const form = useInvoiceForm({ mode: 'edit' })
+  const form = useInvoiceForm({ mode: 'edit', returnOnSuccess: true })
   const { bussinessId } = usePageContext<Invoice>()
 
   return (

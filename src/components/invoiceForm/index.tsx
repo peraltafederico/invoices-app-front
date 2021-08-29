@@ -35,7 +35,6 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
 
   const submit = () => {
     form.handleSubmit()
-    navigate('/')
   }
 
   return (
