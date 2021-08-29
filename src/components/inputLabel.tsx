@@ -5,6 +5,7 @@ import Text from './text'
 interface Props {
   children: React.ReactNode
   htmlFor?: string
+  isError?: boolean
 }
 
 const StyledLabel = styled.label`
@@ -12,10 +13,10 @@ const StyledLabel = styled.label`
   display: block;
 `
 
-const InputLabel = ({ children, htmlFor }: Props) => {
+const InputLabel = ({ children, htmlFor, isError }: Props) => {
   return (
     <StyledLabel htmlFor={htmlFor}>
-      <Text variant="body2" isMuted>
+      <Text variant="body2" isMuted isError={isError}>
         {children}
       </Text>
     </StyledLabel>

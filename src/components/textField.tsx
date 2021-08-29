@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { ErrorMessage, FieldHookConfig, useField } from 'formik'
+import { FieldHookConfig, useField } from 'formik'
 import { InputStyles } from './mixins'
 import InputLabel from './inputLabel'
 
@@ -13,19 +13,20 @@ const StyledInput = styled.input`
   ${InputStyles}
 `
 
-const StyledErrorMessage = styled.div`
-  margin-top: ${(props) => props.theme.space[5]};
-  color: ${(props) => props.theme.colors.all.red.redSalsa};
-`
-
 const TextField = ({ label, id, name, className, type, ...props }: Props) => {
-  const [field] = useField({ name, ...props })
+  const [field, meta] = useField({ name, ...props })
 
   return (
     <div className={className}>
-      <InputLabel htmlFor={id || name}>{label}</InputLabel>
-      <StyledInput type={type} id={id || name} {...field} />
-      <ErrorMessage component={StyledErrorMessage} name={name} />
+      <InputLabel isError={!!meta.error} htmlFor={id || name}>
+        {label}
+      </InputLabel>
+      <StyledInput
+        isError={!!meta.error}
+        type={type}
+        id={id || name}
+        {...field}
+      />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { ErrorMessage, FieldHookConfig, useField } from 'formik'
+import { FieldHookConfig, useField } from 'formik'
 import Select from 'react-select'
 import { css, Theme } from '@emotion/react'
 import ArrowDown from '../assets/arrow-down.inline.svg'
@@ -22,11 +22,6 @@ const TextSelectStlyes = (props: { theme: Theme }) => css`
   line-height: ${props.theme.lineHeights[2]};
   letter-spacing: ${props.theme.letterSpacings[3]};
   color: ${props.theme.colors.text} !important;
-`
-
-const StyledErrorMessage = styled.div`
-  margin-top: ${(props) => props.theme.space[5]};
-  color: ${(props) => props.theme.colors.all.red.redSalsa};
 `
 
 const StyledSelectContainer = styled.div`
@@ -186,7 +181,6 @@ const Dropdown = ({
           }}
         />
       </StyledSelectContainer>
-      <ErrorMessage component={StyledErrorMessage} name={name} />
     </div>
   )
 }

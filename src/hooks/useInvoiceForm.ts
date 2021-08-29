@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import { useMutation } from '@apollo/client'
+import * as Yup from 'yup'
 import { usePageContext } from '../context/pageContext'
 import { Invoice, InvoiceFormMode } from '../interfaces'
 import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
@@ -70,11 +71,31 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
         })
       }
     },
-    // validationSchema: Yup.object({
-    //   name: Yup.string().required(),
-    //   select: Yup.string().required(),
-    //   datepicker: Yup.string().required(),
-    // }),
+    validationSchema: Yup.object({
+      streetAddress: Yup.string().required(),
+      city: Yup.string().required(),
+      postCode: Yup.string().required(),
+      country: Yup.string().required(),
+      clientName: Yup.string().required(),
+      clientEmail: Yup.string().email().required(),
+      clientStreetAddress: Yup.string().required(),
+      clientCity: Yup.string().required(),
+      clientPostCode: Yup.string().required(),
+      clientCountry: Yup.string().required(),
+      invoiceDate: Yup.string().required(),
+      paymentTems: Yup.string().required(),
+      projectDescription: Yup.string().required(),
+      items: Yup.array()
+        .of(
+          Yup.object({
+            name: Yup.string().required(),
+            qty: Yup.number().required(),
+            price: Yup.number().required(),
+          })
+        )
+        .required()
+        .min(1),
+    }),
   })
 }
 
