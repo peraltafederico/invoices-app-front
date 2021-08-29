@@ -6,6 +6,12 @@ import { Invoice, InvoiceFormMode } from '../interfaces'
 import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
 import { CREATE_INVOICE } from '../schema/mutations/createInvoice'
 
+Yup.setLocale({
+  mixed: {
+    required: "can't be empty",
+  },
+})
+
 interface Props {
   mode: InvoiceFormMode
 }
@@ -77,7 +83,7 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
       postCode: Yup.string().required(),
       country: Yup.string().required(),
       clientName: Yup.string().required(),
-      clientEmail: Yup.string().email().required(),
+      clientEmail: Yup.string().email('must be a valid email').required(),
       clientStreetAddress: Yup.string().required(),
       clientCity: Yup.string().required(),
       clientPostCode: Yup.string().required(),

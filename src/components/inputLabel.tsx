@@ -5,20 +5,36 @@ import Text from './text'
 interface Props {
   children: React.ReactNode
   htmlFor?: string
-  isError?: boolean
+  errorMessage?: string
 }
 
 const StyledLabel = styled.label`
   margin-bottom: ${(props) => props.theme.space[5]};
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
 `
 
-const InputLabel = ({ children, htmlFor, isError }: Props) => {
+const StyledErrorMessage = styled(Text)`
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+const InputLabel = ({ children, htmlFor, errorMessage }: Props) => {
   return (
     <StyledLabel htmlFor={htmlFor}>
-      <Text variant="body2" isMuted isError={isError}>
+      <Text variant="body2" isMuted isError={!!errorMessage}>
         {children}
       </Text>
+      <StyledErrorMessage
+        variant="body2"
+        isMuted
+        isError={!!errorMessage}
+        title={errorMessage}
+      >
+        {errorMessage}
+      </StyledErrorMessage>
     </StyledLabel>
   )
 }

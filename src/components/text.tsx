@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 
 type Variant = 'body1' | 'body2'
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLParagraphElement> {
   variant?: Variant
   children: React.ReactNode
   isBold?: boolean
@@ -75,6 +75,7 @@ const Text = ({
   isMuted,
   isError,
   as = 'p',
+  ...props
 }: Props) => {
   return (
     <StyledText
@@ -84,6 +85,7 @@ const Text = ({
       isMuted={isMuted}
       isError={isError}
       as={as}
+      {...props}
     >
       {children}
     </StyledText>

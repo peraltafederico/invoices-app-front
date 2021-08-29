@@ -18,7 +18,7 @@ const TextField = ({ label, id, name, className, type, ...props }: Props) => {
 
   return (
     <div className={className}>
-      <InputLabel isError={!!meta.error} htmlFor={id || name}>
+      <InputLabel errorMessage={meta.error} htmlFor={id || name}>
         {label}
       </InputLabel>
       <StyledInput
