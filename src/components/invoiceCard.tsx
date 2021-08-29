@@ -31,7 +31,7 @@ const StyledRow = styled.div`
   align-items: center;
   position: relative;
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: ${(props) => props.theme.space[12]};
   }
 `

@@ -50,7 +50,7 @@ const Home: React.FC<PageProps> = () => {
           <StyledCardsWrapper>
             {invoices.map((invoice: Invoice) => (
               <InvoiceCard
-                key={invoice.id}
+                key={invoice.bussinessId}
                 date={invoice.date}
                 id={invoice.bussinessId}
                 money="£ 1,800.90"

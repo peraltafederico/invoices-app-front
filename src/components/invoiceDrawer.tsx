@@ -29,7 +29,7 @@ const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
 
   const submit = () => {
     form.handleSubmit()
-    hideModal()
+    // hideModal()
   }
 
   const actions = {

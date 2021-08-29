@@ -43,36 +43,30 @@ const useInvoiceForm = ({ mode = 'create' } = {} as Props) => {
       clientCity: mode === 'edit' ? billToCity : '',
       clientPostCode: mode === 'edit' ? billToPostCode : '',
       clientCountry: mode === 'edit' ? billToCountry : '',
-      invoiceDate: mode === 'edit' ? +date : '',
+      invoiceDate: mode === 'edit' ? +date : new Date(),
       paymentTems: '1',
       projectDescription: mode === 'edit' ? description : '',
       items: mode === 'edit' ? items : [],
       status: mode === 'edit' ? status : 'pending',
+      id: mode === 'edit' ? id : '',
     },
     onSubmit: (values) => {
+      const variables = {
+        ...values,
+        invoiceDate: new Date(values.invoiceDate)
+          .toISOString()
+          .slice(0, 19)
+          .replace('T', ' '),
+        paymentTems: Number(values.paymentTems),
+      }
+
       if (mode === 'create') {
         createInvoice({
-          variables: {
-            ...values,
-            invoiceDate: new Date()
-              .toISOString()
-              .slice(0, 19)
-              .replace('T', ' '),
-            paymentTems: Number(values.paymentTems),
-            id,
-          },
+          variables,
         })
       } else {
         updateInvoice({
-          variables: {
-            ...values,
-            invoiceDate: new Date()
-              .toISOString()
-              .slice(0, 19)
-              .replace('T', ' '),
-            paymentTems: Number(values.paymentTems),
-            id,
-          },
+          variables,
         })
       }
     },
