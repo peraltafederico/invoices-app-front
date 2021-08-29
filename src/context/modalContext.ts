@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useState } from 'react'
 interface Modal<T = any> {
   component: React.JSXElementConstructor<T> | null
   props?: React.ComponentProps<React.JSXElementConstructor<T>>
+  show?: boolean
 }
 
 interface ModalContextData {
@@ -15,6 +16,7 @@ interface ModalContextData {
 const INITIAL_STATE = {
   component: null,
   props: {},
+  show: false,
 }
 
 export const ModalContext = createContext<ModalContextData | undefined>(
@@ -24,9 +26,13 @@ export const ModalContext = createContext<ModalContextData | undefined>(
 export const useModalContextValue = (): ModalContextData => {
   const [modal, setModal] = useState<Modal>(INITIAL_STATE)
 
-  const showModal = useCallback((newModal: Modal) => setModal(newModal), [])
+  const showModal = useCallback((newModal: Modal) => {
+    setModal({ ...newModal, show: true })
+  }, [])
 
-  const hideModal = useCallback(() => setModal(INITIAL_STATE), [])
+  const hideModal = useCallback(() => {
+    setModal({ ...modal, show: false })
+  }, [modal])
 
   return {
     modal,

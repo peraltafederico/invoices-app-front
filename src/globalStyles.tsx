@@ -18,6 +18,19 @@ const GlobalStyles = () => {
           --toastify-color-dark: ${baseTheme.colors.darkBlue.spaceCadet[300]};
         }
 
+        .ReactModal__Content {
+          opacity: 0;
+          transition: all 500ms ease-in-out;
+        }
+
+        .ReactModal__Content--after-open {
+          opacity: 1;
+        }
+
+        .ReactModal__Content--before-close {
+          opacity: 0;
+        }
+
         html,
         body,
         div,

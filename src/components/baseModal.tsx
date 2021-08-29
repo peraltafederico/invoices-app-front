@@ -51,7 +51,7 @@ const BaseModal: React.FC<Props> = ({
   ...props
 }: Props) => {
   const theme = useTheme()
-  const { hideModal } = useModalContext()
+  const { hideModal, modal } = useModalContext()
   const { isTablet, isMobileOnly } = useBreakpoints()
 
   const specificStyles: React.CSSProperties = useMemo(() => {
@@ -92,8 +92,9 @@ const BaseModal: React.FC<Props> = ({
 
   return (
     <ReactModal
-      isOpen
-      ariaHideApp={false}
+      isOpen={!!modal.show}
+      closeTimeoutMS={500}
+      appElement={document.getElementById('___gatsby') as HTMLElement}
       onRequestClose={hideModal}
       style={{
         content: {

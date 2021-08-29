@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { FormikProvider } from 'formik'
 import { useRef } from 'react'
+import { TransitionStatus } from 'react-transition-group'
 import { useModalContext } from '../context/modalContext'
 import useInvoiceForm from '../hooks/useInvoiceForm'
 import useScrollBottom from '../hooks/useScrollBottom'
@@ -19,9 +20,10 @@ const StyledFormContainer = styled.div`
 
 interface Props {
   mode: InvoiceFormMode
+  transitionState?: TransitionStatus
 }
 
-const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
+const InvoiceDrawer: React.FC<Props> = ({ mode, transitionState }) => {
   const { hideModal } = useModalContext()
   const form = useInvoiceForm({ mode, onSuccess: hideModal })
   const formContainerRef = useRef<HTMLDivElement>(null)
@@ -68,7 +70,7 @@ const InvoiceDrawer: React.FC<Props> = ({ mode }) => {
   }
 
   return (
-    <Drawer>
+    <Drawer transitionState={transitionState}>
       <StyledFormContainer ref={formContainerRef}>
         <FormTitle text={mode === 'edit' ? 'Edit #XM9141' : 'New Invoice'} />
         <FormikProvider value={form}>

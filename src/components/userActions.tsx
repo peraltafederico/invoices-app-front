@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import styled from '@emotion/styled'
 import { navigate } from 'gatsby'
 import ClickAwayListener from 'react-click-away-listener'
 import { css } from '@emotion/react'
+import { CSSTransition } from 'react-transition-group'
 import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
 import Button from './button'
@@ -89,16 +90,44 @@ const StyledFilterTitle = styled(Text)`
   }
 `
 
-const StyledFilterContainer = styled.div``
+const FilterBasePosition = css`
+  position: absolute;
+  top: 38px;
+  right: 50%;
+  transform: translateX(50%);
+`
+
+const StyledFilterContainer = styled.div`
+  .filters-enter {
+    ${FilterBasePosition}
+    opacity: 0;
+  }
+
+  .filters-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+
+  .filters-enter-done {
+    ${FilterBasePosition}
+    opacity: 1;
+  }
+
+  .filters-exit {
+    ${FilterBasePosition}
+    opacity: 1;
+  }
+
+  .filters-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
+  }
+`
 
 const StyledFilterBox = styled.div`
   width: 192px;
   height: 128px;
   border-radius: 8px;
-  position: absolute;
-  top: 38px;
-  right: 50%;
-  transform: translateX(50%);
   padding: 2.4rem;
   cursor: default;
   box-sizing: border-box;
@@ -136,6 +165,7 @@ const UserActions: React.FC<Props> = ({
   const isMobileOnly = useMediaQuery(MOBILE_ONLY)
   const { showModal } = useModalContext()
   const [openFilters, setOpenFilters] = useState(false)
+  const filterButtonRef = useRef<HTMLButtonElement>(null)
 
   const tabletInvoicesText =
     isTablet && `There are ${invoicesAmount} total invoices`
@@ -174,14 +204,29 @@ const UserActions: React.FC<Props> = ({
       <StyledActions>
         <StyledFilterContainer>
           <StyledFilter>
-            <StyledFilterButton onClick={handleClickFilters}>
+            <StyledFilterButton
+              ref={filterButtonRef}
+              onClick={handleClickFilters}
+            >
               <StyledFilterTitle variant="body2" isBold as="span">
                 Filter {isTablet && 'by status'}
               </StyledFilterTitle>
               <StyledArrowDown invert={openFilters} />
             </StyledFilterButton>
-            {openFilters && (
-              <ClickAwayListener onClickAway={handleClickFilters}>
+            <CSSTransition
+              classNames="filters"
+              in={openFilters}
+              unmountOnExit
+              mountOnEnter
+              timeout={200}
+            >
+              <ClickAwayListener
+                onClickAway={(e) => {
+                  if (!filterButtonRef.current?.contains(e.target as Node)) {
+                    handleClickFilters()
+                  }
+                }}
+              >
                 <StyledFilterBox>
                   <Checkbox
                     label="Draft"
@@ -203,7 +248,7 @@ const UserActions: React.FC<Props> = ({
                   />
                 </StyledFilterBox>
               </ClickAwayListener>
-            )}
+            </CSSTransition>
           </StyledFilter>
         </StyledFilterContainer>
         <Button

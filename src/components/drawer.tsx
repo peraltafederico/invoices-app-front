@@ -2,12 +2,28 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { useEffect } from 'react'
+import { TransitionStatus } from 'react-transition-group'
 import { useModalContext } from '../context/modalContext'
 import { MIN_LARGE_DISPLAY_MEDIA_QUERY } from '../theme/base'
 import Backdrop from './backdrop'
 
 interface Props {
   className?: string
+  transitionState?: TransitionStatus
+}
+
+const drawerTransitionStyles = {
+  entering: { transform: 'translateX(0)' },
+  entered: { transform: 'translateX(0)' },
+  exiting: { transform: 'translateX(-100vw)' },
+  exited: { transform: 'translateX(-100vw)' },
+}
+
+const backdropTransitionStyles = {
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: { opacity: 0 },
+  exited: { opacity: 0 },
 }
 
 const StyledWrapper = styled.div`
@@ -42,7 +58,7 @@ const StyledWrapper = styled.div`
   }
 `
 
-const Drawer: React.FC<Props> = ({ className, children }) => {
+const Drawer: React.FC<Props> = ({ className, children, transitionState }) => {
   const { hideModal } = useModalContext()
 
   useEffect(() => {
@@ -54,10 +70,28 @@ const Drawer: React.FC<Props> = ({ className, children }) => {
   }, [])
 
   return (
-    <React.Fragment>
-      <Backdrop onClick={hideModal} />
-      <StyledWrapper className={className}>{children}</StyledWrapper>
-    </React.Fragment>
+    <>
+      <Backdrop
+        onClick={hideModal}
+        styles={{
+          ...backdropTransitionStyles[
+            (transitionState || '') as keyof typeof backdropTransitionStyles
+          ],
+          transition: 'all 0.5s ease-in',
+        }}
+      />
+      <StyledWrapper
+        className={className}
+        style={{
+          ...drawerTransitionStyles[
+            (transitionState || '') as keyof typeof drawerTransitionStyles
+          ],
+          transition: 'all 0.5s ease-in',
+        }}
+      >
+        {children}
+      </StyledWrapper>
+    </>
   )
 }
 
