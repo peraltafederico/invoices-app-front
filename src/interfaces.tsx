@@ -19,6 +19,7 @@ export interface Invoice {
   date: string
   paymentTermId: number
   items: Item[]
+  total: string
 }
 
 export interface Item {
@@ -26,4 +27,5 @@ export interface Item {
   name: string
   qty: number
   price: string
+  total: string
 }

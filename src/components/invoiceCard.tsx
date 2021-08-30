@@ -91,7 +91,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                     <Text variant="body2" isMuted>
                       {format(new Date(+date), 'dd MMM yyyy')}
                     </Text>
-                    <StyledPrice>{money}</StyledPrice>
+                    <StyledPrice>{`£ ${money || 0}`}</StyledPrice>
                   </StyledPaymentContainer>
                   <Status type={status} />
                 </StyledRow>
@@ -117,7 +117,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                     sm={2.4}
                     css={{ display: 'flex', justifyContent: 'flex-end' }}
                   >
-                    <StyledPrice>{money}</StyledPrice>
+                    <StyledPrice>{`£ ${money || 0}`}</StyledPrice>
                   </Grid>
                   <Grid sm={3.1}>
                     <StyledStatus type={status} />

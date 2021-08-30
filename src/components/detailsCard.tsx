@@ -202,6 +202,7 @@ export const DetailsCard: React.FC = () => {
     date,
     description,
     items,
+    total,
   } = usePageContext<Invoice>()
 
   return (
@@ -267,7 +268,7 @@ export const DetailsCard: React.FC = () => {
           {isMobileOnly && (
             <Grid container rowGap="2.4rem">
               {items.map((item) => (
-                <React.Fragment>
+                <React.Fragment key={item.name}>
                   <Grid sm={6} rowGap="2.4rem">
                     <StyledBillDetailTitle isBold variant="body2">
                       {item.name}
@@ -279,7 +280,7 @@ export const DetailsCard: React.FC = () => {
                   <Grid sm={6} rowGap="2.4rem">
                     <StyledPriceContainer>
                       <Text variant="body2" isBold>
-                        £ {item.price}
+                        £ {item.total}
                       </Text>
                     </StyledPriceContainer>
                   </Grid>
@@ -322,7 +323,7 @@ export const DetailsCard: React.FC = () => {
               </thead>
               <StyledTableBody>
                 {items.map((item) => (
-                  <tr key={item.id}>
+                  <tr key={item.name}>
                     <StyledTableCell>
                       <Text variant="body2" isBold>
                         {item.name}
@@ -340,7 +341,7 @@ export const DetailsCard: React.FC = () => {
                     </StyledTableCell>
                     <StyledTableCell css={{ textAlign: 'right' }}>
                       <Text variant="body2" isBold>
-                        £ {item.price}
+                        £ {item.total}
                       </Text>
                     </StyledTableCell>
                   </tr>
@@ -352,7 +353,7 @@ export const DetailsCard: React.FC = () => {
         <StyledBillTotal>
           <StyledTotalPriceContainer>
             <Text>{isMobileOnly ? 'Grand Total' : 'Amount Due'}</Text>
-            <StyledGrandTotal>£ 556.00</StyledGrandTotal>
+            <StyledGrandTotal>{`£ ${total || 0}`}</StyledGrandTotal>
           </StyledTotalPriceContainer>
         </StyledBillTotal>
       </StyledBillContainer>

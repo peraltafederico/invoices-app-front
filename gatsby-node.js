@@ -26,12 +26,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             name
             price
             qty
+            total
           }
           paymentTerm {
             days
             id
           }
           status
+          total
         }
       }
     }

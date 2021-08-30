@@ -39,6 +39,7 @@ const HomePage: React.FC<PageProps> = () => {
           date
           billToName
           status
+          total
         }
       }
     }
@@ -74,7 +75,7 @@ const HomePage: React.FC<PageProps> = () => {
                   key={invoice.bussinessId}
                   date={invoice.date}
                   id={invoice.bussinessId}
-                  money="£ 1,800.90"
+                  money={invoice.total}
                   name={invoice.billToName}
                   status={invoice.status}
                 />
