@@ -31,6 +31,8 @@ jobs:
         run: npm install
 
       - name: Build
+        env: 
+            GATSBY_API_BASE_URL: ${{ secrets.GATSBY_API_BASE_URL }}
         run: npm run build
         
       - name: Set AWS credentials
