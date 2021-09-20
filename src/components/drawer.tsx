@@ -51,7 +51,7 @@ const StyledWrapper = styled.div`
 
   ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
     padding-left: 13.5rem;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     height: 100vh;
     max-width: 71.9rem;
