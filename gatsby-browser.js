@@ -22,7 +22,7 @@ import {
 import { onError } from '@apollo/client/link/error'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useMemo } from 'react'
+import fetch from 'cross-fetch'
 
 const successLink = new ApolloLink((operation, forward) => {
   return forward(operation).map((response) => {
@@ -47,8 +47,20 @@ const errorLink = onError(({ response }) => {
 })
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: `${process.env.GATSBY_API_BASE_URL}/graphql`,
   credentials: 'same-origin',
+  fetch,
+})
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    mutate: {
+      errorPolicy: 'all',
+    },
+  },
+  ssrMode: true,
+  link: from([errorLink, successLink, httpLink]),
 })
 
 const AppWrapper = ({ children }) => {
@@ -65,19 +77,6 @@ const AppWrapper = ({ children }) => {
 const RootWrapper = ({ children }) => {
   const themeContextValue = useThemeContextValue()
   const modalContextValue = useModalContextValue()
-
-  const client = useMemo(() => {
-    return new ApolloClient({
-      cache: new InMemoryCache(),
-      defaultOptions: {
-        mutate: {
-          errorPolicy: 'all',
-        },
-      },
-      ssrMode: true,
-      link: from([errorLink, successLink, httpLink]),
-    })
-  }, [])
 
   return (
     <ApolloProvider client={client}>

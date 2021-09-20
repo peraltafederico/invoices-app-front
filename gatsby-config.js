@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -61,9 +65,9 @@ module.exports = {
       options: {
         typeName: 'InvoicesAPI',
         fieldName: 'invoicesAPI',
-        url: 'http://localhost:4000/graphql'
-      }
-    }
+        url: `${process.env.GATSBY_API_BASE_URL}/graphql`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
