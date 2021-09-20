@@ -68,6 +68,12 @@ module.exports = {
         url: `${process.env.GATSBY_API_BASE_URL}/graphql`,
       },
     },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+          bucketName: 'invoicesapp.peraltafedericomanuel.com',
+      },
+  },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

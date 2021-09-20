@@ -20,6 +20,7 @@
     "gatsby-plugin-offline": "^4.0.0",
     "gatsby-plugin-react-helmet": "^4.0.0",
     "gatsby-plugin-react-svg": "^3.0.0",
+    "gatsby-plugin-s3": "^0.3.8",
     "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-source-graphql": "^3.5.0",
@@ -72,7 +73,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy": "gatsby-plugin-s3 deploy --yes; export AWS_PAGER=\"\"; aws cloudfront create-invalidation --distribution-id E2HQSLEQPPCEY9 --paths '/*';"
   },
   "repository": {
     "type": "git",
