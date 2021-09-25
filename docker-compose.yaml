@@ -1,0 +1,12 @@
+version: '3.8'
+
+services: 
+  app:
+    build:
+      context: .
+    image: peraltafederico/invoices-app-front:latest
+    env_file: ./.env
+    ports:
+      - $APP_PORT:$APP_PORT
+    environment:
+        GATSBY_API_BASE_URL: $GATSBY_API_BASE_URL
