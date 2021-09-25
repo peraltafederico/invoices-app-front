@@ -74,6 +74,7 @@ jobs:
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
           GATSBY_API_BASE_URL: ${{ secrets.GATSBY_API_BASE_URL }}
+          APP_PORT: 9000
         run: |
             docker-compose build
             docker-compose tag ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:latest ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:${{ steps.vars.outputs.tag }}
