@@ -79,7 +79,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:latest,${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:${{ steps.vars.outputs.tag }}
           build-args  : GATSBY_API_BASE_URL=${{ secrets.GATSBY_API_BASE_URL }}
-          run: echo $RELEASE_VERSION
+        run: echo $RELEASE_VERSION
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
