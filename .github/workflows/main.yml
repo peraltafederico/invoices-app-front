@@ -77,7 +77,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:latest,${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:${{ steps.vars.outputs.tag }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:${{ env.RELEASE_VERSION }}, ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front:latest
           build-args  : GATSBY_API_BASE_URL=${{ secrets.GATSBY_API_BASE_URL }}
 
       - name: Image digest
