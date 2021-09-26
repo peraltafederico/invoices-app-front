@@ -5,7 +5,6 @@ services:
     build:
       context: .
     image: peraltafederico/invoices-app-front:latest
-    env_file: ./.env
     ports:
       - $APP_PORT:$APP_PORT
     environment:
