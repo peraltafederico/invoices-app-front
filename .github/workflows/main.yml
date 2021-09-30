@@ -45,9 +45,13 @@ jobs:
           build-args: GATSBY_API_BASE_URL=${{ secrets.GATSBY_API_BASE_URL }}
           push: true
         
+      # - name: Deploy
+      #   run: |
+      #     docker run peraltafederico/invoices-app-front:latest -e AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
+
       - name: Deploy
         run: |
-          docker run peraltafederico/invoices-app-front:latest -e AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
+          docker images
 
       - name: Push
         run: |
