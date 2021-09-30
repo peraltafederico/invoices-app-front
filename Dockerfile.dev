@@ -1,4 +1,4 @@
-FROM node:14-alpine as builder
+FROM node:14-alpine
 
 ARG GATSBY_API_BASE_URL=http://localhost:4000
 
@@ -14,8 +14,6 @@ COPY . .
 
 RUN npm run build
 
-FROM amazon/aws-cli
+EXPOSE 9000
 
-COPY --from=builder /usr/src/app .
-
-CMD ["s3", 'cp', "./public", "s3://invoicesapp.peraltafedericomanuel.com", '--recursive']
+CMD [ "npm", "run", "serve" ]
