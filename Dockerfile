@@ -18,4 +18,4 @@ FROM amazon/aws-cli
 
 COPY --from=builder /usr/src/app .
 
-CMD ["s3", 'cp', "./public", "s3://invoicesapp.peraltafedericomanuel.com", '--recursive']
+CMD ["s3", "cp", "./public", "s3://invoicesapp.peraltafedericomanuel.com", "--recursive"]
