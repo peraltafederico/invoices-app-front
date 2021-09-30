@@ -46,13 +46,9 @@ jobs:
           push: false
           load: true
         
-      # - name: Deploy
-      #   run: |
-      #     docker run peraltafederico/invoices-app-front:latest -e AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
-
       - name: Deploy
         run: |
-          docker images
+          docker run ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front -e AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
 
       - name: Push
         run: |
