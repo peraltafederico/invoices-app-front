@@ -8,7 +8,6 @@ import GoBack from '../components/goBack'
 import StatusCard from '../components/statusCard'
 import { useModalContext } from '../context/modalContext'
 import DeleteInvoiceModal from '../components/deleteInvoice'
-import useBreakpoints from '../hooks/useBreakpoints'
 import InvoiceDrawer from '../components/invoiceDrawer'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
@@ -18,6 +17,7 @@ import Layout from '../components/layout'
 import { usePageContext } from '../context/pageContext'
 import { Invoice } from '../interfaces'
 import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
+import Hidden from '../components/hidden'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};
@@ -46,7 +46,6 @@ const StyledLayout = styled(Layout)`
 
 const Detail: React.FC<PageProps> = () => {
   const { showModal } = useModalContext()
-  const { isMobileOnly } = useBreakpoints()
   const { status, bussinessId, id } = usePageContext<Invoice>()
   const [updateInvoice] = useMutation(EDIT_INVOICE)
 
@@ -78,7 +77,7 @@ const Detail: React.FC<PageProps> = () => {
           onMarkAsPaid={handleMarkAsPaid}
         />
         <DetailsCard />
-        {isMobileOnly && (
+        <Hidden mobileUp>
           <ActionsFooter
             actions={[
               {
@@ -97,7 +96,7 @@ const Detail: React.FC<PageProps> = () => {
               },
             ]}
           />
-        )}
+        </Hidden>
       </StyledWrapper>
     </StyledLayout>
   )

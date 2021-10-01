@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-import useBreakpoints from '../../hooks/useBreakpoints'
 import { InvoiceFormMode } from '../../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
 import DatePicker from '../datePicker'
 import Dropdown from '../dropdown'
 import FormLabel from '../formLabel'
 import Grid from '../grid'
+import Hidden from '../hidden'
 import TextField from '../textField'
 
 const StyledContainer = styled.div`
@@ -35,12 +35,9 @@ interface Props {
 }
 
 const BillTo = ({ mode }: Props) => {
-  const { isTablet } = useBreakpoints()
-
-  return (
-    <StyledContainer>
-      <FormLabel>Bill To</FormLabel>
-      <Grid container gap={isTablet ? '2.4rem' : '2.3rem'} rowGap="2.4rem">
+  const renderContent = (gap: string) => {
+    return (
+      <Grid container gap={gap} rowGap="2.4rem">
         <Grid sm={12}>
           <TextField label="Client's Name" name="clientName" />
         </Grid>
@@ -82,6 +79,14 @@ const BillTo = ({ mode }: Props) => {
           <TextField label="Project Description" name="projectDescription" />
         </Grid>
       </Grid>
+    )
+  }
+
+  return (
+    <StyledContainer>
+      <FormLabel>Bill To</FormLabel>
+      <Hidden mobileDown>{renderContent('2.4rem')}</Hidden>
+      <Hidden mobileUp>{renderContent('2.3rem')}</Hidden>
     </StyledContainer>
   )
 }

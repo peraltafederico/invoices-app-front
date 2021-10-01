@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-fragments */
 import styled from '@emotion/styled'
 import React from 'react'
-import useBreakpoints from '../hooks/useBreakpoints'
 import { InvoiceStatus } from '../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../theme/base'
 import Button from './button'
 import Card from './card'
+import Hidden from './hidden'
 import Status from './status'
 import Text from './text'
 
@@ -46,20 +46,18 @@ const StatusCard: React.FC<Props> = ({
   onMarkAsPaid,
   status,
 }) => {
-  const { isTablet, isMobileOnly } = useBreakpoints()
-
   return (
-    <StyledCard>
-      {isMobileOnly && (
-        <React.Fragment>
+    <React.Fragment>
+      <Hidden mobileUp>
+        <StyledCard>
           <Text variant="body2" isMuted>
             Status
           </Text>
           <Status type={status} />
-        </React.Fragment>
-      )}
-      {isTablet && (
-        <React.Fragment>
+        </StyledCard>
+      </Hidden>
+      <Hidden mobileDown>
+        <StyledCard>
           <div css={{ display: 'flex', alignItems: 'center' }}>
             <Text variant="body2" isMuted>
               Status
@@ -77,9 +75,9 @@ const StatusCard: React.FC<Props> = ({
               Mark as Paid
             </Button>
           </StyledActions>
-        </React.Fragment>
-      )}
-    </StyledCard>
+        </StyledCard>
+      </Hidden>
+    </React.Fragment>
   )
 }
 

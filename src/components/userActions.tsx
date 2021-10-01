@@ -11,7 +11,6 @@ import Button from './button'
 import PlusIcon from '../assets/plus.inline.svg'
 import useMediaQuery from '../hooks/useMediaQuery'
 import {
-  MIN_TABLET,
   MOBILE_ONLY,
   MIN_TABLET_MEDIA_QUERY,
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
@@ -19,6 +18,7 @@ import {
 import { useModalContext } from '../context/modalContext'
 import InvoiceDrawer from './invoiceDrawer'
 import Checkbox from './checkbox'
+import Hidden from './hidden'
 
 interface Props {
   invoicesAmount: number
@@ -80,6 +80,8 @@ const StyledFilter = styled.div`
 const StyledFilterButton = styled.button`
   cursor: pointer;
   background: none;
+  display: flex;
+  align-items: center;
 `
 
 const StyledFilterTitle = styled(Text)`
@@ -161,15 +163,10 @@ const UserActions: React.FC<Props> = ({
   onChangeFilters,
   filters,
 }: Props) => {
-  const isTablet = useMediaQuery(MIN_TABLET)
   const isMobileOnly = useMediaQuery(MOBILE_ONLY)
   const { showModal } = useModalContext()
   const [openFilters, setOpenFilters] = useState(false)
   const filterButtonRef = useRef<HTMLButtonElement>(null)
-
-  const tabletInvoicesText =
-    isTablet && `There are ${invoicesAmount} total invoices`
-  const mobileInvoicesText = isMobileOnly && `${invoicesAmount} invoices`
 
   const handleNewInvoice = () => {
     if (isMobileOnly) {
@@ -193,12 +190,22 @@ const UserActions: React.FC<Props> = ({
   return (
     <StyledActionsContainer>
       <StyledDetails>
-        {isMobileOnly && <h2>Invoices</h2>}
-        {isTablet && <h1>Invoices</h1>}
+        <Hidden mobileUp>
+          <h2>Invoices</h2>
+        </Hidden>
+        <Hidden mobileDown>
+          <h1>Invoices</h1>
+        </Hidden>
+
         <Text variant="body2" isMuted>
-          {invoicesAmount > 0
-            ? mobileInvoicesText || tabletInvoicesText
-            : 'No Invoices'}
+          <Hidden mobileUp>
+            {invoicesAmount > 0 ? `${invoicesAmount} invoices` : 'No invoices'}
+          </Hidden>
+          <Hidden mobileDown>
+            {invoicesAmount > 0
+              ? `There are ${invoicesAmount} total invoices`
+              : 'No invoices'}
+          </Hidden>
         </Text>
       </StyledDetails>
       <StyledActions>
@@ -209,7 +216,12 @@ const UserActions: React.FC<Props> = ({
               onClick={handleClickFilters}
             >
               <StyledFilterTitle variant="body2" isBold as="span">
-                Filter {isTablet && 'by status'}
+                <Hidden mobileUp as="span">
+                  Filter
+                </Hidden>
+                <Hidden mobileDown as="span">
+                  Filter by status
+                </Hidden>
               </StyledFilterTitle>
               <StyledArrowDown invert={openFilters ? 1 : 0} />
             </StyledFilterButton>
@@ -256,7 +268,12 @@ const UserActions: React.FC<Props> = ({
           icon={<PlusIcon />}
           onClick={handleNewInvoice}
         >
-          New {isTablet && 'Invoice'}
+          <Hidden mobileUp as="span">
+            New
+          </Hidden>
+          <Hidden mobileDown as="span">
+            New Invoice
+          </Hidden>
         </Button>
       </StyledActions>
     </StyledActionsContainer>

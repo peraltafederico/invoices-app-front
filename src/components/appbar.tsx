@@ -6,9 +6,9 @@ import User from '../assets/user.inline.svg'
 import Moon from '../assets/moon.inline.svg'
 import Sun from '../assets/sun.inline.svg'
 import { MIN_LARGE_DISPLAY_MEDIA_QUERY } from '../theme/base'
-import useBreakpoints from '../hooks/useBreakpoints'
 import { useThemeContext } from '../context/themeContext'
 import { onPressKeys } from '../utils'
+import Hidden from './hidden'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -92,7 +92,6 @@ const StyledLogoContainer = styled.div`
 `
 
 const AppBar = (): JSX.Element => {
-  const { isDesktopOnly } = useBreakpoints()
   const { setTheme, theme } = useThemeContext()
 
   const handleSwitchTheme = () => {
@@ -113,7 +112,12 @@ const AppBar = (): JSX.Element => {
         onClick={goHome}
         onKeyDown={(e) => onPressKeys(e, ['Enter'], goHome)}
       >
-        {isDesktopOnly ? <LogoDesktop /> : <LogoMobile />}
+        <Hidden tabletDown>
+          <LogoDesktop />
+        </Hidden>
+        <Hidden tabletUp>
+          <LogoMobile />
+        </Hidden>
       </StyledLogoContainer>
       <StyledUserSection>
         <StyledThemeContainer>

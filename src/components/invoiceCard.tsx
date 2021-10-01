@@ -10,7 +10,7 @@ import InvoiceId from './invoiceId'
 import Status from './status'
 import Text from './text'
 import ArrowDown from '../assets/arrow-down.inline.svg'
-import useBreakpoints from '../hooks/useBreakpoints'
+import Hidden from './hidden'
 
 interface Props {
   id: string
@@ -71,14 +71,12 @@ const StyledWrapper = styled.div`
 `
 
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {
-  const { isTablet, isMobileOnly } = useBreakpoints()
-
   return (
     <StyledWrapper>
       <Link to={`/invoices/${id}`}>
         <Card>
           <StyledContent>
-            {isMobileOnly && (
+            <Hidden mobileUp>
               <React.Fragment>
                 <StyledRow>
                   <InvoiceId size="small" id={id} />
@@ -96,8 +94,8 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                   <Status type={status} />
                 </StyledRow>
               </React.Fragment>
-            )}
-            {isTablet && (
+            </Hidden>
+            <Hidden mobileDown>
               <StyledRow>
                 <StyledGridContainer container gap="2.7rem">
                   <Grid sm={1.65}>
@@ -125,7 +123,7 @@ const InvoiceCard = ({ id, name, date, money, status }: Props) => {
                 </StyledGridContainer>
                 <StyledArrow />
               </StyledRow>
-            )}
+            </Hidden>
           </StyledContent>
         </Card>
       </Link>

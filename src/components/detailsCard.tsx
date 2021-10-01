@@ -5,7 +5,6 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { format } from 'date-fns'
 import { usePageContext } from '../context/pageContext'
-import useBreakpoints from '../hooks/useBreakpoints'
 import { Invoice } from '../interfaces'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
@@ -15,6 +14,7 @@ import Card from './card'
 import Grid from './grid'
 import InvoiceId from './invoiceId'
 import Text from './text'
+import Hidden from './hidden'
 
 const StyledInvoiceType = styled(Text)`
   margin-top: ${(props) => props.theme.space[2]};
@@ -186,7 +186,6 @@ const StyledTableHead = styled.th`
 `
 
 export const DetailsCard: React.FC = () => {
-  const { isTablet, isMobileOnly } = useBreakpoints()
   const {
     billFromCity,
     billFromCountry,
@@ -209,7 +208,12 @@ export const DetailsCard: React.FC = () => {
     <StyledCard>
       <StyledHeader>
         <div>
-          <InvoiceId size={isTablet ? 'big' : 'small'} id={bussinessId} />
+          <Hidden mobileDown>
+            <InvoiceId size="big" id={bussinessId} />
+          </Hidden>
+          <Hidden mobileUp>
+            <InvoiceId size="small" id={bussinessId} />
+          </Hidden>
           <StyledInvoiceType variant="body2" isMuted>
             {description}
           </StyledInvoiceType>
@@ -265,7 +269,7 @@ export const DetailsCard: React.FC = () => {
       </Grid>
       <StyledBillContainer>
         <StyledBillDetails>
-          {isMobileOnly && (
+          <Hidden mobileUp>
             <Grid container rowGap="2.4rem">
               {items.map((item) => (
                 <React.Fragment key={item.name}>
@@ -287,8 +291,9 @@ export const DetailsCard: React.FC = () => {
                 </React.Fragment>
               ))}
             </Grid>
-          )}
-          {isTablet && (
+          </Hidden>
+
+          <Hidden mobileDown>
             <StyledTable css={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
@@ -348,11 +353,14 @@ export const DetailsCard: React.FC = () => {
                 ))}
               </StyledTableBody>
             </StyledTable>
-          )}
+          </Hidden>
         </StyledBillDetails>
         <StyledBillTotal>
           <StyledTotalPriceContainer>
-            <Text>{isMobileOnly ? 'Grand Total' : 'Amount Due'}</Text>
+            <Text>
+              <Hidden mobileUp>Grand Total</Hidden>
+              <Hidden mobileDown>Amount Due</Hidden>
+            </Text>
             <StyledGrandTotal>{`£ ${total || 0}`}</StyledGrandTotal>
           </StyledTotalPriceContainer>
         </StyledBillTotal>

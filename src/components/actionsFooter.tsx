@@ -1,18 +1,14 @@
 /* eslint-disable react/jsx-fragments */
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import useBreakpoints from '../hooks/useBreakpoints'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
 } from '../theme/base'
 import Button, { ButtonVariants } from './button'
 
-type Position = 'fixed' | 'absolute'
-
-const StyledContainer = styled.div<{ position: Position }>`
+const StyledContainer = styled.div`
   height: 9.1rem;
-  position: ${(props) => props.position};
   bottom: 0;
   left: 0;
   right: 0;
@@ -21,6 +17,7 @@ const StyledContainer = styled.div<{ position: Position }>`
   justify-content: flex-end;
   box-shadow: ${(props) => props.theme.shadows[0]};
   padding: 0 ${(props) => props.theme.space[12]};
+  position: fixed;
 
   ${(props) =>
     props.theme.mode === 'light' &&
@@ -36,6 +33,7 @@ const StyledContainer = styled.div<{ position: Position }>`
 
   ${MIN_TABLET_MEDIA_QUERY} {
     padding: 0 5.6rem;
+    position: absolute;
   }
 
   ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
@@ -92,13 +90,8 @@ interface Props {
 }
 
 const ActionsFooter = ({ actions, showShadow, className }: Props) => {
-  const { isTablet } = useBreakpoints()
-
   return (
-    <StyledContainer
-      className={className}
-      position={isTablet ? 'absolute' : 'fixed'}
-    >
+    <StyledContainer className={className}>
       <StyledShadow show={showShadow} />
       {actions.map((action) => (
         <StyledButton

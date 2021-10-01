@@ -47,5 +47,6 @@ declare module '@emotion/react' {
     letterSpacings: string[]
     shadows: string[]
     radii: string[]
+    breakpoints: string[]
   }
 }
