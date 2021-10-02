@@ -12,12 +12,7 @@ export const ThemeContext = createContext<ThemeContextData | undefined>(
 )
 
 export const useThemeContextValue = () => {
-  const initialTheme =
-    typeof localStorage !== 'undefined'
-      ? ((localStorage.getItem('theme') || 'light') as AvailableThemes)
-      : 'light'
-
-  const [theme, setTheme] = useState<AvailableThemes>(initialTheme)
+  const [theme, setTheme] = useState<AvailableThemes>('light')
 
   useEffect(() => {
     if (!localStorage.getItem('theme')) {
@@ -26,8 +21,12 @@ export const useThemeContextValue = () => {
       } else {
         setTheme('light')
       }
+    } else {
+      setTheme(localStorage.getItem('theme') as AvailableThemes)
     }
+  }, [])
 
+  useEffect(() => {
     localStorage.setItem('theme', theme)
   }, [theme])
 
