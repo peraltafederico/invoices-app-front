@@ -29,7 +29,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/logo-mobile.inline.svg`,
+        icon: `src/assets/logo-desktop.inline.svg`,
       },
     },
     `gatsby-plugin-gatsby-cloud`,
