@@ -11,7 +11,7 @@ interface Props {
   as?: React.ElementType<any>
 }
 
-const StyledContainer = styled.div<Props>`
+const StyledContainer = styled.span<Props>`
   display: block;
 
   ${(props) =>

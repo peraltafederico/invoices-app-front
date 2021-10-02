@@ -84,6 +84,7 @@ interface Props {
     onClick?: () => void
     fullWidth?: boolean
     toLeft?: boolean
+    disabled?: boolean
   }[]
   showShadow?: boolean
   className?: string
@@ -100,6 +101,7 @@ const ActionsFooter = ({ actions, showShadow, className }: Props) => {
           fullWidth={action.fullWidth}
           toLeft={action.toLeft}
           onClick={action.onClick}
+          disabled={action.disabled}
           isThemeable={false}
           type="button"
         >

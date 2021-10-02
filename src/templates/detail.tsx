@@ -93,6 +93,8 @@ const Detail: React.FC<PageProps> = () => {
               {
                 buttonVariant: 'primary',
                 text: 'Mark as Paid',
+                onClick: handleMarkAsPaid,
+                disabled: status === 'paid',
               },
             ]}
           />
