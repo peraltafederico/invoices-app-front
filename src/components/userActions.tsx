@@ -234,7 +234,10 @@ const UserActions: React.FC<Props> = ({
             >
               <ClickAwayListener
                 onClickAway={(e) => {
-                  if (!filterButtonRef.current?.contains(e.target as Node)) {
+                  if (
+                    !filterButtonRef.current?.contains(e.target as Node) &&
+                    openFilters
+                  ) {
                     handleClickFilters()
                   }
                 }}
