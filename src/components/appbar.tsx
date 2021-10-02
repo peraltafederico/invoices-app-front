@@ -1,14 +1,12 @@
 import styled from '@emotion/styled'
 import { navigate } from 'gatsby'
-import LogoMobile from '../assets/logo-mobile.inline.svg'
-import LogoDesktop from '../assets/logo-desktop.inline.svg'
+import Logo from '../assets/logo-desktop.inline.svg'
 import User from '../assets/user.inline.svg'
 import Moon from '../assets/moon.inline.svg'
 import Sun from '../assets/sun.inline.svg'
 import { MIN_LARGE_DISPLAY_MEDIA_QUERY } from '../theme/base'
 import { useThemeContext } from '../context/themeContext'
 import { onPressKeys } from '../utils'
-import Hidden from './hidden'
 
 const StyledContainer = styled.div`
   display: flex;
@@ -91,6 +89,16 @@ const StyledLogoContainer = styled.div`
   cursor: pointer;
 `
 
+const StyledLogo = styled(Logo)`
+  width: 72px;
+  height: 72px;
+
+  ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {
+    width: auto;
+    height: auto;
+  }
+`
+
 const AppBar = (): JSX.Element => {
   const { setTheme, theme } = useThemeContext()
 
@@ -112,13 +120,9 @@ const AppBar = (): JSX.Element => {
         onClick={goHome}
         onKeyDown={(e) => onPressKeys(e, ['Enter'], goHome)}
       >
-        <Hidden tabletDown>
-          <LogoDesktop />
-        </Hidden>
-        <Hidden tabletUp>
-          <LogoMobile />
-        </Hidden>
+        <StyledLogo />
       </StyledLogoContainer>
+
       <StyledUserSection>
         <StyledThemeContainer>
           <StyledThemeButton

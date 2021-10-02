@@ -6,6 +6,7 @@ interface Props {
   mobileUp?: boolean
   tabletDown?: boolean
   tabletUp?: boolean
+  className?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   as?: React.ElementType<any>
 }
@@ -46,9 +47,9 @@ const StyledContainer = styled.div<Props>`
     `}
 `
 
-const Hidden: React.FC<Props> = ({ children, as, ...props }) => {
+const Hidden: React.FC<Props> = ({ children, className, as, ...props }) => {
   return (
-    <StyledContainer {...props} as={as}>
+    <StyledContainer {...props} as={as} className={className}>
       {children}
     </StyledContainer>
   )
