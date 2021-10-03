@@ -16,6 +16,7 @@ export const CREATE_INVOICE = gql`
     $invoiceDate: String!
     $paymentTems: Int!
     $status: String!
+    $items: [InputItem!]!
   ) {
     createInvoice(
       billFromStreet: $streetAddress
@@ -32,6 +33,7 @@ export const CREATE_INVOICE = gql`
       date: $invoiceDate
       paymentTermId: $paymentTems
       status: $status
+      items: $items
     ) {
       id
     }

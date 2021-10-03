@@ -1,5 +1,4 @@
 import React from 'react'
-import Layout from './src/components/layout.tsx'
 import { ThemeProvider } from '@emotion/react'
 import themes from './src/theme/modes'
 import {

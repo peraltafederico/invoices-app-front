@@ -59,8 +59,15 @@ const useInvoiceForm = ({ mode = 'create', onSuccess } = {} as Props) => {
       id: mode === 'edit' ? id : '',
     },
     onSubmit: async (values) => {
+      const newItems = values.items.map((item) => ({
+        name: item.name,
+        qty: item.qty,
+        price: String(item.price),
+      }))
+
       const variables = {
         ...values,
+        items: newItems,
         invoiceDate: new Date(values.invoiceDate)
           .toISOString()
           .slice(0, 19)
