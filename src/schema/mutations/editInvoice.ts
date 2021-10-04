@@ -17,7 +17,7 @@ export const EDIT_INVOICE = gql`
     $invoiceDate: String
     $paymentTems: Int
     $status: String
-    $items: [InputItem!]!
+    $items: [InputItem!]
   ) {
     updateInvoice(
       id: $id

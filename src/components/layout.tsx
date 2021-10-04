@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-fragments */
 import styled from '@emotion/styled'
 import React from 'react'
 import {
@@ -5,6 +6,7 @@ import {
   MIN_TABLET_MEDIA_QUERY,
 } from '../theme/base'
 import AppBar from './appbar'
+import SEO from './seo'
 
 interface Props {
   children: React.ReactNode
@@ -31,10 +33,13 @@ const StyledWrapper = styled.div`
 
 const Layout: React.FC<Props> = ({ children, className }: Props) => {
   return (
-    <StyledWrapper className={className}>
-      <AppBar />
-      <StyledContent id="content">{children}</StyledContent>
-    </StyledWrapper>
+    <React.Fragment>
+      <SEO />
+      <StyledWrapper className={className}>
+        <AppBar />
+        <StyledContent id="content">{children}</StyledContent>
+      </StyledWrapper>
+    </React.Fragment>
   )
 }
 
