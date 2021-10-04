@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import { Form, useFormikContext } from 'formik'
 import { navigate } from 'gatsby'
-import { InvoiceFormMode } from '../../interfaces'
+import { usePageContext } from '../../context/pageContext'
+import { Invoice, InvoiceFormMode } from '../../interfaces'
 import { MIN_TABLET_MEDIA_QUERY } from '../../theme/base'
 import ActionsFooter from '../actionsFooter'
 import Hidden from '../hidden'
@@ -31,10 +32,7 @@ interface Props {
 
 const InvoiceForm: React.FC<Props> = ({ mode }) => {
   const form = useFormikContext()
-
-  const submit = () => {
-    form.handleSubmit()
-  }
+  const { bussinessId } = usePageContext<Invoice>()
 
   return (
     <StyledForm>
@@ -52,20 +50,20 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                   {
                     buttonVariant: 'secondary',
                     text: 'Discard',
-                    onClick: () => navigate('/'),
+                    onClick: () => navigate(`/`),
                   },
                   {
                     buttonVariant: 'dark',
                     text: 'Save as Draft',
                     onClick: async () => {
                       form.setFieldValue('status', 'draft')
-                      submit()
+                      form.handleSubmit()
                     },
                   },
                   {
                     buttonVariant: 'primary',
                     text: 'Save & Send',
-                    onClick: submit,
+                    onClick: form.handleSubmit,
                   },
                 ]}
               />
@@ -77,12 +75,12 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                   {
                     buttonVariant: 'secondary',
                     text: 'Cancel',
-                    onClick: () => navigate('/'),
+                    onClick: () => navigate(`/invoices/${bussinessId}`),
                   },
                   {
                     buttonVariant: 'primary',
                     text: 'Save Changes',
-                    onClick: submit,
+                    onClick: form.handleSubmit,
                   },
                 ]}
               />

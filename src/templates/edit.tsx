@@ -10,8 +10,11 @@ import useInvoiceForm from '../hooks/useInvoiceForm'
 import { Invoice } from '../interfaces'
 
 const Edit: React.FC<PageProps> = () => {
-  const form = useInvoiceForm({ mode: 'edit', onSuccess: () => navigate('/') })
   const { bussinessId } = usePageContext<Invoice>()
+  const form = useInvoiceForm({
+    mode: 'edit',
+    onSuccess: () => navigate(`/invoices/${bussinessId}`),
+  })
 
   return (
     <Layout>
