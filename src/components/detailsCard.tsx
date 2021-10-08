@@ -66,7 +66,7 @@ const StyledDestinationAddress = styled.div`
 
 const StyledBillContainer = styled.div`
   margin-top: 4rem;
-  border-radius: ${(props) => props.theme.radii[2]};
+  border-radius: ${(props) => props.theme.radii[0]};
 
   ${(props) =>
     props.theme.mode === 'light' &&
