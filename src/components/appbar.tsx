@@ -110,7 +110,7 @@ const AppBar = (): JSX.Element => {
     }
   }
 
-  const goHome = () => navigate('/')
+  const goHome = () => navigate('/invoices/')
 
   return (
     <StyledContainer>

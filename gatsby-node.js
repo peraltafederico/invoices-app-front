@@ -1,7 +1,7 @@
 const path = require('path')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   const results = await graphql(`
     query {
@@ -51,13 +51,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   invoices.forEach((invoice) => {
     createPage({
-      path: `/invoices/${invoice.bussinessId}`,
+      path: `/invoices/${invoice.bussinessId}/`,
       component: detailTemplate,
       context: invoice,
     })
 
     createPage({
-      path: `/invoices/${invoice.bussinessId}/edit`,
+      path: `/invoices/${invoice.bussinessId}/edit/`,
       component: editTemplate,
       context: invoice,
     })

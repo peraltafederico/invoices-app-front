@@ -10,13 +10,13 @@ import useInvoiceForm from '../hooks/useInvoiceForm'
 const CreatePage: React.FC<PageProps> = () => {
   const form = useInvoiceForm({
     mode: 'create',
-    onSuccess: () => navigate('/'),
+    onSuccess: () => navigate('/invoices/'),
   })
 
   return (
     <Layout>
       <div>
-        <GoBack to="/" />
+        <GoBack to="/invoices/" />
         <FormTitle text="New Invoice" />
         <FormikProvider value={form}>
           <InvoiceForm mode="create" />

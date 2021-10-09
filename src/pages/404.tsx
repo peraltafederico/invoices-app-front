@@ -9,7 +9,7 @@ const NotFoundPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <NoContent title="We couldn't find what you're looking for :(">
-        <Link to="/">
+        <Link to="/invoices/">
           <Text as="span" variant="body2" isMuted>
             Click here to go to the main list
           </Text>

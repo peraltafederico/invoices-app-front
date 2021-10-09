@@ -50,7 +50,7 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                   {
                     buttonVariant: 'secondary',
                     text: 'Discard',
-                    onClick: () => navigate(`/`),
+                    onClick: () => navigate(`/invoices/`),
                   },
                   {
                     buttonVariant: 'dark',
@@ -75,7 +75,7 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
                   {
                     buttonVariant: 'secondary',
                     text: 'Cancel',
-                    onClick: () => navigate(`/invoices/${bussinessId}`),
+                    onClick: () => navigate(`/invoices/${bussinessId}/`),
                   },
                   {
                     buttonVariant: 'primary',

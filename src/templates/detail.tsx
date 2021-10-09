@@ -69,7 +69,7 @@ const Detail: React.FC<PageProps> = () => {
   return (
     <StyledLayout>
       <StyledWrapper>
-        <StyledGoBack to="/" />
+        <StyledGoBack to="/invoices/" />
         <StatusCard
           status={status}
           onEdit={handleEdit}
@@ -83,7 +83,7 @@ const Detail: React.FC<PageProps> = () => {
               {
                 buttonVariant: 'secondary',
                 text: 'Edit',
-                onClick: () => navigate(`/invoices/${bussinessId}/edit`),
+                onClick: () => navigate(`/invoices/${bussinessId}/edit/`),
               },
               {
                 buttonVariant: 'danger',

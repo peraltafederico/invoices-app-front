@@ -73,7 +73,7 @@ const StyledWrapper = styled.div`
 const InvoiceCard = ({ id, name, date, money, status }: Props) => {
   return (
     <StyledWrapper>
-      <Link to={`/invoices/${id}`}>
+      <Link to={`/invoices/${id}/`}>
         <Card>
           <StyledContent>
             <Hidden mobileUp>

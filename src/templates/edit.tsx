@@ -11,7 +11,7 @@ import { Invoice } from '../interfaces'
 
 const Edit: React.FC<PageProps> = () => {
   const { bussinessId } = usePageContext<Invoice>()
-  const goBackUrl = `/invoices/${bussinessId}`
+  const goBackUrl = `/invoices/${bussinessId}/`
 
   const form = useInvoiceForm({
     mode: 'edit',
