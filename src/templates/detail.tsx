@@ -16,8 +16,8 @@ import {
 import Layout from '../components/layout'
 import { usePageContext } from '../context/pageContext'
 import { Invoice } from '../interfaces'
-import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
 import Hidden from '../components/hidden'
+import { UPDATE_STATE_INVOICE } from '../schema/mutations/updateStateInvoice'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};
@@ -49,7 +49,7 @@ const Detail: React.FC<PageProps> = () => {
   const {
     pageContext: { status, bussinessId, id, description },
   } = usePageContext<Invoice>()
-  const [updateInvoice] = useMutation(EDIT_INVOICE)
+  const [updateInvoice] = useMutation(UPDATE_STATE_INVOICE)
 
   const handleDelete = () =>
     showModal({
