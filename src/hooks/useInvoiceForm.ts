@@ -22,21 +22,23 @@ const useInvoiceForm = ({ mode = 'create', onSuccess } = {} as Props) => {
   const [createInvoice] = useMutation(CREATE_INVOICE)
 
   const {
-    billFromCity,
-    billFromCountry,
-    billFromPostCode,
-    billFromStreet,
-    billToCity,
-    billToCountry,
-    billToEmail,
-    billToName,
-    billToPostCode,
-    billToStreet,
-    date,
-    description,
-    items,
-    id,
-    status,
+    pageContext: {
+      billFromCity,
+      billFromCountry,
+      billFromPostCode,
+      billFromStreet,
+      billToCity,
+      billToCountry,
+      billToEmail,
+      billToName,
+      billToPostCode,
+      billToStreet,
+      date,
+      description,
+      items,
+      id,
+      status,
+    },
   } = usePageContext<Invoice>()
 
   return useFormik({

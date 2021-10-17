@@ -94,7 +94,7 @@ export const wrapRootElement = ({ element }) => {
 
 export const wrapPageElement = ({ element, props }) => {
   return (
-    <PageContext.Provider value={props.pageContext}>
+    <PageContext.Provider value={props}>
       <GlobalStyles />
       <ModalRoot />
       {element}

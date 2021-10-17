@@ -32,7 +32,9 @@ interface Props {
 
 const InvoiceForm: React.FC<Props> = ({ mode }) => {
   const form = useFormikContext()
-  const { bussinessId } = usePageContext<Invoice>()
+  const {
+    pageContext: { bussinessId },
+  } = usePageContext<Invoice>()
 
   return (
     <StyledForm>

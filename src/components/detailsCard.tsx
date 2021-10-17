@@ -187,21 +187,23 @@ const StyledTableHead = styled.th`
 
 export const DetailsCard: React.FC = () => {
   const {
-    billFromCity,
-    billFromCountry,
-    billFromPostCode,
-    billFromStreet,
-    billToCity,
-    billToCountry,
-    billToEmail,
-    billToName,
-    billToPostCode,
-    billToStreet,
-    bussinessId,
-    date,
-    description,
-    items,
-    total,
+    pageContext: {
+      billFromCity,
+      billFromCountry,
+      billFromPostCode,
+      billFromStreet,
+      billToCity,
+      billToCountry,
+      billToEmail,
+      billToName,
+      billToPostCode,
+      billToStreet,
+      bussinessId,
+      date,
+      description,
+      items,
+      total,
+    },
   } = usePageContext<Invoice>()
 
   return (

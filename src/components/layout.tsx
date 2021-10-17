@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-fragments */
 import styled from '@emotion/styled'
 import React from 'react'
+import { usePageContext } from '../context/pageContext'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
@@ -8,7 +9,7 @@ import {
 import AppBar from './appbar'
 import SEO from './seo'
 
-interface Props {
+interface Props extends React.ComponentProps<typeof SEO> {
   children: React.ReactNode
   className?: string
 }
@@ -31,10 +32,16 @@ const StyledWrapper = styled.div`
   background: ${(props) => props.theme.colors.background};
 `
 
-const Layout: React.FC<Props> = ({ children, className }: Props) => {
+const Layout: React.FC<Props> = ({
+  children,
+  className,
+  description,
+  meta,
+  title,
+}: Props) => {
   return (
     <React.Fragment>
-      <SEO />
+      <SEO description={description} meta={meta} title={title} />
       <StyledWrapper className={className}>
         <AppBar />
         <StyledContent id="content">{children}</StyledContent>

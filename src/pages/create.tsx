@@ -14,7 +14,10 @@ const CreatePage: React.FC<PageProps> = () => {
   })
 
   return (
-    <Layout>
+    <Layout
+      description="Create an invoice and test the power of this app."
+      title="Create"
+    >
       <div>
         <GoBack to="/invoices/" />
         <FormTitle text="New Invoice" />

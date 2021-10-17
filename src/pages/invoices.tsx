@@ -55,7 +55,7 @@ const HomePage: React.FC<PageProps> = () => {
   }
 
   return (
-    <Layout>
+    <Layout title="Home">
       <div>
         <UserActions
           invoicesAmount={invoices.length}

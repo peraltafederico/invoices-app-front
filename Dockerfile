@@ -1,8 +1,10 @@
 FROM node:14-alpine as builder
 
 ARG GATSBY_API_BASE_URL=http://localhost:4000
+ARG GATSBY_BASE_URL=http://invoicesapp.peraltafedericomanuel.com
 
 ENV GATSBY_API_BASE_URL=$GATSBY_API_BASE_URL
+ENV GATSBY_BASE_URL=$GATSBY_BASE_URL
 
 WORKDIR /usr/src/app
 

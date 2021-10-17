@@ -19,7 +19,9 @@ const StyledText = styled(Text)`
 
 const DeleteInvoiceModal = (): JSX.Element => {
   const [deleteInvoice] = useMutation(DELETE_INVOICE)
-  const { id } = usePageContext<Invoice>()
+  const {
+    pageContext: { id },
+  } = usePageContext<Invoice>()
   const { hideModal } = useModalContext()
 
   const handleDelete = async () => {

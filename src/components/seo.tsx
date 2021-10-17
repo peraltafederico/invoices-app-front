@@ -1,7 +1,19 @@
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import { usePageContext } from '../context/pageContext'
 
-const SEO: React.FC<any> = ({ description, lang, meta = {}, title }) => {
+interface Props {
+  description?: string
+  title: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  meta?: any
+}
+
+const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
+  const {
+    location: { pathname },
+  } = usePageContext()
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -22,10 +34,10 @@ const SEO: React.FC<any> = ({ description, lang, meta = {}, title }) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: 'en',
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : defaultTitle}
       meta={[
         {
           name: `description`,
@@ -42,6 +54,14 @@ const SEO: React.FC<any> = ({ description, lang, meta = {}, title }) => {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:url`,
+          content: `${process.env.GATSBY_BASE_URL}${pathname}`,
+        },
+        {
+          property: `og:image`,
+          content: `${process.env.GATSBY_BASE_URL}/site-image.png`,
         },
         {
           name: `twitter:card`,

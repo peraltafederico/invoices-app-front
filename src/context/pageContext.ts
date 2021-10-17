@@ -1,10 +1,11 @@
+import { PageProps } from 'gatsby'
 import { createContext, useContext } from 'react'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const PageContext = createContext<any | undefined>(undefined)
+export const PageContext = createContext<PageProps | undefined>(undefined)
 
-export const usePageContext = <T extends object>(): T => {
-  const pageContext = useContext(PageContext)
+export const usePageContext = <T = object>() => {
+  // @ts-ignore
+  const pageContext = useContext<PageProps<object, T> | undefined>(PageContext)
 
   if (!pageContext) {
     // eslint-disable-next-line no-console

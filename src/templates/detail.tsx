@@ -46,7 +46,9 @@ const StyledLayout = styled(Layout)`
 
 const Detail: React.FC<PageProps> = () => {
   const { showModal } = useModalContext()
-  const { status, bussinessId, id } = usePageContext<Invoice>()
+  const {
+    pageContext: { status, bussinessId, id, description },
+  } = usePageContext<Invoice>()
   const [updateInvoice] = useMutation(EDIT_INVOICE)
 
   const handleDelete = () =>
@@ -67,7 +69,7 @@ const Detail: React.FC<PageProps> = () => {
   }
 
   return (
-    <StyledLayout>
+    <StyledLayout description={description} title={bussinessId}>
       <StyledWrapper>
         <StyledGoBack to="/invoices/" />
         <StatusCard

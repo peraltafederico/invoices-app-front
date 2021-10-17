@@ -7,7 +7,7 @@ import Text from '../components/text'
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <Layout>
+    <Layout title="Not found">
       <NoContent title="We couldn't find what you're looking for :(">
         <Link to="/invoices/">
           <Text as="span" variant="body2" isMuted>

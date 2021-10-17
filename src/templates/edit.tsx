@@ -10,7 +10,9 @@ import useInvoiceForm from '../hooks/useInvoiceForm'
 import { Invoice } from '../interfaces'
 
 const Edit: React.FC<PageProps> = () => {
-  const { bussinessId } = usePageContext<Invoice>()
+  const {
+    pageContext: { bussinessId },
+  } = usePageContext<Invoice>()
   const goBackUrl = `/invoices/${bussinessId}/`
 
   const form = useInvoiceForm({
@@ -19,7 +21,10 @@ const Edit: React.FC<PageProps> = () => {
   })
 
   return (
-    <Layout>
+    <Layout
+      description="Edit an invoice and test the power of this app."
+      title="Edit"
+    >
       <div>
         <GoBack to={goBackUrl} />
         <FormTitle text={`Edit #${bussinessId}`} />
