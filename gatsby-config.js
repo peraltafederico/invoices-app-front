@@ -7,6 +7,7 @@ module.exports = {
     title: `Invoices App`,
     description: `An amazing app to manage your invoices. Create, edit or delete them without any restriction.`,
     author: `@peraltafederico`,
+    siteUrl: process.env.GATSBY_BASE_URL,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -71,17 +72,24 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-          bucketName: 'invoicesapp.peraltafedericomanuel.com',
+        bucketName: 'invoicesapp.peraltafedericomanuel.com',
       },
-  },
-  {
-    resolve: `gatsby-plugin-force-trailing-slashes`,
-  },
-  {
-    resolve: `gatsby-plugin-offline`,
-    options: {
-      precachePages: [`/invoices/`, `/invoices/*`, `/create/`, `/edit/`],
     },
-  },
+    {
+      resolve: `gatsby-plugin-force-trailing-slashes`,
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/invoices/`, `/invoices/*`, `/create/`, `/edit/`],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
+    `gatsby-plugin-sitemap`,
   ],
 }
