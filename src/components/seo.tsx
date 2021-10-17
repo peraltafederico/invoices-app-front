@@ -22,6 +22,7 @@ const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
             title
             description
             author
+            siteUrl
           }
         }
       }
@@ -57,11 +58,11 @@ const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
         },
         {
           property: `og:url`,
-          content: `${process.env.GATSBY_BASE_URL}${pathname}`,
+          content: `${site.siteMetadata.siteUrl}${pathname}`,
         },
         {
           property: `og:image`,
-          content: `${process.env.GATSBY_BASE_URL}/site-image.png`,
+          content: `${site.siteMetadata.siteUrl}/site-image.png`,
         },
         {
           name: `twitter:card`,
