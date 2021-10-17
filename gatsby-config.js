@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Invoices App`,
     description: `An amazing app to manage your invoices. Create, edit or delete them without any restriction.`,
-    author: `@peraltafederico`,
+    author: `@_pfederico`,
     siteUrl: process.env.GATSBY_BASE_URL,
   },
   plugins: [
