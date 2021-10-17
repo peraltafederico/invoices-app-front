@@ -20,6 +20,4 @@ FROM amazon/aws-cli
 
 COPY --from=builder /usr/src/app .
 
-RUN aws s3 rm --recursive s3://invoicesapp.peraltafedericomanuel.com
-
 CMD ["s3", "cp", "./public", "s3://invoicesapp.peraltafedericomanuel.com", "--recursive"]
