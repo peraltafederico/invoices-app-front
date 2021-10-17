@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-fragments */
 import styled from '@emotion/styled'
 import React from 'react'
-import { usePageContext } from '../context/pageContext'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
