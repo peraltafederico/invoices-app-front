@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client'
 import * as Yup from 'yup'
 import { usePageContext } from '../context/pageContext'
 import { Invoice, InvoiceFormMode } from '../interfaces'
-import { EDIT_INVOICE } from '../schema/mutations/editInvoice'
+import { UPDATE_INVOICE } from '../schema/mutations/updateInvoice'
 import { CREATE_INVOICE } from '../schema/mutations/createInvoice'
 
 Yup.setLocale({
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const useInvoiceForm = ({ mode = 'create', onSuccess } = {} as Props) => {
-  const [updateInvoice] = useMutation(EDIT_INVOICE)
+  const [updateInvoice] = useMutation(UPDATE_INVOICE)
   const [createInvoice] = useMutation(CREATE_INVOICE)
 
   const {

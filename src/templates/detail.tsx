@@ -17,7 +17,7 @@ import Layout from '../components/layout'
 import { usePageContext } from '../context/pageContext'
 import { Invoice } from '../interfaces'
 import Hidden from '../components/hidden'
-import { UPDATE_STATE_INVOICE } from '../schema/mutations/updateStateInvoice'
+import { UPDATE_STATE_INVOICE } from '../schema/mutations/updateStatusInvoice'
 
 const StyledGoBack = styled(GoBack)`
   margin-bottom: ${(props) => props.theme.space[13]};

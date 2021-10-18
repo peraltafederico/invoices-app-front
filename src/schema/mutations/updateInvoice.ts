@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const EDIT_INVOICE = gql`
+export const UPDATE_INVOICE = gql`
   mutation updateInvoice(
     $id: Int!
     $streetAddress: String
@@ -17,7 +17,7 @@ export const EDIT_INVOICE = gql`
     $invoiceDate: String
     $paymentTems: Int
     $status: String
-    $items: [InputItem!]
+    $items: [InputItem!]!
   ) {
     updateInvoice(
       id: $id
