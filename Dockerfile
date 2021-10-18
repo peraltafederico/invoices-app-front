@@ -20,4 +20,4 @@ FROM amazon/aws-cli
 
 COPY --from=builder /usr/src/app .
 
-CMD ["./scripts/run.sh"]
+CMD s3 rm --recursive s3://invoicesapp.peraltafedericomanuel.com ; s3 cp ./public s3://invoicesapp.peraltafedericomanuel.com --recursive
