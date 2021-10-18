@@ -50,7 +50,7 @@ jobs:
         
       - name: Remove objects
         run: |
-          docker run --env AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} --env AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} --env AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }} ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front aws s3 rm --recursive s3://invoicesapp.peraltafedericomanuel.com
+          docker run --env AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} --env AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }} --env AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }} ${{ secrets.DOCKER_HUB_USERNAME }}/invoices-app-front s3 rm --recursive s3://invoicesapp.peraltafedericomanuel.com
 
       - name: Deploy
         run: |
