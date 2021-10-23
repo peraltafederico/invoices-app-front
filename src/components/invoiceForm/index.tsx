@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Form, useFormikContext } from 'formik'
 import { navigate } from 'gatsby'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePageContext } from '../../context/pageContext'
 import useScrollBottom from '../../hooks/useScrollBottom'
 import { Invoice, InvoiceFormMode } from '../../interfaces'
@@ -36,9 +36,16 @@ const InvoiceForm: React.FC<Props> = ({ mode }) => {
     pageContext: { bussinessId },
   } = usePageContext<Invoice>()
   const formContainerRef = useRef<HTMLFormElement>(null)
+  const [ref, setRef] = useState<{ current: HTMLElement | null }>({
+    current: null,
+  })
+
+  useEffect(() => {
+    setRef({ current: document.documentElement })
+  }, [])
 
   const scrollBottom = useScrollBottom({
-    ref: { current: document.documentElement },
+    ref,
     isListeningRoot: true,
   })
 
