@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { navigate } from 'gatsby'
-import Logo from '../assets/logo-desktop.inline.svg'
+import Logo from '../../static/logo-desktop.inline.svg'
 import User from '../assets/user.inline.svg'
 import Moon from '../assets/moon.inline.svg'
 import Sun from '../assets/sun.inline.svg'

@@ -70,6 +70,14 @@ const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
           content: `${site.siteMetadata.siteUrl}/site-image.png`,
         },
         {
+          property: `og:image:width`,
+          content: `288`,
+        },
+        {
+          property: `og:image:height`,
+          content: `288`,
+        },
+        {
           property: `og:image:secure_url`,
           itemprop: `image`,
           content: `${site.siteMetadata.siteUrl}/site-image.png`,
