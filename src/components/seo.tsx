@@ -71,11 +71,15 @@ const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
         },
         {
           property: `og:image:width`,
-          content: `288`,
+          content: `512`,
         },
         {
           property: `og:image:height`,
-          content: `288`,
+          content: `512`,
+        },
+        {
+          property: `og:image:type`,
+          content: `image/png`,
         },
         {
           property: `og:image:secure_url`,

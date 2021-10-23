@@ -24,7 +24,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `Invoices App`,
         short_name: `Invoices App`,
         start_url: `/invoices/`,
         background_color: `#663399`,
