@@ -49,6 +49,10 @@ const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
           content: title,
         },
         {
+          property: `og:site_name`,
+          content: defaultTitle,
+        },
+        {
           property: `og:description`,
           content: metaDescription,
         },
@@ -62,6 +66,12 @@ const SEO: React.FC<Props> = ({ description, meta = {}, title }) => {
         },
         {
           property: `og:image`,
+          itemprop: `image`,
+          content: `${site.siteMetadata.siteUrl}/site-image.png`,
+        },
+        {
+          property: `og:image:secure_url`,
+          itemprop: `image`,
           content: `${site.siteMetadata.siteUrl}/site-image.png`,
         },
         {
