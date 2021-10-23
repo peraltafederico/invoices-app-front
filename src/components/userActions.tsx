@@ -170,7 +170,7 @@ const UserActions: React.FC<Props> = ({
 
   const handleNewInvoice = () => {
     if (isMobileOnly) {
-      navigate('/create')
+      navigate('/invoices/create/')
 
       return
     }

@@ -1,6 +1,7 @@
 import { FormikProvider } from 'formik'
 import { navigate, PageProps } from 'gatsby'
 import React from 'react'
+import FormLayout from '../components/formLayout'
 import FormTitle from '../components/formTitle'
 import GoBack from '../components/goBack'
 import InvoiceForm from '../components/invoiceForm'
@@ -25,13 +26,13 @@ const Edit: React.FC<PageProps> = () => {
       description="Edit an invoice and test the power of this app."
       title="Edit"
     >
-      <div>
+      <FormLayout>
         <GoBack to={goBackUrl} />
         <FormTitle text={`Edit #${bussinessId}`} />
         <FormikProvider value={form}>
           <InvoiceForm mode="edit" />
         </FormikProvider>
-      </div>
+      </FormLayout>
     </Layout>
   )
 }

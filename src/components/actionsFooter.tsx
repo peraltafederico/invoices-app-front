@@ -33,7 +33,6 @@ const StyledContainer = styled.div`
 
   ${MIN_TABLET_MEDIA_QUERY} {
     padding: 0 5.6rem;
-    position: absolute;
   }
 
   ${MIN_LARGE_DISPLAY_MEDIA_QUERY} {

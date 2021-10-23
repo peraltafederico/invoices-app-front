@@ -3,16 +3,16 @@ import { graphql, PageProps, useStaticQuery } from 'gatsby'
 
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import InvoiceCard from '../components/invoiceCard'
-import UserActions from '../components/userActions'
-import NoContent from '../components/noContent'
+import InvoiceCard from '../../components/invoiceCard'
+import UserActions from '../../components/userActions'
+import NoContent from '../../components/noContent'
 import {
   MIN_LARGE_DISPLAY_MEDIA_QUERY,
   MIN_TABLET_MEDIA_QUERY,
-} from '../theme/base'
-import Layout from '../components/layout'
-import { Invoice } from '../interfaces'
-import Text from '../components/text'
+} from '../../theme/base'
+import Layout from '../../components/layout'
+import { Invoice } from '../../interfaces'
+import Text from '../../components/text'
 
 const StyledCardsWrapper = styled.div`
   & > div:not(:first-of-type) {
@@ -54,6 +54,13 @@ const HomePage: React.FC<PageProps> = () => {
     setFilters(newFilters)
   }
 
+  const filteredInvoices: Invoice[] =
+    filters.length > 0
+      ? invoices.filter((invoice: Invoice) =>
+          filters.includes(invoice.status || '')
+        )
+      : invoices
+
   return (
     <Layout title="Home">
       <div>
@@ -64,22 +71,16 @@ const HomePage: React.FC<PageProps> = () => {
         />
         {invoices.length > 0 ? (
           <StyledCardsWrapper>
-            {invoices
-              .filter((invoice: Invoice) =>
-                filters.length > 0
-                  ? filters.includes(invoice.status || '')
-                  : true
-              )
-              .map((invoice: Invoice) => (
-                <InvoiceCard
-                  key={invoice.bussinessId}
-                  date={invoice.date}
-                  id={invoice.bussinessId}
-                  money={invoice.total}
-                  name={invoice.billToName}
-                  status={invoice.status}
-                />
-              ))}
+            {filteredInvoices.map((invoice) => (
+              <InvoiceCard
+                key={invoice.bussinessId}
+                date={invoice.date}
+                id={invoice.bussinessId}
+                money={invoice.total}
+                name={invoice.billToName}
+                status={invoice.status}
+              />
+            ))}
           </StyledCardsWrapper>
         ) : (
           <NoContent title="There is nothing here">

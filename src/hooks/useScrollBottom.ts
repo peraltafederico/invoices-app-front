@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 interface Props {
   ref: React.RefObject<HTMLElement>
+  isListeningRoot?: boolean
 }
 
-const useScrollBottom = ({ ref }: Props) => {
+const useScrollBottom = ({ ref, isListeningRoot }: Props) => {
   const [scrollBottom, setScrollBottom] = useState(true)
 
   useEffect(() => {
@@ -12,7 +13,7 @@ const useScrollBottom = ({ ref }: Props) => {
 
     const handleScroll = () => {
       const isScrollBottom =
-        (node?.scrollTop || 0) + (node?.offsetHeight || 0) ===
+        (node?.scrollTop || 0) + (node?.clientHeight || 0) ===
         node?.scrollHeight
 
       if (isScrollBottom) {
@@ -22,10 +23,20 @@ const useScrollBottom = ({ ref }: Props) => {
       }
     }
 
-    node?.addEventListener('scroll', handleScroll)
+    if (isListeningRoot) {
+      window.addEventListener('scroll', handleScroll)
+    } else {
+      node?.addEventListener('scroll', handleScroll)
+    }
 
-    return () => node?.removeEventListener('scroll', handleScroll)
-  }, [ref])
+    return () => {
+      if (isListeningRoot) {
+        window.removeEventListener('scroll', handleScroll)
+      } else {
+        node?.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [ref, isListeningRoot])
 
   return scrollBottom
 }
